@@ -4,14 +4,16 @@ var packages = JavaImporter(
 with (packages) {
   var argOffset = 0;
   var encoding = "utf8";
-  if (arguments[0].startsWith("utf")) {
+  var arg0 = new String(arguments[0]);
+  if (arg0.startsWith("utf")) {
     argOffset = 1;
-    encoding = arguments[0];
+    encoding = arg0;
   }
   var s = null;
   var byteArr = Array.newInstance(Byte.TYPE, (arguments.length - argOffset));
   for (var i=argOffset; i<arguments.length; i++) {
-    var intValue = Integer.parseInt(arguments[i], 16);
+    var argi = new String(arguments[i]);
+    var intValue = Integer.parseInt(argi, 16);
     if (intValue > 127) {
       var newIntValue = intValue-256;
       byteArr[i-argOffset] = newIntValue;
@@ -19,7 +21,7 @@ with (packages) {
       byteArr[i-argOffset] = intValue;
     }
   }
-  if ("utf32".equals(arguments[0])) {
+  if ("utf32".equals(arg0)) {
     var sb = new StringBuilder();
     var sbAppendCharArr = sb["append(char[])"];
     for (var i=0; i<byteArr.length; i=i+4) {
@@ -38,8 +40,8 @@ with (packages) {
   } else {
     s = new String(byteArr, encoding);
   }
-  println('char\t\tutf8\t\tutf16\t\tutf32');
-  println('----\t\t----\t\t-----\t\t-----');
+  System.out.println('char\t\tutf8\t\tutf16\t\tutf32');
+  System.out.println('----\t\t----\t\t-----\t\t-----');
   for (var i=0; i<s.length(); i++) {
     var c = s.charAt(i);
     var substr = null;
@@ -63,7 +65,8 @@ with (packages) {
       } else {
         utf8BytesStr += Integer.toHexString(utf8Bytes[j]);
       }
+	  System.out.write(utf8Bytes[j]);
     }
-    println(sub+"\t\t"+utf8BytesStr+"\t\t"+utf16+"\t\t"+utf32);
+    System.out.println("\t\t"+utf8BytesStr+"\t\t"+utf16+"\t\t"+utf32);
   }
 }
