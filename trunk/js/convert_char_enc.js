@@ -47,7 +47,7 @@ with (packages) {
     var substr = null;
     var utf32 = '';
     var utf16 = '';
-    if (c >= Character.MIN_SURROGATE) {
+    if (c >= Character.MIN_SURROGATE && c <= Character.MAX_SURROGATE) {
       sub = s.substring(i, i+2);
       utf32 = Integer.toHexString(Character.toCodePoint(s.charAt(i), s.charAt(i+1)));
       utf16 = Integer.toHexString(c+0)+Integer.toHexString(s.charAt(i+1)+0);
