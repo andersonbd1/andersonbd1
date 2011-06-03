@@ -1,0 +1,77 @@
+"set backupdir=.\\.backup,c:\\tmp
+"set directory=.\\.backup,c:\\tmp
+"
+set backupdir=c:\tmp
+set directory=c:\tmp
+
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+
+unm <C-v>
+unm <C-Y>
+
+set number
+color torte
+set vb
+set tabstop=4
+set shiftwidth=4
+"set expandtab
+syntax enable
+set noswapfile
+set foldmethod=indent
+set autoindent
+set ignorecase
+set hlsearch
+set guifont=ProggyCleanTT:h12
+set nowritebackup
+set nobackup
+
+map <F12> :source $vimruntime/../_vimrc<cr>
+
+set diffexpr=MyDiff()
+function! MyDiff()
+  let opt = ''
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  silent execute '!C:\Vim\vim61\diff -a ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
+endfunction
+
+function! Outside()
+    set guifont=8x16B
+    color default
+endfunction
+
+function! Inside()
+    set guifont=8x16
+    color torte
+endfunction
+
+map <F11> :%s/<C-q>013$//g<cr>
+"map <F3> :set syntax=xml<cr>
+map <F3> :w !ruby<cr>
+map <F2> :set tabstop=2<cr>:set shiftwidth=2<cr>:set taglength=2<cr>
+map <F4> :set tabstop=4<cr>:set shiftwidth=4<cr>:set taglength=4<cr>
+map <F8> :set tabstop=8<cr>:set shiftwidth=8<cr>:set taglength=8<cr>
+map <F9> :%s/^\(<C-q>009*\)  /\1<C-q>009/g<cr>
+
+map <F5> :%s/<l:warningDays>\(.*\)<\/l:warningDays>/<l:stateCriticalDates><C-q>013<l:stateCriticalDate><C-q>013<l:type>Warning<\/l:type><C-q>013<l:fcdType>Closing<\/l:fcdType><C-q>013<l:offset>\1<\/l:offset><C-q>013<\/l:stateCriticalDate><C-q>013<\/l:stateCriticalDates>/g<cr>
+
+"map <F6> :g/^$/d<cr>
+map <F6> :set syntax=html<cr>
+map <F7> :1,$ !xmllint --format -<cr>
+"
+"map <F8> :%s/\(addAttribute(\"\", \"\)[a-zA-Z]*/\1/g
+
+au BufNewFile,BufRead *.rhtml set syn=eruby
+set ff=unix
+
+" tab navigation like firefox
+:nmap <C-S-tab> :tabprevious<cr>
+:"nmap <C-S-tab> :tabprevious<cr>
+":imap <C-S-tab> <ESC>:tabprevious<cr>i
+:nmap <C-tab> :tabnext<cr>
+":map <C-tab> :tabnext<cr>
+":imap <C-tab> <ESC>:tabnext<cr>i
+:nmap <C-t> :tabnew<cr>
+":imap <C-t> <ESC>:tabnew<cr>
+:nmap <C-u> :tabclose<cr>
