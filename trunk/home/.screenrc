@@ -1,5 +1,7 @@
-screen -t local
-exec echo "mst"
+shell -${SHELL}
+defscrollback 1024
+screen -t local2
+exec mst
 screen -t oai-135
 exec echo "ssh voyager@128.151.244.135"
 screen -t oai-137
@@ -8,3 +10,5 @@ screen -t mst-136
 exec echo "ssh devuser@128.151.244.136"
 screen -t mst-146
 exec echo "ssh devuser@128.151.244.146"
+screen -t "mst-247 (xc.ilcso.uiuc.edu)"
+exec echo "ssh banderso@xc.ilcso.uiuc.edu"
