@@ -6,5 +6,8 @@ openssh
 subversion
 unzip
 xeyes
-xorg
+X-start-menu-icons
+xinit
+xorg-docs
+xorg-server
 zip
