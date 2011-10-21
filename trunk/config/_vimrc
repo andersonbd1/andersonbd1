@@ -15,7 +15,7 @@ color torte
 set vb
 set tabstop=4
 set shiftwidth=4
-"set expandtab
+set expandtab
 syntax enable
 set noswapfile
 set foldmethod=indent
@@ -25,6 +25,8 @@ set hlsearch
 set guifont=ProggyCleanTT:h12
 set nowritebackup
 set nobackup
+set encoding=utf8
+set fileencoding=utf8
 
 map <F12> :source $vimruntime/../_vimrc<cr>
 
