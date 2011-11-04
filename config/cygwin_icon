@@ -1,1 +1,4 @@
 C:\dev\cygwin\bin\run.exe /usr/bin/bash.exe -l -c "/usr/bin/startxwin.exe -- -emulate3buttons"
+
+old:
+C:\dev\cygwin\Cygwin.bat  

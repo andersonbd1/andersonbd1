@@ -1,3 +1,4 @@
+X-start-menu-icons
 curl
 git
 inetutils
@@ -5,8 +6,8 @@ libxml2
 openssh
 subversion
 unzip
+xclock
 xeyes
-X-start-menu-icons
 xinit
 xorg-docs
 xorg-server
