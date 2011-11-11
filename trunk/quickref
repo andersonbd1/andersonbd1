@@ -1,0 +1,108 @@
+#join all lines
+sed -e :a -e '/$/N; s/\n//; ta'
+date +%Y-%m-%dT%H:%M:%S
+
+quickref
+
+cat -n ./MST-instances/MetadataServicesToolkit/logs/MST_General_log.txt | head -n 44818 | tail -22960 | grep 'new_act_cnt' | sed 's/^.*new_act_cnt:[ \t]*\([0-9]*\).*$/\1/g' | awk '{t+=$1;} END {print t}'
+
+find . -name '*.xml' -print0 | xargs -0 grep -i "deleterepositoryandrecords"
+
+./configure --prefix=/home/myuser
+
+export DISPLAY=128.151.189.128:0.0
+export TERM=vt100
+
+cygwin    
+C:\cygwin\bin\run.exe /usr/bin/bash.exe -l -c "/usr/bin/startxwin.exe -- -emulate3buttons"
+
+another solution.  just start cygwin (no x mode) and then
+nohup bash -l -c "/usr/bin/startxwin.exe -- -emulate3buttons"
+
+# find non-ascii chars
+http://stackoverflow.com/questions/3001177/how-do-i-grep-for-non-ascii-characters-in-unix
+on cygwin:
+grep -P -n "[\x7F-\xFF]"
+this one was old and didn't work for me the last time.  perhaps it works on solaris?
+grep -n "[$(echo -n '7F' | xxd -r -p)-$(echo -n 'FF' | xxd -r -p)]" main.html | sed "s/[$(echo -n '7F' | xxd -r -p)-$(echo -n 'FF' | xxd -r -p)]/MS/g"
+
+Alias /gcm/ "C:/aw/gcm/public_html/"
+
+find . -name \*.xml | grep -v svn | xargs gawk 'c==1{print FILENAME, $0; c=0} /SuffixType/{c=1; l=$0}'
+gawk 'c==1{print $0; c=0} /Oranges/{print $0; c=1}' file.txt
+
+startxwin.bat (c:/cygwin/bin)
+%RUN% xterm -fg white -bg darkblue -e /usr/bin/bash -l
+REM %RUN% xterm -e /usr/bin/bash -l
+
+mysql>SET @n = 0;
+mysql> SELECT @n := @n+1 AS rownum, thing, arms, legs FROM limbs
+
+linux commands:
+pushd, popd, file, pwd -P, strings, history, write, iconv
+
+DATE_ADD('1970-01-01', INTERVAL endTime/1000 SECOND)
+
+curl 'http://rte-x.textwise.com:8080/operations/operations/getConfig' | xmllint --format - | sed 's/ \+/\n/g' | grep . > x.xml
+
+linux time sync: service ntpd stop
+
+find . -printf '"%h/%f"\n'
+
+mysql -u root --password=ss@dm -h api3 -e "show variables like 'key_buffer_size'"
+
+ssh -f -L localhost:9011:mail.google.com:80 andersonbd1@mywardrobe.vpsland.com -p 8888 sleep 100
+ssh -f -L localhost:3307:128.151.244.170:3306 benjamina@128.151.244.170 sleep 100
+
+gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=out.pdf in1.pdf in2.pdf in3.pdf
+
+to start oracle
+tns listener service
+[name of database (CLM)] service
+
+ssh -f -L localhost:9010:solweb.dotech.com:80 ben@roch.dotech.com sleep 100
+
+find . -regex '.*\.\(xml\|properties\)'
+
+ curl http://www.jasongaylord.com/webservices/zipcodes.asmx -H SOAPAction:'http://www.jasongaylord.com/webservices/zipcodes/ZipCodesFromCityState' -H Content-Type:'text/xml' -d @state.xml
+
+ cat ./wf-server/src/test/xml/soapBegin.xml ./wf-server/src/test/xml/StatusUpdate.xml ./wf-server/src/test/xml/soapEnd.xml | curl http://localhost:8010/axis/services/StatusUpdatePort -H Content-Type:'text/xml' -H SOAPAction:\"\" -d @- | xmllint --format -
+
+sqlplusw "sys/burton89@realnet as sysdba" &
+cat ./core_tables.sql.sql | sed '/^\s*$/d' | sqlplus -S riscs/riscs > out
+
+find . -regex '\(\.\/portal\|\.\/common\).*\(\.java\|flow\/.*\.js\)' | grep -v \.svn
+
+code printing
+To install cygwin:
+1. Download setup.exe from http://www.cygwin.com. Save this file somewhere, as you will use it in the future to install new cygwin packages and update current packages.
+2. Run Setup.exe.
+3. Go through the wizard. Choose to "Install from the internet", and use sentinel-corp.paetec.com with port 8080 as your HTTP proxy. Note: on subsequent runs of setup.exe, it will remember "sentinel-corp.paetec.com", but will change the port to 80, so you'll have to change it to 8080 each time.
+4. The wizard will ask you to choose a mirror. I find that http://mirrors.kernel.org works well.
+5. The package selection screen will come up. At a minimum, install a2ps, located in the "Text" section, and ghostscript under the "Graphics" section. Click next, and the selected packages will install.
+
+To generate code printouts:
+1. It is convenient to create a new directory somewhere and copy the files you want to print there, rather than working in your main source directory.
+2. Start a cygwin shell, and CD to the directory you've created. Your drives are accessable in cygwin through the path /cygdrive/x/, where "x" is the drive letter. You can also specify UNC's, as long as you substitute backslashes with forward slashes. (ex. "//fs3-corp/public/")
+3. Run the following command, which will generate a .ps (postscript) file of the formatted document:
+a2ps -2 -M letter --line-numbers=1 -A fill --pretty-print=/usr/share/a2ps/sheets/plsql.ssh -o output.ps <filelist>
+A breakdown of this command is listed below these instructions.
+<filelist> can be a wildcard if you don't care about the order the documents are printed, or a list of files to print separated by spaces if you do care. Feel free to change output.ps to whatever you want.
+4. Run "ps2pdf output.ps" This will convert the postscript file to a pdf named "output.pdf".
+
+Command breakdown:
+a2ps: The program being run.
+-2: The number of sheets per page. You can vary this from -1 to -9
+-M letter: Tells a2ps to produce a file printable on letter-sized paper         
+--line-numbers=1: Frequency of line numbers. Set to 5 to print a line number every 5 lines, for example.
+-A fill: If a file ends on the left half of a page, start the next file in the right side of that same page. (Default is to start it on a new page)
+--pretty-print=/usr/share/a2ps/sheets/plsql.ssh: Forces a2ps to use PL/SQL syntax highlighting. If you omit this, a2ps will figure out the file type based on the extension. It doesn't understand some of the default extensions TOAD saves as though. See the manual (link below) for more supported languages.
+-o output.ps: Specifies the output file
+
+patch -u -R -p2 < ./rollback02.patch
+
+mknod backpipe p
+nc -l -p 80 0<backpipe | tee -a inflow | nc localhost 81 | tee -a outflow 1>backpipe
+detailed instructions here:
+http://www.stearns.org/doc/nc-intro.v0.80.html
+
