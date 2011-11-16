@@ -5,12 +5,13 @@
       // Create a new YUI instance and populate it with the required modules.
       function go(a) {
         var innerContent = '';
+        if (a.length == 1) {
+          window.location = a[0].u;
+        }
         for (var i=0; i<a.length; i++) {
           innerContent += '<a href="'+a[i].u+'">'+a[i].d+'</a><br />';
         }
         document.getElementById('content').innerHTML=innerContent;
-        console.log('here');
-        console.log(a);
       }
       YUI().use('get', function (Y) {
         // Get is available and ready for use. Add implementation
