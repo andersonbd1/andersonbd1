@@ -4,6 +4,7 @@ git
 inetutils
 libxml2
 openssh
+python (for the purpose of formatting json)
 subversion
 unzip
 xclock
