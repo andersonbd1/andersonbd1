@@ -17,7 +17,7 @@
         // Get is available and ready for use. Add implementation
         // code here.
         var transaction = Y.Get.script(
-          'http://feeds.delicious.com/v2/json/andersonbd1/<?= $_REQUEST['tag'] ?>?callback=go', {
+          'http://feeds.delicious.com/v2/json/andersonbd1/<?= $_REQUEST['tag'] ?>?callback=go&count=100', {
           onSuccess: function (e) {
           }
         });
