@@ -11,13 +11,15 @@
         }
         var sortedKeys = [];
         var sortedKeysIdx=0;
+        var sortedKey2idx = {};
         for (var k in a) {
-          sortedKeys[sortedKeysIdx++] = k;
+          sortedKey2idx[k.toUpperCase()] = k;
+          sortedKeys[sortedKeysIdx++] = k.toUpperCase();
         }
         sortedKeys.sort();
         //for (var k in a) {
         for (var i=0; i<sortedKeys.length; i++) {
-          k = sortedKeys[i];
+          k = sortedKey2idx[sortedKeys[i]];
           innerContent += '<a href="d2.php?tag='+k+'">'+k+': '+a[k]+'</a><br />';
         }
         document.getElementById('content').innerHTML=innerContent;

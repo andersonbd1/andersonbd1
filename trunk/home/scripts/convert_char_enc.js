@@ -1,3 +1,17 @@
+/* bugs 
+/cygdrive/d/CarswellSearchWeb
+$ convert_char_enc.sh c2 a9
+char            utf8            utf16           utf32
+----            ----            -----           -----
+©               c2a9            a9              a9
+
+/cygdrive/d/CarswellSearchWeb
+$ convert_char_enc.sh utf16 00a9
+char            utf8            utf16           utf32
+----            ----            -----           -----
+�               efbfbd          fffd            fffd
+*/ 
+
 var packages = JavaImporter(
     java.lang.reflect,
     java.lang);
