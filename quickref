@@ -1,3 +1,9 @@
+
+$ find . -name \*.java | sed 's/.*src\(.*\)$/\1/g' | sort | uniq -c | grep -v 1
+$ find . -name \*.java | sed 's/.*src\(.*\)$/\1/g' | sort | uniq -c | grep -v 1
+      2 /com/trgr/cobalt/search/web/dev/LocalSearchSessionServletFilter.java
+
+
 #join all lines
 sed -e :a -e '/$/N; s/\n//; ta'
 date +%Y-%m-%dT%H:%M:%S
@@ -106,3 +112,19 @@ nc -l -p 80 0<backpipe | tee -a inflow | nc localhost 81 | tee -a outflow 1>back
 detailed instructions here:
 http://www.stearns.org/doc/nc-intro.v0.80.html
 
+oralce nt services needed to turn on:
+ - OracleServiceXE
+ - OracleXETNSListener
+
+
+ $ echo "select 1 from dual;" | sqlplus -s CF_DEV01/CF_DEV01@wakenda-vip.int.westgroup.com/foord228a1.int.westgroup.com
+
+# sqlplus settings - http://www.adp-gmbh.ch/ora/sqlplus/login.html
+# look for login.sql in same directory as sqlplus
+
+
+rmdir workspace_1
+mklink /D workspace_1 trunk
+
+
+curl http://something/json | python -mjson.tool

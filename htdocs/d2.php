@@ -8,8 +8,25 @@
         if (a.length == 1) {
           window.location = a[0].u;
         }
-        for (var i=0; i<a.length; i++) {
-          innerContent += '<a href="'+a[i].u+'">'+a[i].d+'</a><br />';
+        var sortedKeys = [];
+        var sortedKeysIdx=0;
+        var sortedKey2idx = {};
+        for (var k in a) {
+          var key = a[k].d.toUpperCase();
+          sortedKeys[sortedKeysIdx] = key
+          sortedKey2idx[key] = sortedKeysIdx;
+          sortedKeysIdx++;
+        }
+        sortedKeys.sort();
+        console.log(sortedKeys);
+        console.log(sortedKey2idx);
+        //for (var i=0; i<a.length; i++) {
+        for (var i=0; i<sortedKeys.length; i++) {
+          k = sortedKeys[i];
+          console.log('i: '+i);
+          console.log('k: '+k);
+          var o = a[sortedKey2idx[k]];
+          innerContent += '<a href="'+o.u+'">'+o.d+'</a><br />';
         }
         document.getElementById('content').innerHTML=innerContent;
       }
