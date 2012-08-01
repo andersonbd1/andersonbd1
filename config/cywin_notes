@@ -8,6 +8,7 @@ python (for the purpose of formatting json)
 screen
 subversion
 unzip
+wget
 xclock
 xeyes
 xinit

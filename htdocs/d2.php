@@ -1,3 +1,4 @@
+<?php error_reporting (E_ALL ^ E_NOTICE); ?>
 <html>
   <head>
     <script src="http://yui.yahooapis.com/3.4.1/build/yui/yui-min.js"></script>
@@ -26,15 +27,27 @@
           console.log('i: '+i);
           console.log('k: '+k);
           var o = a[sortedKey2idx[k]];
-          innerContent += '<a href="'+o.u+'">'+o.d+'</a><br />';
+          innerContent += '<a href="'+o.u+'" rel="noreferrer">'+o.d+'</a><br />';
         }
         document.getElementById('content').innerHTML=innerContent;
       }
       YUI().use('get', function (Y) {
         // Get is available and ready for use. Add implementation
         // code here.
+        <?
+        $tag = null;
+        try {
+          $tag = $_REQUEST['tag'];
+        } catch (Exception $e) {
+        }
+        if (empty($tag)) {
+          $tag = "dtags";
+        }
+        ?>
+        console.log('<?= $tag ?>');
         var transaction = Y.Get.script(
-          'http://feeds.delicious.com/v2/json/andersonbd1/<?= urlencode($_REQUEST['tag']) ?>?callback=go&count=100', {
+          //'https://api.del.icio.us/v1/json/posts/all?tag=<?= urlencode($tag) ?>&format=json', {
+          'http://feeds.delicious.com/v2/json/andersonbd1/<?= urlencode($tag) ?>?callback=go&count=100', {
           onSuccess: function (e) {
           }
         });
