@@ -128,3 +128,31 @@ mklink /D workspace_1 trunk
 
 
 curl http://something/json | python -mjson.tool
+
+$ netstat -ao | grep '\(:83\|:85\|:82\)'
+
+website debugging logs
+  Windows "Event Viewer"
+    in the left nav - "Event Viewer"->"Windows Logs"->Application
+    an Information message stated, "CobaltLoggingInitializer(Website_1.2.3_9001): Logging initialized via d:\data\Website\WestlawNext\resources\WebsiteLocalLogging.xml"
+  inspecting the WebsiteLocalLogging.xml showed references to files in the d:\\data\\logs\\Application directory
+  opening the various files in that directory looking for errors… found Coherence.log which had errors in it.
+
+
+for f in $(tf workspaces | grep '^U' | gawk '{print $1}'); do echo $f; tf status -workspace:$f; done;
+
+curl -s -w "%{time_total}" 'http://10.222.139.56-83.ip.next.ci.westlaw.com/Platform/js/v1/Website/Cobalt.Delivery.Pdf.js' | tail -n 1
+
+xargs -0 -I {} mv {}
+
+ipconfig | grep IPv4 | gawk -F': ' '{print $2}' | putclip
+
+
+for f in CobaltPlatformSearch SearchCommon SearchSpellChecker SearchSerialized SearchWeb StaticContent WLNSearch; do tf get -r $f; done;
+
+
+for f in SearchCommon CobaltPlatformSearch SearchSerialized SearchWeb WLNSearch; do ant -f ./$f/ant/CompileAntScript.xml normal_build >> out; done;
+
+$ attrib +R SearchWeb/config/wln/spring-facets-map.xml
+
+$ for f in $(ls -1ad ./SearchWeb/config/wln/*); do attrib +R $f; done
