@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
 <channel>
-<title>Radio Paradis</title>
+<title>Merriam-Webster's Word of the Day</title>
 <link>http://www.merriam-webster.com/cgi-bin/mwwod.pl</link>
 <description>Free daily dose of word power from Merriam-Webster's experts</description>
 <copyright>Copyright 2006</copyright>
-<lastBuildDate>Sat, 13 Dec 2008 01:15:01 EST</lastBuildDate>
+<lastBuildDate>Sun, 14 Dec 2008 01:15:01 EST</lastBuildDate>
 <ttl>60</ttl>
 <docs>http://blogs.law.harvard.edu/tech/rss</docs>
 <itunes:subtitle>Free daily dose of word power from Merriam-Webster's experts</itunes:subtitle>
@@ -31,8 +31,53 @@
 <height>90</height>
 </image>
 <item>
+<title><![CDATA[touchstone]]></title>
+<link>http://www.merriam-webster.com/cgi-bin/mwwodarch.pl?Dec.14.2008</link>
+<description><![CDATA[<font size="-1" face="arial, helvetica">
+<p><strong><font color="#000066">Merriam-Webster's Word of the Day for December 14, 2008 is:</font></strong></p>
+<p>
+	<strong>touchstone</strong> &#149; \TUTCH-stohn\&nbsp; &#149; <em>noun</em><br />
+1    : a test or criterion for determining the quality or genuineness of a thing *2    :  a fundamental or quintessential part or feature <br />
+</p>
+<p>
+	<strong>Example sentence:</strong><br />
+	The band was a touchstone of the grunge music scene in the 1990s.<br />
+</p>
+<p>
+	<strong>Did you know?</strong><br />
+	Our example sentence uses &quot;touchstone&quot; in its most recently acquired sense: &quot;a fundamental part.&quot; The earlier sense, &quot;a criterion for quality&quot; (as in &quot;<em>I Love Lucy</em> is often seen as a touchstone for comparison with today's TV comedy shows&quot;), provides a better clue to the original meaning of &quot;touchstone,&quot; however. The &quot;criterion&quot; sense, which goes back more than 470 years, alludes to a method of testing the purity of a sample of gold. The sample was rubbed on a piece of dark quartz or jasper -- the &quot;touchstone.&quot; The mark it made was compared to adjacent rubbings on the touchstone from gold of known purity. This method has proved accurate enough that touchstones are still used by jewelers today.
+
+<br /><br />*Indicates the sense illustrated in the example sentence.<br /><br />
+</p>
+</font>]]></description>
+<enclosure url="http://condor.eb.com/word/podcast/wd20081214.mp3" length="3100000" type="audio/mpeg" />
+<pubDate>Sun, 14 Dec 2008 01:15:01 EST</pubDate>
+<itunes:author>Merriam-Webster</itunes:author>
+<itunes:duration>2:40</itunes:duration>
+<itunes:summary>Merriam-Webster's Word of the Day for December 14, 2008 is: touchstone \TUTCH-stohn\ noun
+
+1 : a test or criterion for determining the quality or genuineness of a thing *2 : a fundamental or quintessential part or feature 
+
+Example sentence:
+
+The band was a touchstone of the grunge music scene in the 1990s.
+
+Did you know?
+
+Our example sentence uses "touchstone" in its most recently acquired sense: "a fundamental part." The earlier sense, "a criterion for quality" (as in "I Love Lucy is often seen as a touchstone for comparison with today's TV comedy shows"), provides a better clue to the original meaning of "touchstone," however. The "criterion" sense, which goes back more than 470 years, alludes to a method of testing the purity of a sample of gold. The sample was rubbed on a piece of dark quartz or jasper -- the "touchstone." The mark it made was compared to adjacent rubbings on the touchstone from gold of known purity. This method has proved accurate enough that touchstones are still used by jewelers today. 
+
+
+
+*Indicates the sense illustrated in the example sentence.
+
+
+
+</itunes:summary>
+<itunes:keywords>words, word, word of the day, word a day, English, language, vocabulary, dictionary, Webster, Merriam, Merriam-Webster</itunes:keywords>
+</item>
+<item>
 <title><![CDATA[quaggy]]></title>
-<link>http://andersonbd1/?Dec.13.2008</link>
+<link>http://www.merriam-webster.com/cgi-bin/mwwodarch.pl?Dec.13.2008</link>
 <description><![CDATA[<font size="-1" face="arial, helvetica">
 <p><strong><font color="#000066">Merriam-Webster's Word of the Day for December 13, 2008 is:</font></strong></p>
 <p>
@@ -440,51 +485,6 @@ Ed felt an ineffable joy at the sight of his son walking toward him from the pla
 Did you know?
 
 "Every tone was a testimony against slavery, and a prayer to God for deliverance from chains. The hearing of those wild notes always depressed my spirit, and filled me with ineffable sadness," wrote Frederick Douglass in his autobiography. Reading Douglass's words, it's easy to see that "ineffable" means "indescribable" or "unspeakable." And when we break down the word to its Latin roots, it's easy to see how those meanings came about. "Ineffable" comes from "ineffabilis," which joins the prefix "in-," meaning "not," with the adjective "effabilis," meaning "capable of being expressed." "Effabilis" comes from "effari" ("to speak out"), which in turn comes from "ex-" and "fari" ("to speak"). 
-
-
-
-*Indicates the sense illustrated in the example sentence.
-
-
-
-</itunes:summary>
-<itunes:keywords>words, word, word of the day, word a day, English, language, vocabulary, dictionary, Webster, Merriam, Merriam-Webster</itunes:keywords>
-</item>
-<item>
-<title><![CDATA[dragoon]]></title>
-<link>http://www.merriam-webster.com/cgi-bin/mwwodarch.pl?Dec.03.2008</link>
-<description><![CDATA[<font size="-1" face="arial, helvetica">
-<p><strong><font color="#000066">Merriam-Webster's Word of the Day for December 03, 2008 is:</font></strong></p>
-<p>
-	<strong>dragoon</strong> &#149; \druh-GOON\&nbsp; &#149; <em>verb</em><br />
-1    : to subjugate or persecute by harsh use of troops *2    :  to force into submission or compliance especially by violent measures <br />
-</p>
-<p>
-	<strong>Example sentence:</strong><br />
-	Boys of all ages were taken from their families and dragooned into fighting for the rebel armies.<br />
-</p>
-<p>
-	<strong>Did you know?</strong><br />
-	A dragoon was a mounted European infantryman of the 17th and 18th centuries armed with a firearm called by the same name. No arm-twisting should be needed to get you to believe that the firearm's name, which came to English from French, is derived from its semblance to a fire-breathing dragon when fired. History has recorded the dragonish nature of the dragoons who persecuted the French Protestants in the 17th century, during the reign of Louis XIV. The persecution by means of the dragoons led to the use of the word &quot;dragoon&quot; as a verb.
-
-<br /><br />*Indicates the sense illustrated in the example sentence.<br /><br />
-</p>
-</font>]]></description>
-<enclosure url="http://condor.eb.com/word/podcast/wd20081203.mp3" length="3100000" type="audio/mpeg" />
-<pubDate>Wed, 03 Dec 2008 01:15:01 EST</pubDate>
-<itunes:author>Merriam-Webster</itunes:author>
-<itunes:duration>2:40</itunes:duration>
-<itunes:summary>Merriam-Webster's Word of the Day for December 03, 2008 is: dragoon \druh-GOON\ verb
-
-1 : to subjugate or persecute by harsh use of troops *2 : to force into submission or compliance especially by violent measures 
-
-Example sentence:
-
-Boys of all ages were taken from their families and dragooned into fighting for the rebel armies.
-
-Did you know?
-
-A dragoon was a mounted European infantryman of the 17th and 18th centuries armed with a firearm called by the same name. No arm-twisting should be needed to get you to believe that the firearm's name, which came to English from French, is derived from its semblance to a fire-breathing dragon when fired. History has recorded the dragonish nature of the dragoons who persecuted the French Protestants in the 17th century, during the reign of Louis XIV. The persecution by means of the dragoons led to the use of the word "dragoon" as a verb. 
 
 
 
