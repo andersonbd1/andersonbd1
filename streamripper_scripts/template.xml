@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+<channel>
+<title>Radio Paradis</title>
+<link>http://www.merriam-webster.com/cgi-bin/mwwod.pl</link>
+<description>Free daily dose of word power from Merriam-Webster's experts</description>
+<copyright>Copyright 2006</copyright>
+<!--
+<lastBuildDate>Sat, 13 Dec 2008 01:15:01 EST</lastBuildDate>
+-->
+<lastBuildDate>Sat, 13 Dec 2008 01:15:01 EST</lastBuildDate>
+<ttl>60</ttl>
+<itunes:subtitle>Free daily dose of word power from Merriam-Webster's experts</itunes:subtitle>
+<itunes:author>Merriam-Webster</itunes:author>
+<itunes:summary>Build your vocabulary with Merriam-Webster's Word of the Day!  Each day a Merriam-Webster editor offers insight into a fascinating new word -- explaining its meaning, current use, and little-known details about its origin.</itunes:summary>
+<itunes:owner>
+<itunes:name>Merriam-Webster</itunes:name>
+<itunes:email>suggestions@merriam-webster.com</itunes:email>
+</itunes:owner>
+<itunes:image href="http://www.merriam-webster.com/images/300x300iTunesPodcastMW.jpg" />
+
+<image>
+<url>http://www.merriam-webster.com/images/mw_logo_podcast.jpg</url>
+<title>Merriam-Webster Online</title>
+<link>http://www.merriam-webster.com/</link>
+<width>90</width>
+<height>90</height>
+</image>
+<item>
+<title><![CDATA[quaggy]]></title>
+<link>http://andersonbd1/@name_1@</link>
+<description>rp</description>
+<enclosure url="http://andersonbd1/@name_1@.mp3" length="@filelength_1@" type="audio/mpeg" />
+<pubDate>@pubDate_1@</pubDate>
+<itunes:author>Merriam-Webster</itunes:author>
+<itunes:summary>
+</itunes:summary>
+<itunes:keywords></itunes:keywords>
+</item>
+</channel>
+</rss>
+
