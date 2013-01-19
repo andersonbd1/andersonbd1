@@ -1,20 +1,20 @@
 import groovyx.net.http.*
 import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
+import au.com.bytecode.opencsv.CSVParser;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.Template;
+import org.apache.velocity.context.Context;
+import org.apache.velocity.VelocityContext;
 
-// pull in gdoc
-/*
-id,title,detail,date,folder,audio,handout #1 title,handout #1 file,handout #2 title,handout #2 file,handout #3 title,handout #3 file
-1,Opening Rites,"History of the Eucharistic Liturgy, Introductory Rites, Sign of the Cross, Opening Greeting, Penitential Act, Kyrie, Gloria",1/17/2011,new_mass_translation,missal_class_for_jan17.MP3,Handout,Session01-OpeningRites.pdf,,,,
-2,Sacrosanctum Concilium,The Second Vatican Council's Sacrosanctum concilium and the Liturgy as a participation in Christ's own Priestly Service to the Father.,1/24/2011,new_mass_translation,missal_class_for_jan24.MP3,Handout,"Session02-SacrosanctumConcilium.pdf""",,,,
-3,Liturgy of the Word,"Liturgy of the Word, Gospel, Creed, ""consubstantial""",1/31/2011,new_mass_translation,missal_class_for_jan31.MP3,Handout,Session03-LiturgyOfTheWord.pdf,,,,
-4,Offertory and Roman Canon,"Offertory Prayers, Roman Canon, ""precious chalice"", ""for many""",2/7/2011,new_mass_translation,missal_class_for_feb7.MP3,Handout,Session04-OffertoryAndRomanCanon.pdf,,,,
-5,Preface and Theology of Eucharist,"Preface, ""and with your spirit"", Eucharistic Prayer Two, Real Presence",2/14/2011,new_mass_translation,missal_class_for_feb14.MP3,Handout,Session05-PrefaceAndTheologyOfEucharist.pdf,,,,
-6,Theology of the Eucharist,"The Eucharist as Sacrifice, Transubstantiation, Manner of Christ's Eucharistic Presence, Effects of Communion",2/21/2011,new_mass_translation,missal_class_for_feb21.MP3,Handout,Session06-TheologyOfTheEucharist.pdf,,,,
-7,Liturgiam authenticam and the Propers,"Tying Up Loose Ends from Last Week, the Propers, and the Philosophy of Translation behind Liturgiam authenticam",2/28/2011,new_mass_translation,missal_class_for_feb28.MP3,Handout 1,Session07-LiturgiamAuthenticamAndThePropers.pdf,Handout 2,Session07-PropersHandout.pdf,,
-*/
+import org.apache.commons.lang.StringUtils;
 
 def http = new HTTPBuilder( 'https://docs.google.com')
+
+def rawData = null;
+
+def responseStr = null;
+def responseList = null;
 
 // perform a GET request, expecting JSON response data
 http.request( GET, TEXT ) {
@@ -27,7 +27,10 @@ http.request( GET, TEXT ) {
     assert resp.status == 200
     println "My response handler got response: ${resp.statusLine}"
     println "Response length: ${resp.headers.'Content-Length'}"
-    System.out << reader // print response reader
+    //System.out << reader // print response reader
+    //responseStr << (reader+"") // print response reader
+    //responseList = reader.readLines() // print response reader
+    responseStr = reader.getText() // print response reader
   }
  
   // called only for a 404 (not found) status code:
@@ -37,30 +40,52 @@ http.request( GET, TEXT ) {
 
 }
 
-/*
+println responseStr.getClass();
 
-public String c(arr, String n) {
-  return arr[columnNames[n]];
+columnNames = [];
+rows = [];
+CSVParser csvp = new CSVParser();
+responseStr.eachLine { line, lineNumber ->
+  String[] cols = csvp.parseLine(line); 
+  cols.eachWithIndex{ p, i -> 
+    if (StringUtils.isEmpty(p)) {
+      return false; 
+    }
+    if (lineNumber == 0) {
+      columnNames[i] = p;
+    } else {
+      def row = rows[lineNumber - 1]
+      if (row == null) {
+        row = [:]
+        rows.add(row);
+      }
+      def existingValue = row.get(columnNames[i]);
+      if (existingValue != null) {
+        if (existingValue instanceof java.util.List) {
+          println "is a list";
+          existingValue.add(p);
+        } else {
+          println "creating a list "+existingValue.getClass();
+          row.put(columnNames[i], [existingValue, p]);
+        }
+      } else {
+        row.put(columnNames[i], p); 
+      }
+    }
+  };
 }
+println columnNames;
+println rows;
 
-classes = [
-  {
-    'title': 'The New Roman Missal',
-    'normalizedTitle': 'new_roman_missal',
-    'description': 'Understanding the New Roman Missal, Understanding Our Liturgy',
-    'gdocUrl': 'https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv',
-  }
-]
+def format = 'wp';
+def writer = new BufferedWriter(new FileWriter("velocity_out/${format}.xml"))
+Template template = Velocity.getTemplate("velocity/${format}.vm");
+Context context = new VelocityContext();
 
-for (class in classes) {
+context.put("columnNames", columnNames);
+context.put("rows", rows);
 
-  columnNames = [];
-  for (cols in firstLine) {
-    columnNames[cols[i]] = i;
-  }
+template.merge(context, writer);
 
-  for (line in lines) {
-            
-  }
-}
-*/
+writer.close();
+println new File('.').getAbsolutePath();
