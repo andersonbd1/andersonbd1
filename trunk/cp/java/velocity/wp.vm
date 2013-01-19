@@ -1,0 +1,10 @@
+#foreach( $row in $rows )
+  <strong>${row.title}</strong>
+  ${row.detail}
+  #foreach( $handout_title in $row.handout_title)
+    <a href="http://tedesche.s3.amazonaws.com/${row.folder}/docs/${row.handout_file[$foreach.index]}">${handout_title}</a><img src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
+  #end
+  <a href="http://tedesche.s3.amazonaws.com/new_mass_translation/missal_class_for_feb21.MP3">Audio Recording (MP3)</a>
+  <br />
+
+#end
