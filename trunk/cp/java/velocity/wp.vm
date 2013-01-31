@@ -1,10 +1,31 @@
-#foreach( $row in $rows )
-  <strong>${row.title}</strong>
-  ${row.detail}
-  #foreach( $handout_title in $row.handout_title)
-    <a href="http://tedesche.s3.amazonaws.com/${row.folder}/docs/${row.handout_file[$foreach.index]}">${handout_title}</a><img src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
-  #end
-  <a href="http://tedesche.s3.amazonaws.com/new_mass_translation/missal_class_for_feb21.MP3">Audio Recording (MP3)</a>
-  <br />
+#define( $f_handouts )
+  <span style="padding-right: 10px;">
+    <a href="http://tedesche.s3.amazonaws.com/${seriesData.normalized_name}/docs/${p_handout_file}">${p_handout_title}</a>
+    #if( $p_handout_file.contains('.pdf') )
+      <img src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
+    #end
+    #if( $p_handout_file.contains('.doc') )
+      <img src="http://tedesche.s3.amazonaws.com/images/docicon.png" />
+    #end
+  </span>
+#end
 
+<h2>${seriesData.normalized_name}</h2>
+#foreach( $class in $classes )
+  
+  <br /><br />
+  <strong>${class.title}</strong><br />
+  ${class.detail}<br />
+  <span style="padding-right: 10px;"><a href="http://tedesche.s3.amazonaws.com/${seriesData.normalizedName}/${class.audio}">Audio Recording (MP3)</a></span>
+  #if( $class.handout_title && $class.handout_title.size() > 1)
+    #foreach( $handout_title in $class.handout_title)
+      #set( $p_handout_title =  $handout_title )
+      #set( $p_handout_file =  $class.handout_file[$foreach.index] )
+      $f_handouts
+    #end
+  #else
+    #set( $p_handout_title =  $class.handout_title )
+    #set( $p_handout_file =  $class.handout_file )
+    $f_handouts
+  #end
 #end

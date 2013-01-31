@@ -11,81 +11,86 @@ import org.apache.commons.lang.StringUtils;
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
-def rawData = null;
+/*
+https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv&single=true&gid=0
+https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv&single=true&gid=1
+*/
 
-def responseStr = null;
-def responseList = null;
+for (gid in [0..1]) {
+  def responseStr = null;
 
-// perform a GET request, expecting JSON response data
-http.request( GET, TEXT ) {
-  uri.path = '/spreadsheet/pub'
-  uri.query = [ key:'0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc', output: 'csv' ]
+  // perform a GET request, expecting JSON response data
+  http.request( GET, TEXT ) {
+    uri.path = '/spreadsheet/pub'
+    uri.query = [ key:'0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc', output: 'csv', single: true, gid: gid ]
 
-  headers.'User-Agent' = 'Mozilla/5.0 Ubuntu/8.10 Firefox/3.0.4'
+    headers.'User-Agent' = 'Mozilla/5.0 Ubuntu/8.10 Firefox/3.0.4'
 
-  response.success = { resp, reader ->
-    assert resp.status == 200
-    println "My response handler got response: ${resp.statusLine}"
-    println "Response length: ${resp.headers.'Content-Length'}"
-    //System.out << reader // print response reader
-    //responseStr << (reader+"") // print response reader
-    //responseList = reader.readLines() // print response reader
-    responseStr = reader.getText() // print response reader
-  }
- 
-  // called only for a 404 (not found) status code:
-  response.'404' = { resp ->
-    println 'Not found'
-  }
-
-}
-
-println responseStr.getClass();
-
-columnNames = [];
-rows = [];
-CSVParser csvp = new CSVParser();
-responseStr.eachLine { line, lineNumber ->
-  String[] cols = csvp.parseLine(line); 
-  cols.eachWithIndex{ p, i -> 
-    if (StringUtils.isEmpty(p)) {
-      return false; 
+    response.success = { resp, reader ->
+      assert resp.status == 200
+      println "My response handler got response: ${resp.statusLine}"
+      println "Response length: ${resp.headers.'Content-Length'}"
+      responseStr = reader.getText() // print response reader
     }
-    if (lineNumber == 0) {
-      columnNames[i] = p;
-    } else {
-      def row = rows[lineNumber - 1]
-      if (row == null) {
-        row = [:]
-        rows.add(row);
+   
+    // called only for a 404 (not found) status code:
+    response.'404' = { resp ->
+      println 'Not found'
+    }
+
+  }
+
+  println responseStr.getClass();
+
+  seriesLabels = [];
+  seriesData = [:];
+  classLabels = [];
+  classes = [];
+  CSVParser csvp = new CSVParser();
+  responseStr.eachLine { line, lineNumber ->
+    String[] cols = csvp.parseLine(line); 
+    cols.eachWithIndex{ p, i -> 
+      if (StringUtils.isEmpty(p)) {
+        return false; 
       }
-      def existingValue = row.get(columnNames[i]);
-      if (existingValue != null) {
-        if (existingValue instanceof java.util.List) {
-          println "is a list";
-          existingValue.add(p);
-        } else {
-          println "creating a list "+existingValue.getClass();
-          row.put(columnNames[i], [existingValue, p]);
+      if (lineNumber == 0) {
+        seriesLabels[i] = p;
+      } else if (lineNumber == 1) {
+          seriesData.put(seriesLabels[i], p); 
+      } else if (lineNumber == 2) {
+        classLabels[i] = p;
+      } else if (lineNumber >= 3) {
+        def row = classes[lineNumber - 3]
+        if (row == null) {
+          row = [:]
+          classes.add(row);
         }
-      } else {
-        row.put(columnNames[i], p); 
+        def existingValue = row.get(classLabels[i]);
+        if (existingValue != null) {
+          if (existingValue instanceof java.util.List) {
+            existingValue.add(p);
+          } else {
+            row.put(classLabels[i], [existingValue, p]);
+          }
+        } else {
+          row.put(classLabels[i], p); 
+        }
       }
-    }
-  };
+    };
+  }
+  println classLabels;
+  println classes;
+
+  def format = 'wp';
+  def writer = new BufferedWriter(new FileWriter("velocity_out/${seriesData.normalized_name}-${format}.xml"))
+  Template template = Velocity.getTemplate("velocity/${format}.vm");
+  Context context = new VelocityContext();
+
+  context.put("seriesData", seriesData);
+  context.put("classLabels", classLabels);
+  context.put("classes", classes);
+
+  template.merge(context, writer);
+
+  writer.close();
 }
-println columnNames;
-println rows;
-
-def format = 'wp';
-def writer = new BufferedWriter(new FileWriter("velocity_out/${format}.xml"))
-Template template = Velocity.getTemplate("velocity/${format}.vm");
-Context context = new VelocityContext();
-
-context.put("columnNames", columnNames);
-context.put("rows", rows);
-
-template.merge(context, writer);
-
-writer.close();
-println new File('.').getAbsolutePath();
