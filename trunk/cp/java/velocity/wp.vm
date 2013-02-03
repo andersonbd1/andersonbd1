@@ -1,5 +1,5 @@
 #define( $f_handouts )
-  <span style="padding-right: 10px;">
+  <span style="padding-right: 10px; white-space: nowrap;">
     <a href="http://tedesche.s3.amazonaws.com/${seriesData.normalized_name}/docs/${p_handout_file}">${p_handout_title}</a>
     #if( $p_handout_file.contains('.pdf') )
       <img src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
@@ -14,9 +14,18 @@
 #foreach( $class in $classes )
   
   <br /><br />
-  <strong>${class.title}</strong><br />
-  ${class.detail}<br />
-  <span style="padding-right: 10px;"><a href="http://tedesche.s3.amazonaws.com/${seriesData.normalizedName}/${class.audio}">Audio Recording (MP3)</a></span>
+  <div><strong>
+  #if (!$seriesData.normalized_name.equals("uncovering_riches"))
+    $foreach.count - 
+  #end
+  ${class.title}</strong></div>
+  #if ($class.detail)
+    <div>${class.detail}<div>
+  #end
+  <div style="max-width=: 70%;">
+  #if ($class.audio)
+    <span style="padding-right: 10px; white-space: nowrap;"><a href="http://tedesche.s3.amazonaws.com/${seriesData.normalized_name}/${class.audio}">Audio Recording (MP3)</a></span>
+  #end
   #if( $class.handout_title && $class.handout_title.size() > 1)
     #foreach( $handout_title in $class.handout_title)
       #set( $p_handout_title =  $handout_title )
@@ -28,4 +37,5 @@
     #set( $p_handout_file =  $class.handout_file )
     $f_handouts
   #end
+  </div>
 #end

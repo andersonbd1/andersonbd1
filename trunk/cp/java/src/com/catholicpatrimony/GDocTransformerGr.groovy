@@ -16,7 +16,8 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv&single=true&gid=1
 */
 
-for (gid in [0..1]) {
+for (gid in 0..1) {
+  println 'gid: '+gid;
   def responseStr = null;
 
   // perform a GET request, expecting JSON response data
@@ -39,6 +40,7 @@ for (gid in [0..1]) {
     }
 
   }
+  println '2'
 
   println responseStr.getClass();
 
@@ -93,4 +95,6 @@ for (gid in [0..1]) {
   template.merge(context, writer);
 
   writer.close();
+
+  println '3'
 }
