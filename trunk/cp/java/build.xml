@@ -1,11 +1,12 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="hello-ivy" default="run">
 
+    <property file="local.properties" />
 
 	<property name="ivy.install.version" value="2.0.0-beta1" />
 	<property name="ivy.jar.dir" value="${basedir}/ivy" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 
-	<property name="groovy.jar.dir" value="C:/java/groovy-2.1.0-beta-1/lib" />
+	<property name="groovy.jar.dir" value="${groovy.home}/lib" />
 
   <path id="runtime.classpath">
       <fileset dir="lib" includes="*.jar"/>
