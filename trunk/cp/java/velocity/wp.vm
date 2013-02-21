@@ -9,6 +9,7 @@
     #end
   </span>
 #end
+<br /><br />
 <div style="font-weight: bold">Bundled Downloads</div>
 <div style="margin-left: 20px">
 Download all audio files as a zip <a href="http://tedesche.s3.amazonaws.com/${seriesData.normalized_name}/generated/${seriesData.normalized_name}-audio.zip">here</a>.
@@ -35,7 +36,7 @@ Download the audio files by using the podcast file <a href="http://www.catholicp
     #if($class.handout_file.size() > 1)
       #foreach( $handout_file in $class.handout_file)
         #set( $p_handout_title = $class.handout_title[$foreach.index] )
-        #set( $p_handout_file =  $new_handout_file[$foreach.index] )
+        #set( $p_handout_file =  $class.new_handout_file[$foreach.index] )
         $f_handouts
       #end
     #else

@@ -16,9 +16,10 @@ import org.apache.commons.lang.StringUtils;
 //     s3cmd sync --exclude=orig s3://tedesche/new_mass_translation ./orig
 //   run this script with options: audio, zip, wp, podcast
 //   upload to s3
-//     s3cmd sync ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
-//   change perms for s3 docs
-//     ????
+//     s3cmd sync -P ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
+//   change perms for s3 docs (this is no longer required because of the -P above)
+//     s3cmd -P -r setacl s3://tedesche/new_mass_translation
+//   delete the existing files - it's cleaner that way
 //   upload to cp.com
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
 
@@ -179,10 +180,12 @@ for (gid in 0..1) {
       if (c.handout_file) {
         if (c.handout_file instanceof Collection) {
           for (def i=0; i<c.handout_file.size; i++) {
-            copyDoc(seriesData.normalized_name, c.handout_file[i], c.new_handout_file[i]);
+            def oldFile = c.handout_file[i].replaceAll('%20', ' ');
+            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file[i]);
           }
         } else {
-            copyDoc(seriesData.normalized_name, c.handout_file, c.new_handout_file);
+            def oldFile = c.handout_file.replaceAll('%20', ' ');
+            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file);
         }
       }
     }
@@ -221,11 +224,12 @@ def getNewHandoutFileName(id, ht, hf) {
   def m = hf =~ /\.(.*)/
   def ext = m[0][1];
   ht = ht.replaceAll(' ', '_');
+  println "${id}-${ht}.${ext}"
   return "${id}-${ht}.${ext}"
 }
 
 def copyDoc(nn, hf, nhf) {
-  proc("cp ./orig/${nn}/docs/${hf} ./build/${nn}/docs/${nhf}")
+  proc(["cp", "./orig/${nn}/docs/${hf}", "./build/${nn}/docs/${nhf}"])
 }
 
 def runVelocity(def templateFile, def outputFile, def data) {
