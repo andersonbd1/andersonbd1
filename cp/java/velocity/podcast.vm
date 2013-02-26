@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>CatholicPatrimony.com - 
+    #if ($seriesData.title)
+      ${seriesData.title}
+    #elseif ($seriesData.normalized_name)
+      ${seriesData.normalized_name}
+    #end
+    </title>
+    <link>http://www.catholicpatrimony.com/cp/${seriesData.normalized_name}/podcast.xml</link>
+    #if ($seriesData.description)
+      <description>${seriesData.description}</description>
+    #end
+    <language>en</language>
+    <itunes:owner>
+      <itunes:email>dtedesche@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:image href="http://www.catholicpatrimony.com/img/restoring.jpg"/>
+
+#foreach( $class in $classes )
+  #if ($class.audio)
+    <item>
+      <title>${class.id}-${class.title}</title>
+      <link>${class.link2mp3}</link>
+      #if ($class.detail)
+        <description>${class.detail}</description>
+      #end
+      <category domain="http://www.catholic.com/category/categories/culture">Culture</category>
+      <pubDate>${class.rssDate}</pubDate>
+      <enclosure url="${class.link2mp3}" length="${class.length}" type="audio/mpeg"/>
+      <itunes:duration>${class.duration}</itunes:duration>
+      <itunes:author>David Tedesche</itunes:author>
+      <itunes:subtitle/>
+      <itunes:summary/>
+      <guid isPermaLink="false">${class.link2mp3}</guid>
+    </item>
+  #end
+#end
+  </channel>
+</rss>
