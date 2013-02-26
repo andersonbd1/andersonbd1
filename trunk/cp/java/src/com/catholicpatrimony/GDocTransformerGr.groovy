@@ -22,7 +22,6 @@ import org.apache.commons.lang.StringUtils;
 //   delete the existing files - it's cleaner that way
 //   upload to cp.com
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
-
 def ops = []
 ops.add("print");
 //ops.add("audio");
@@ -33,12 +32,21 @@ ops.add("podcast");
 def http = new HTTPBuilder( 'https://docs.google.com')
 
 /*
+Date d2 = Date.parse("MM/dd/yyyy", '11/17/2012')
+println d2.format("EEE, d MMM yyyy HH:mm:ss Z");
+d2 = Date.parse("MM/dd/yyyy", '1/1/2012')
+println d2.format("EEE, d MMM yyyy HH:mm:ss Z");
+System.exit(1);
+*/
+
+/*
 https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv&single=true&gid=0
 https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ0RU1QcXc&output=csv&single=true&gid=1
 */
 
+
 //for (gid in 0..1) {
-for (gid in 0..1) {
+for (gid in 2..2) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -99,6 +107,10 @@ for (gid in 0..1) {
         } else {
           row.put(classLabels[i], p); 
         }
+        if (classLabels[i].equals('date')) {
+          Date d = Date.parse("MM/dd/yyyy", p)
+          row.put('rssDate', d.format("EEE, d MMM yyyy HH:mm:ss Z"));
+        }
       }
     };
   }
@@ -149,7 +161,7 @@ for (gid in 0..1) {
         def origFile = "orig/${seriesData.normalized_name}/audio/${c.audio}"
         def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
         println c.audio;
-        proc("sox ${origFile} -r 24k -c 1 ${newFile}");
+        proc(["sox", origFile, "-r", "24k", "-c", "1", newFile]);
         proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFile]);
       }
     }
