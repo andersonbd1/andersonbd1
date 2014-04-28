@@ -1,0 +1,11 @@
+<!-- $ xsltproc 1.xsl 1.xml  -->
+<source>
+
+<title>XSL</title>
+<author>John Smith</author>
+<a href="some_other_link">some_other_link</a>
+<a href="link_to_flag">link_to_flag_text</a>
+<a id="id_link_to_doc" href="link_to_doc">link_to_doc</a>
+
+</source> 
+

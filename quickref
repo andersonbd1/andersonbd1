@@ -1,3 +1,4 @@
+$ find /cygdrive/c/inetpub/logs/LogFiles/ | xargs ls -1drt | tail -n 1
 
 $ find . -name \*.java | sed 's/.*src\(.*\)$/\1/g' | sort | uniq -c | grep -v 1
 $ find . -name \*.java | sed 's/.*src\(.*\)$/\1/g' | sort | uniq -c | grep -v 1
@@ -156,3 +157,16 @@ for f in SearchCommon CobaltPlatformSearch SearchSerialized SearchWeb WLNSearch;
 $ attrib +R SearchWeb/config/wln/spring-facets-map.xml
 
 $ for f in $(ls -1ad ./SearchWeb/config/wln/*); do attrib +R $f; done
+
+
+$ for f in $(ls -1 ./WLNSearch/buildTempLocation/war/WEB-INF/lib/*.jar); do echo $f >> out; jar -tf $f | grep 'spring-results-retrieval-novus.xml' >> out; done;
+
+
+fiddler
+  !listen 4444
+
+
+stupid windows perms!!!!
+  take ownership - this happens recursively - there's a registry hack to do this
+  grant full control to Everyone and check mark the boxes that cascades it all
+
