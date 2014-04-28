@@ -43,10 +43,10 @@ unset TEMP
 # set -o ignoreeof
 
 # Use case-insensitive filename globbing
-# shopt -s nocaseglob
+shopt -s nocaseglob
 
 # Make bash append rather than overwrite the history on disk
-# shopt -s histappend
+shopt -s histappend
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
@@ -78,7 +78,7 @@ unset TEMP
 # ###############
 
 # Don't put duplicate lines in the history.
-# export HISTCONTROL="ignoredups"
+export HISTCONTROL="ignoredups"
 
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -100,26 +100,26 @@ unset TEMP
 # \rm will call the real rm not the alias.
 
 # Interactive operation...
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # Default to human readable figures
-# alias df='df -h'
-# alias du='du -h'
+alias df='df -h'
+alias du='du -h'
 
 # Misc :)
-# alias less='less -r'                          # raw control characters
-# alias whence='type -a'                        # where, of a sort
-# alias grep='grep --color'                     # show differences in colour
+alias less='less -r'                          # raw control characters
+alias whence='type -a'                        # where, of a sort
+#alias grep='grep --color=always'              # show differences in colour
 
 # Some shortcuts for different directory listings
-# alias ls='ls -hF --color=tty'                 # classify files in colour
-# alias dir='ls --color=auto --format=vertical'
-# alias vdir='ls --color=auto --format=long'
-# alias ll='ls -l'                              # long list
-# alias la='ls -A'                              # all but . and ..
-# alias l='ls -CF'                              #
+alias ls='ls -hF --color=tty'                 # classify files in colour
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+alias ll='ls -l'                              # long list
+alias la='ls -A'                              # all but . and ..
+alias l='ls -CF'                              #
 
 
 # Functions
@@ -145,13 +145,66 @@ alias msti='cd /cygdrive/c/dev/java/tomcat_6.0/MST-instances/MetadataServicesToo
 alias mstl='cd /cygdrive/c/dev/java/tomcat_6.0/MST-instances/MetadataServicesToolkit/logs'
 alias tw='cd /cygdrive/c/dev/work/textwise'
 
+alias doc='cd /cygdrive/d/data/Cobalt\ Document/Development/Document'
+alias fold='cd /cygdrive/d/cobalt_foldering_main/Foldering'
+export PG="/cygdrive/c/dev/tr/pg/"
+alias pg="cd $PG"
+
 alias oai='cd /cygdrive/c/dev/xc/oai-toolkit/svn/trunk'
 
 alias w1='export root_dir=trunk'
 alias w2='export root_dir=trunk.2'
 alias w3='export root_dir=branches/bens_perma_branch'
-w3
-alias message='~/scripts/message.sh'
-alias rhino='~/scripts/rhino.sh'
+#w3
+alias message='/cygdrive/c/dev/andersonbd1/home/scripts/message.sh'
+alias rhino='/cygdrive/c/dev/andersonbd1/home/scripts/rhino.sh'
+alias winmerge='/cygdrive/c/dev/andersonbd1/home/scripts/winmerge.sh'
+alias tcpmon='cd /cygdrive/c/dev/java/tcpmon-1.0-bin/build/; ./tcpmon.sh & cd ~-'
 
-xhost +
+alias ant='ant.bat'
+alias groovy='groovy.bat'
+
+# alias tf='/cygdrive/c/dev/apps/TEE-CLC-11.0.0/tf.cmd'
+
+export PATH="$PATH:/cygdrive/c/dev/tr/pg:/cygdrive/c/dev/andersonbd1/home/scripts"
+
+#xhost +
+
+# $ ls -lad "C:\dev\tr\foldering\eclipse_workspace\Foldering\ant"
+# cygwin warning:
+#   MS-DOS style path detected: C:\dev\tr\foldering\eclipse_workspace\Foldering\ant
+#   Preferred POSIX equivalent is: /cygdrive/c/dev/tr/foldering/eclipse_workspace/Foldering/ant
+#   CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+#   Consult the user's guide for more details about POSIX paths:
+#     http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+# drwxr-xr-x 1 u0153490 Domain Users 0 Nov 28 15:16 C:\dev\tr\foldering\eclipse_workspace\Foldering\ant
+
+export nodosfilewarning="true"
+export VIMDIR="C:\dev\apps\Vim"
+
+# unsetting SHELL let me run F7 (xmllint) in gvim.  Not sure yet if there are other consequences.
+# unset SHELL
+# but screwed up screen
+
+export TFPT_ONLINE_EXCLUDE="build,buildTempLocation,Logs,TestResults,unitTestBin,dist,bin,obj"
+
+export AND=/cygdrive/c/dev/andersonbd1
+echo "hello"
+export PATH="/usr/bin:$PATH"
+
+alias j6='export PATH=/cygdrive/c/dev/java/jdk1.6.0_29/bin:$PATH; export JAVA_HOME="c:\dev\java\jdk1.6.0_29"; java -version'
+alias j7='export PATH=/cygdrive/c/dev/java/jdk1.7.0_13/bin:$PATH; export JAVA_HOME="c:\dev\java\jdk1.7.0_13"; java -version'
+alias j8='export PATH=/cygdrive/c/dev/java/jdk1.8/bin:$PATH; export JAVA_HOME="C:\dev\java\jdk1.8"; java -version'
+
+
+alias curl=/cygdrive/c/dev/apps/curl
+
+
+alias findx="find . -printf '\"%h/%f\"\n'"
+export findxx="find . -printf '\"%h/%f\"\n'"
+
+alias cmd="cygstart c:/windows/system32/cmd"
+
+export GREP_FILTER='\(bin-test\|bin\|\.metadata\|test\|template\|ant\)'
+
+#export GREP_OPTIONS='–color=auto'

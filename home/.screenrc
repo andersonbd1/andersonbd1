@@ -1,16 +1,39 @@
 #shell -${SHELL}
-defscrollback 1024
+#defscrollback 1024
 chdir 
 screen -t home
 chdir /cygdrive/c/dev/tr/pg
+#gvim -S scratch.vim &
 screen -t pg
-chdir /cygdrive/c/dev/tr/pg/web2_support
-screen -t web2_support
-chdir /cygdrive/d/Superior
-screen -t Superior
-chdir /cygdrive/d/Superior/Westlaw_Stylesheets/Development/StyleSheets/West.Westlaw.Xsl
-screen -t xsl
-chdir /cygdrive/d/cobalt_foldering_main
-screen -t foldering
-chdir /cygdrive/d/pristine
-screen -t pristine
+chdir /cygdrive/c/dev/andersonbd1
+screen -t andersonbd1-dev
+#chdir /cygdrive/c/dev/tr/pg/web2_support
+#screen -t web2_support
+#chdir /cygdrive/d/Superior
+#screen -t Superior
+#chdir /cygdrive/d/Superior/Westlaw_Stylesheets/Development/StyleSheets/West.Westlaw.Xsl
+#screen -t xsl
+chdir /cygdrive/e/Superior/Westlaw_Client/Development
+screen -t tnp2
+chdir /cygdrive/c/dev/tr/tnp3/
+screen -t tnp3
+chdir /cygdrive/e/novus_dumps
+screen -t novus_dumps
+chdir /cygdrive/e/cobalt/Search/TNPCarswellSearchWeb
+screen -t Search
+#chdir /cygdrive/d/RelatedInfo/eclipse.workspace
+#screen -t RelatedInfo
+chdir /cygdrive/e/cobalt/Document/TNPCarswell
+screen -t Document
+chdir /cygdrive/e/cobalt/Website/TNPCarswell
+screen -t Website
+chdir '/cygdrive/e/Cobalt Static Content/Development/StaticContent/site'
+screen -t StaticContent 
+chdir /home/u0153490
+screen -t remote-servers
+
+startup_message off
+defscrollback 10000
+caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
