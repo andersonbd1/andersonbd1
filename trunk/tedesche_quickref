@@ -1,0 +1,5 @@
+ssh -i ~/.ssh/tedesche.pem bitnami@catholicpatrimony.com
+
+bitnami@ip-10-195-110-97:/opt/bitnami$ sudo ./ctlscript.sh restart apache
+
+
