@@ -170,3 +170,7 @@ stupid windows perms!!!!
   take ownership - this happens recursively - there's a registry hack to do this
   grant full control to Everyone and check mark the boxes that cascades it all
 
+
+$ echo $((0x15a))
+
+$ ps -eo pid,user,args

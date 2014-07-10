@@ -25,6 +25,7 @@ try {
     
     newChat.sendMessage(arguments[3]);
   } catch (e) {
+    print(e);
     print("Error Delivering block");
   }
 }
