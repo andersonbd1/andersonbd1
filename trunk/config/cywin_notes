@@ -4,6 +4,7 @@ cygutils-extra
 git
 inetutils
 libxml2
+ncurses
 openssh
 python (for the purpose of formatting json)
 screen
