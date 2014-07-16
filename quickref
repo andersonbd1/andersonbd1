@@ -174,3 +174,6 @@ stupid windows perms!!!!
 $ echo $((0x15a))
 
 $ ps -eo pid,user,args
+
+
+$ git update-index --no-assume-unchanged pom.xml
