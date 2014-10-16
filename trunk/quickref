@@ -177,3 +177,6 @@ $ ps -eo pid,user,args
 
 
 $ git update-index --no-assume-unchanged pom.xml
+
+
+$ find . -name \*.idx -o -name \*.dat
