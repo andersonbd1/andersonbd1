@@ -7,6 +7,8 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.VelocityContext;
 
 import org.apache.commons.lang.StringUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import groovy.json.*;
 
 // steps to setup a new class
 //   manually backup audio files and docs on s3
@@ -26,10 +28,13 @@ def ops = []
 ops.add("print");
 //ops.add("audio");
 //ops.add("zip");
-ops.add("wp");
-ops.add("podcast");
+ops.add("json");
+//ops.add("wp");
+//ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
+
+def objectMapper = new ObjectMapper(); 
 
 /*
 Date d2 = Date.parse("MM/dd/yyyy", '11/17/2012')
@@ -46,7 +51,7 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 
 
 //for (gid in 0..1) {
-for (gid in 2..2) {
+for (gid in 1..1) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -141,6 +146,11 @@ for (gid in 2..2) {
       "build/web/${seriesData.normalized_name}/${format}.php",
       ["seriesData": seriesData, "classLabels": classLabels, "classes": classes]
     );
+  }
+
+  if (ops.contains('json')) {
+    def jsonStr = new JsonBuilder( classes ).toPrettyString()
+    new File("build/cp.json").withWriter { out -> out.write(jsonStr) };
   }
 
   if (ops.contains('print')) {
