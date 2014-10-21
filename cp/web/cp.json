@@ -1,0 +1,208 @@
+cp = [
+    {
+        "id": "01",
+        "title": "Fall Session 1",
+        "handout_title": "Introduction to Fathers",
+        "handout_file": "Fall Session 1 (Introduction to Fathers).doc",
+        "new_handout_file": "01-Introduction_to_Fathers.doc"
+    },
+    {
+        "id": "02",
+        "title": "Fall Session 2",
+        "handout_title": [
+            "Didache",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 2 (Didache).doc",
+            "Fall Session 2 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "02-Didache.doc",
+            "02-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "03",
+        "title": "Fall Session 3",
+        "handout_title": [
+            "First Clement",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 3 (First Clement).doc",
+            "Fall Session 3 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "03-First_Clement.doc",
+            "03-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "04",
+        "title": "Fall Session 4",
+        "handout_title": [
+            "Ignatius to Eph, Rom",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 4 (Ignatius to Eph, Rom).doc",
+            "Fall Session 4 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "04-Ignatius_to_Eph,_Rom.doc",
+            "04-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "05",
+        "title": "Fall Session 5",
+        "audio": "class_recording_for_nov3.MP3",
+        "handout_title": [
+            "Ignatius to Philad, Smyr, Polyc",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 5 (Ignatius to Philad, Smyr, Polyc).doc",
+            "Fall Session 5 (Summary and Notes).doc"
+        ],
+        "newAudio": "05-Fall_Session_5.mp3",
+        "new_handout_file": [
+            "05-Ignatius_to_Philad,_Smyr,_Polyc.doc",
+            "05-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "06",
+        "title": "Fall Session 6",
+        "handout_title": [
+            "Martyrdom of Polycarp",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 6 (Martyrdom of Polycarp).doc",
+            "Fall Session 6 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "06-Martyrdom_of_Polycarp.doc",
+            "06-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "07",
+        "title": "Fall Session 7",
+        "handout_title": [
+            "Justin's First Apology",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 5 (Justin's First Apology).doc",
+            "Fall Session 7 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "07-Justin's_First_Apology.doc",
+            "07-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "08",
+        "title": "Fall Session 8",
+        "handout_title": [
+            "Irenaeus' AH",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Fall Session 8 (Irenaeus' AH).doc",
+            "Fall Session 8 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "08-Irenaeus'_AH.doc",
+            "08-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "09",
+        "title": "Fall Session 9",
+        "handout_title": [
+            "Tertullian and his Short Way with Heretics",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Session 9 (Tertullian and his Short Way with Heretics).doc",
+            "Session 9 (Summary and Notes).doc"
+        ],
+        "new_handout_file": [
+            "09-Tertullian_and_his_Short_Way_with_Heretics.doc",
+            "09-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "10",
+        "title": "Winter Session 1",
+        "audio": "class_recording_for_jan19.MP3",
+        "handout_title": "Summary and Notes",
+        "handout_file": "Winter Session 1 (Summary and Notes).doc",
+        "newAudio": "10-Winter_Session_1.mp3",
+        "new_handout_file": "10-Summary_and_Notes.doc"
+    },
+    {
+        "id": "11",
+        "title": "Winter Session 2",
+        "audio": "class_recording_for_jan26.MP3",
+        "handout_title": [
+            "Tertullian On Penitence",
+            "Summary and Notes"
+        ],
+        "handout_file": [
+            "Winter Session 2 (Tertullian On Penitence).pdf",
+            "Winter Session 2 (Summary and Notes).doc"
+        ],
+        "newAudio": "11-Winter_Session_2.mp3",
+        "new_handout_file": [
+            "11-Tertullian_On_Penitence.pdf",
+            "11-Summary_and_Notes.doc"
+        ]
+    },
+    {
+        "id": "12",
+        "title": "Winter Session 3",
+        "audio": "class_recording_for_feb9.MP3",
+        "handout_title": "Tertullian on the Trinity (Against Praxeas)",
+        "newAudio": "12-Winter_Session_3.mp3"
+    },
+    {
+        "id": "13",
+        "title": "Winter Session 4",
+        "audio": "class_recording_for_feb16.MP3",
+        "handout_title": "Origen",
+        "newAudio": "13-Winter_Session_4.mp3"
+    },
+    {
+        "id": "14",
+        "title": "Winter Session 5",
+        "audio": "class_recording_for_feb23.MP3",
+        "handout_title": "St. Cyprian",
+        "newAudio": "14-Winter_Session_5.mp3"
+    },
+    {
+        "id": "15",
+        "title": "Winter Session 6",
+        "audio": "class_recording_for_mar2.MP3",
+        "handout_title": "St. Anthony",
+        "newAudio": "15-Winter_Session_6.mp3"
+    },
+    {
+        "id": "16",
+        "title": "Winter Session 7",
+        "audio": "class_recording_for_mar9.MP3",
+        "handout_title": "Constantine",
+        "newAudio": "16-Winter_Session_7.mp3"
+    },
+    {
+        "id": "17",
+        "title": "Winter Session 8",
+        "audio": "class_recording_for_mar16.MP3",
+        "handout_title": "St. Athanasius and the Council of Nicea",
+        "newAudio": "17-Winter_Session_8.mp3"
+    }
+]
