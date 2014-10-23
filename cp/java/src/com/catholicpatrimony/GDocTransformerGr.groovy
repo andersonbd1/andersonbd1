@@ -51,7 +51,8 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 
 
 //for (gid in 0..1) {
-for (gid in 1..1) {
+def jsonClassArr = []
+for (gid in 0..2) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -149,8 +150,8 @@ for (gid in 1..1) {
   }
 
   if (ops.contains('json')) {
-    def jsonStr = new JsonBuilder( classes ).toPrettyString()
-    new File("build/cp.json").withWriter { out -> out.write(jsonStr) };
+    def jsonMap = [classes: classes, seriesData: seriesData]
+    jsonClassArr.add(jsonMap);
   }
 
   if (ops.contains('print')) {
@@ -230,6 +231,9 @@ for (gid in 1..1) {
   }
 
 }
+def jsonStr = new JsonBuilder( jsonClassArr ).toPrettyString()
+jsonStr = "cp = " + jsonStr;
+new File("../web/cp.json").withWriter { out -> out.write(jsonStr) };
 
 def String proc(def cmd) {
   println cmd;
