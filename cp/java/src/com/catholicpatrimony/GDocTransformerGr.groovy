@@ -26,11 +26,11 @@ import groovy.json.*;
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
 def ops = []
 ops.add("print");
-//ops.add("audio");
+ops.add("audio");
 //ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-//ops.add("podcast");
+ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -52,7 +52,7 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 
 //for (gid in 0..1) {
 def jsonClassArr = []
-for (gid in 0..2) {
+for (gid in 4..4) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -160,20 +160,33 @@ for (gid in 0..2) {
   }
 
   if (ops.contains('audio')) {
+    /*
     "rm -fR ./build/${seriesData.normalized_name}/audio".execute().waitFor();
-    "mkdir -p ./build/${seriesData.normalized_name}/audio".execute().waitFor();
-    if (!new File("orig/${seriesData.normalized_name}").exists())
-    {
+    */
+    println "1"
+    try {
+      "mkdir -p ./build/${seriesData.normalized_name}/audio".execute().waitFor();
+    } catch (t) {
+      //do nothing
+    }
+    println "2"
+    if (!new File("orig/${seriesData.normalized_name}").exists()) {
       def proc = "s3cmd sync s3://tedesche/${seriesData.normalized_name} ./orig".execute();
       proc.waitFor();
     }
+    println "3"
     for (c in classes) {
-      if (c.audio) {
-        def origFile = "orig/${seriesData.normalized_name}/audio/${c.audio}"
-        def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
-        println c.audio;
-        proc(["sox", origFile, "-r", "24k", "-c", "1", newFile]);
-        proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFile]);
+      println "4"
+      if (!new File("build/${seriesData.normalized_name}/audio/${c.newAudio}").exists()) {
+        println "5"
+        if (c.audio) {
+          println "6"
+          def origFile = "orig/${seriesData.normalized_name}/audio/${c.audio}"
+          def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
+          println c.audio;
+          proc(["sox", origFile, "-r", "24k", "-c", "1", newFile]);
+          proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFile]);
+        }
       }
     }
   }
