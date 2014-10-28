@@ -26,11 +26,11 @@ import groovy.json.*;
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
 def ops = []
 ops.add("print");
-ops.add("audio");
+//ops.add("audio");
 //ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-ops.add("podcast");
+//ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -52,7 +52,7 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 
 //for (gid in 0..1) {
 def jsonClassArr = []
-for (gid in 4..4) {
+for (gid in 0..4) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -132,11 +132,15 @@ for (gid in 4..4) {
     if (c.handout_file) {
       if (c.handout_file instanceof Collection) {
         c.new_handout_file = [];
+        c.new_handout_title = [];
         for (def i=0; i<c.handout_file.size; i++) {
           c.new_handout_file[i] = getNewHandoutFileName(c.id, c.handout_title[i], c.handout_file[i]);
+          c.new_handout_title[i] = c.handout_title[i]
         }
       } else {
-        c['new_handout_file'] = getNewHandoutFileName(c.id, c.handout_title, c.handout_file);
+        c.new_handout_file = [];
+        c.new_handout_title = [c.handout_title];
+        c.new_handout_file[0] = getNewHandoutFileName(c.id, c.handout_title, c.handout_file);
       }
     }
   }
