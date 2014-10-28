@@ -1,9 +1,9 @@
 <div ng-if="sd" class="container">
   <div style="font-weight: bold">Bundled Downloads</div>
   <div style="margin-left: 20px">
-    Download all audio files as a zip <a href="http://tedesche.s3.amazonaws.com/{{sd.normalized_name}}/public/{{sd.normalized_name}}-audio.zip">here</a>.
+    Download all audio files as a zip <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/{{sd.normalized_name}}-audio.zip">here</a>.
   <br />
-  Download all doc files as a zip <a href="http://tedesche.s3.amazonaws.com/{{sd.normalized_name}}/public/{{sd.normalized_name}}-docs.zip">here</a>.
+  Download all doc files as a zip <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/{{sd.normalized_name}}-docs.zip">here</a>.
   <br />
   Download the audio files by using the podcast file <a href="http://tedesche.s3.amazonaws.com/cp/{{sd.normalized_name}}/podcast.xml">here</a>.
   </div>
@@ -18,11 +18,11 @@
     -->
     <div>
       <span ng-if="c.newAudio" style="padding-right: 12px; white-space: nowrap;">
-        <a href="http://tedesche.s3.amazonaws.com/{{sd.normalized_name}}/generated/audio/{{c.newAudio}}">Audio (MP3)</a>
+        <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/audio/{{c.newAudio}}">Audio (MP3)</a>
         <img src="http://www.catholicpatrimony.com/img/audio.png" width="20"/>
       </span>
       <span ng-repeat="f in c.new_handout_file" style="padding-right: 12px; white-space: nowrap;">
-        <a href="http://tedesche.s3.amazonaws.com/{{sd.normalized_name}}/generated/docs/{{f}}">{{c.new_handout_title[$index]}}</a>
+        <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/docs/{{f}}">{{c.new_handout_title[$index]}}</a>
         <img ng-if="f.indexOf('pdf') != -1" src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
         <img ng-if="f.indexOf('doc') != -1" src="http://tedesche.s3.amazonaws.com/images/docicon.png" />
       </span>
