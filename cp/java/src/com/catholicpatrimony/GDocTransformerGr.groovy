@@ -18,7 +18,7 @@ import groovy.json.*;
 //     s3cmd sync --exclude=orig s3://tedesche/new_mass_translation ./orig
 //   run this script with options: audio, zip, wp, podcast
 //   upload to s3
-//     s3cmd sync -P ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
+//     s3cmd sync -P --guess-mime-type ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
 //   change perms for s3 docs (this is no longer required because of the -P above)
 //     s3cmd -P -r setacl s3://tedesche/new_mass_translation
 //   delete the existing files - it's cleaner that way
@@ -26,11 +26,11 @@ import groovy.json.*;
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
 def ops = []
 ops.add("print");
-//ops.add("audio");
-//ops.add("zip");
+ops.add("audio");
+ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-//ops.add("podcast");
+ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -50,9 +50,9 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 */
 
 
-//for (gid in 0..1) {
 def jsonClassArr = []
-for (gid in 0..4) {
+//for (gid in 0..5) {
+for (gid in 0..5) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -203,7 +203,7 @@ for (gid in 0..4) {
         def matcher = outStr =~ /Duration *: (.*) =/
         c["duration"] = matcher[0][1];
         c["length"] = proc("ls -lad ${newFile}").split(" ")[4]
-        c["link2mp3"] = "http://tedesche.s3.amazonaws.com/${seriesData.normalized_name}/generated/audio/${c.newAudio}"
+        c["link2mp3"] = "http://tedesche.s3.amazonaws.com/public/${seriesData.normalized_name}/audio/${c.newAudio}"
       }
     }
     runVelocity(
@@ -225,7 +225,7 @@ for (gid in 0..4) {
           }
         } else {
             def oldFile = c.handout_file.replaceAll('%20', ' ');
-            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file);
+            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file[0]);
         }
       }
     }
