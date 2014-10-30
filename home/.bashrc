@@ -158,7 +158,7 @@ alias w3='export root_dir=branches/bens_perma_branch'
 #w3
 alias message='/cygdrive/c/dev/andersonbd1/home/scripts/message.sh'
 alias rhino='/cygdrive/c/dev/andersonbd1/home/scripts/rhino.sh'
-alias winmerge='/cygdrive/c/dev/andersonbd1/home/scripts/winmerge.sh'
+#alias winmerge='~/scripts/winmerge.sh'
 alias tcpmon='cd /cygdrive/c/dev/java/tcpmon-1.0-bin/build/; ./tcpmon.sh & cd ~-'
 
 alias ant='ant.bat'
@@ -189,15 +189,16 @@ export VIMDIR="C:\dev\apps\Vim"
 export TFPT_ONLINE_EXCLUDE="build,buildTempLocation,Logs,TestResults,unitTestBin,dist,bin,obj"
 
 export AND=/cygdrive/c/dev/andersonbd1
-echo "hello"
 export PATH="/usr/bin:$PATH"
 
-alias j6='export PATH=/cygdrive/c/dev/java/jdk1.6.0_29/bin:$PATH; export JAVA_HOME="c:\dev\java\jdk1.6.0_29"; java -version'
-alias j7='export PATH=/cygdrive/c/dev/java/jdk1.7.0_13/bin:$PATH; export JAVA_HOME="c:\dev\java\jdk1.7.0_13"; java -version'
-alias j8='export PATH=/cygdrive/c/dev/java/jdk1.8/bin:$PATH; export JAVA_HOME="C:\dev\java\jdk1.8"; java -version'
+#alias j6='export PATH=/cygdrive/c/dev/java/jdk1.6.0_29/bin:$PATH; export JAVA_HOME="c:\dev\java\jdk1.6.0_29"; java -version'
+#alias j7='export PATH=/cygdrive/c/dev/java/jdks/jdk1.7.0_55/bin:$PATH; export JAVA_HOME="c:\dev\java\jdks\jdk1.7.0_55"; java -version'
+alias j7='export PATH=/cygdrive/c/dev/java/jdks/jdk1.7.0_55-32bit/bin:$PATH; export JAVA_HOME="c:\dev\java\jdks\jdk1.7.0_55-32bit"; java -version'
+alias j8='export PATH=/cygdrive/c/dev/java/jdks/jdk1.8.0_05/bin:$PATH; export JAVA_HOME="C:\dev\java\jdks\jdk1.8.0_05"; java -version'
 
 
-alias curl=/cygdrive/c/dev/apps/curl
+#alias curl=/cygdrive/c/dev/apps/curl
+alias curl='/cygdrive/c/Program\ Files\ \(x86\)/cURL/bin/curl.exe'
 
 
 alias findx="find . -printf '\"%h/%f\"\n'"
@@ -208,3 +209,31 @@ alias cmd="cygstart c:/windows/system32/cmd"
 export GREP_FILTER='\(bin-test\|bin\|\.metadata\|test\|template\|ant\)'
 
 #export GREP_OPTIONS='–color=auto'
+alias h="cat _help"
+alias kill_screens="screen -list | grep Detached | gawk '{print $1}' | xargs -I {} screen -X -S {} quit"
+
+
+
+# from here:
+# http://stackoverflow.com/questions/112396/how-do-i-remove-the-passphrase-for-the-ssh-key-without-having-to-create-a-new-ke
+if [ -f ~/.agent.env ] ; then
+    . ~/.agent.env > /dev/null
+if ! kill -0 $SSH_AGENT_PID > /dev/null 2>&1; then
+    echo "Stale agent file found. Spawning new agent… "
+    eval `ssh-agent | tee ~/.agent.env`
+    ssh-add
+fi 
+else
+    echo "Starting ssh-agent"
+    eval `ssh-agent | tee ~/.agent.env`
+    ssh-add
+fi
+
+echo
+echo $scr_echo
+$scr_cmd
+
+#export PATH='/cygdrive/c/Program Files (x86)/Git/bin':$PATH
+export TMPDIR="c:/tmp"
+
+alias mvn=mvn.bat
