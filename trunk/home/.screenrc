@@ -1,36 +1,35 @@
 #shell -${SHELL}
 #defscrollback 1024
-chdir 
+#
+# the scr_echo and scr_cmd vars are nothing special except that your .bashrc file uses them
+chdir ~
+setenv scr_echo home
 screen -t home
-chdir /cygdrive/c/dev/tr/pg
-#gvim -S scratch.vim &
-screen -t pg
+
+chdir /cygdrive/c/dev/java
+setenv scr_echo "java"
+setenv scr_cmd ""
+screen -t java
+
 chdir /cygdrive/c/dev/andersonbd1
-screen -t andersonbd1-dev
-#chdir /cygdrive/c/dev/tr/pg/web2_support
-#screen -t web2_support
-#chdir /cygdrive/d/Superior
-#screen -t Superior
-#chdir /cygdrive/d/Superior/Westlaw_Stylesheets/Development/StyleSheets/West.Westlaw.Xsl
-#screen -t xsl
-chdir /cygdrive/e/Superior/Westlaw_Client/Development
-screen -t tnp2
-chdir /cygdrive/c/dev/tr/tnp3/
-screen -t tnp3
-chdir /cygdrive/e/novus_dumps
-screen -t novus_dumps
-chdir /cygdrive/e/cobalt/Search/TNPCarswellSearchWeb
-screen -t Search
-#chdir /cygdrive/d/RelatedInfo/eclipse.workspace
-#screen -t RelatedInfo
-chdir /cygdrive/e/cobalt/Document/TNPCarswell
-screen -t Document
-chdir /cygdrive/e/cobalt/Website/TNPCarswell
-screen -t Website
-chdir '/cygdrive/e/Cobalt Static Content/Development/StaticContent/site'
-screen -t StaticContent 
-chdir /home/u0153490
-screen -t remote-servers
+screen -t andersonbd1
+
+chdir /cygdrive/c/dev/ns/aa-uid-db/
+screen -t aa-uid-db-1
+
+screen -t aa-uid-db-2
+
+chdir 
+setenv scr_echo 
+setenv scr_cmd "ssh -i ~/.ssh/ben.id_rsa ben@172.27.3.61"
+screen -t rcaerospike01
+
+setenv scr_echo 
+setenv scr_cmd "ssh -i ~/.ssh/ben.id_rsa ben@172.27.3.62"
+screen -t rcaerospike02
+
+setenv scr_echo ""
+setenv scr_cmd ""
 
 startup_message off
 defscrollback 10000
