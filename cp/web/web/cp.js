@@ -4,12 +4,12 @@ angular.module('cpApp', ['ngRoute'])
       .when('/', {
         reloadOnSearch: false,
         controller:'MainController',
-        templateUrl:'main.html'
+        templateUrl:'web/main.html'
       })
       .when('/class', {
         reloadOnSearch: true,
         controller:'ClassController',
-        templateUrl:'classContent.html'
+        templateUrl:'web/classContent.html'
       })
       .otherwise({
         redirectTo:'/'

@@ -18,16 +18,17 @@ import groovy.json.*;
 //     s3cmd sync --exclude=orig s3://tedesche/new_mass_translation ./orig
 //   run this script with options: audio, zip, wp, podcast
 //   upload to s3
-//     s3cmd sync -P --guess-mime-type ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
+//     s3cmd sync -P --guess-mime-type ./build/* s3://tedesche/public/
 //   change perms for s3 docs (this is no longer required because of the -P above)
-//     s3cmd -P -r setacl s3://tedesche/new_mass_translation
+//     s3cmd -P -r setacl s3://tedesche/public
+//     s3cmd -P -r setacl s3://tedesche/web
 //   delete the existing files - it's cleaner that way
 //   upload to cp.com
 //     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
 def ops = []
 ops.add("print");
-ops.add("audio");
-ops.add("zip");
+//ops.add("audio");
+//ops.add("zip");
 ops.add("json");
 //ops.add("wp");
 ops.add("podcast");
@@ -250,6 +251,7 @@ for (gid in 0..5) {
 }
 def jsonStr = new JsonBuilder( jsonClassArr ).toPrettyString()
 jsonStr = "cp = " + jsonStr;
+println jsonStr
 new File("../web/cp.json").withWriter { out -> out.write(jsonStr) };
 
 def String proc(def cmd) {
