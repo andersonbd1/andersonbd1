@@ -16,10 +16,7 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Opening Rites"
-                ],
-                "duration": "01:33:10.35",
-                "length": "22362120",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/01-Opening_Rites.mp3"
+                ]
             },
             {
                 "id": "02",
@@ -36,15 +33,12 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Sacrosanctum Concilium"
-                ],
-                "duration": "00:56:52.17",
-                "length": "13649361",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/02-Sacrosanctum_Concilium.mp3"
+                ]
             },
             {
                 "id": "03",
                 "title": "Liturgy of the Word",
-                "detail": "Liturgy of the Word, Gospel, Creed, "consubstantial"",
+                "detail": "Liturgy of the Word, Gospel, Creed, \"consubstantial\"",
                 "date": "1/31/2011",
                 "rssDate": "Mon, 31 Jan 2011 00:00:00 -0500",
                 "audio": "missal_class_for_jan31.MP3",
@@ -56,15 +50,12 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Liturgy of the Word"
-                ],
-                "duration": "01:30:14.11",
-                "length": "21657102",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/03-Liturgy_of_the_Word.mp3"
+                ]
             },
             {
                 "id": "04",
                 "title": "Offertory and Roman Canon",
-                "detail": "Offertory Prayers, Roman Canon, "precious chalice", "for many"",
+                "detail": "Offertory Prayers, Roman Canon, \"precious chalice\", \"for many\"",
                 "date": "2/7/2011",
                 "rssDate": "Mon, 7 Feb 2011 00:00:00 -0500",
                 "audio": "missal_class_for_feb7.MP3",
@@ -76,15 +67,12 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Offertory and Roman Canon"
-                ],
-                "duration": "01:37:33.84",
-                "length": "23416116",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/04-Offertory_and_Roman_Canon.mp3"
+                ]
             },
             {
                 "id": "05",
                 "title": "Preface and Theology of Eucharist",
-                "detail": "Preface, "and with your spirit", Eucharistic Prayer Two, Real Presence",
+                "detail": "Preface, \"and with your spirit\", Eucharistic Prayer Two, Real Presence",
                 "date": "2/14/2011",
                 "rssDate": "Mon, 14 Feb 2011 00:00:00 -0500",
                 "audio": "missal_class_for_feb14.MP3",
@@ -96,10 +84,7 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Preface and Theology of Eucharist"
-                ],
-                "duration": "01:27:52.82",
-                "length": "21091968",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/05-Preface_and_Theology_of_Eucharist.mp3"
+                ]
             },
             {
                 "id": "06",
@@ -116,10 +101,7 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Theology of Eucharist"
-                ],
-                "duration": "01:34:06.18",
-                "length": "22585428",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/06-Theology_of_the_Eucharist.mp3"
+                ]
             },
             {
                 "id": "07",
@@ -144,10 +126,7 @@ cp = [
                 "new_handout_title": [
                     "Liturgiam Authenticam and the Propers",
                     "Propers Handout"
-                ],
-                "duration": "01:33:18.06",
-                "length": "22392960",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/07-Liturgiam_Authenticam_and_the_Propers.mp3"
+                ]
             },
             {
                 "id": "08",
@@ -172,10 +151,7 @@ cp = [
                 "new_handout_title": [
                     "Sacramentum Caritatis",
                     "Overhead"
-                ],
-                "duration": "01:21:29.75",
-                "length": "19559696",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/new_mass_translation/audio/08-Sacramentum_Caritatis.mp3"
+                ]
             }
         ],
         "seriesData": {
@@ -277,10 +253,7 @@ cp = [
                 "new_handout_title": [
                     "Ignatius to Philad, Smyr, Polyc",
                     "Summary and Notes"
-                ],
-                "duration": "01:49:24.24",
-                "length": "26257632",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/05-Fall_Session_5.mp3"
+                ]
             },
             {
                 "id": "06",
@@ -374,10 +347,7 @@ cp = [
                 ],
                 "new_handout_title": [
                     "Summary and Notes"
-                ],
-                "duration": "01:41:44.92",
-                "length": "24420288",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/10-Winter_Session_1.mp3"
+                ]
             },
             {
                 "id": "11",
@@ -399,70 +369,49 @@ cp = [
                 "new_handout_title": [
                     "Tertullian On Penitence",
                     "Summary and Notes"
-                ],
-                "duration": "01:30:15.86",
-                "length": "21664032",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/11-Winter_Session_2.mp3"
+                ]
             },
             {
                 "id": "12",
                 "title": "Winter Session 3",
                 "audio": "class_recording_for_feb9.MP3",
                 "handout_title": "Tertullian on the Trinity (Against Praxeas)",
-                "newAudio": "12-Winter_Session_3.mp3",
-                "duration": "01:39:05.76",
-                "length": "23783712",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/12-Winter_Session_3.mp3"
+                "newAudio": "12-Winter_Session_3.mp3"
             },
             {
                 "id": "13",
                 "title": "Winter Session 4",
                 "audio": "class_recording_for_feb16.MP3",
                 "handout_title": "Origen",
-                "newAudio": "13-Winter_Session_4.mp3",
-                "duration": "01:20:59.58",
-                "length": "19438944",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/13-Winter_Session_4.mp3"
+                "newAudio": "13-Winter_Session_4.mp3"
             },
             {
                 "id": "14",
                 "title": "Winter Session 5",
                 "audio": "class_recording_for_feb23.MP3",
                 "handout_title": "St. Cyprian",
-                "newAudio": "14-Winter_Session_5.mp3",
-                "duration": "01:45:05.72",
-                "length": "25223520",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/14-Winter_Session_5.mp3"
+                "newAudio": "14-Winter_Session_5.mp3"
             },
             {
                 "id": "15",
                 "title": "Winter Session 6",
                 "audio": "class_recording_for_mar2.MP3",
                 "handout_title": "St. Anthony",
-                "newAudio": "15-Winter_Session_6.mp3",
-                "duration": "01:51:33.23",
-                "length": "26773536",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/15-Winter_Session_6.mp3"
+                "newAudio": "15-Winter_Session_6.mp3"
             },
             {
                 "id": "16",
                 "title": "Winter Session 7",
                 "audio": "class_recording_for_mar9.MP3",
                 "handout_title": "Constantine",
-                "newAudio": "16-Winter_Session_7.mp3",
-                "duration": "01:25:38.63",
-                "length": "20555136",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/16-Winter_Session_7.mp3"
+                "newAudio": "16-Winter_Session_7.mp3"
             },
             {
                 "id": "17",
                 "title": "Winter Session 8",
                 "audio": "class_recording_for_mar16.MP3",
                 "handout_title": "St. Athanasius and the Council of Nicea",
-                "newAudio": "17-Winter_Session_8.mp3",
-                "duration": "01:37:58.74",
-                "length": "23515584",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/uncovering_riches/audio/17-Winter_Session_8.mp3"
+                "newAudio": "17-Winter_Session_8.mp3"
             }
         ],
         "seriesData": {
@@ -478,10 +427,7 @@ cp = [
                 "date": "11/17/2012",
                 "rssDate": "Sat, 17 Nov 2012 00:00:00 -0500",
                 "audio": "Apol. Class for 11-27-2012 (Theism and Science).MP3",
-                "newAudio": "01-Science_and_Theism.mp3",
-                "duration": "02:18:58.66",
-                "length": "33355200",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/apologetics/audio/01-Science_and_Theism.mp3"
+                "newAudio": "01-Science_and_Theism.mp3"
             },
             {
                 "id": "02",
@@ -489,10 +435,7 @@ cp = [
                 "date": "1/17/2013",
                 "rssDate": "Thu, 17 Jan 2013 00:00:00 -0500",
                 "audio": "Apol. Class for 1-17-2013 (Evidence for Christ).MP3",
-                "newAudio": "02-Evidence_for_Christ.mp3",
-                "duration": "02:47:54.93",
-                "length": "40300321",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/apologetics/audio/02-Evidence_for_Christ.mp3"
+                "newAudio": "02-Evidence_for_Christ.mp3"
             },
             {
                 "id": "03",
@@ -500,10 +443,7 @@ cp = [
                 "date": "1/24/2013",
                 "rssDate": "Thu, 24 Jan 2013 00:00:00 -0500",
                 "audio": "Apol. Class for 1-24-2013 (John and Evidence for the Church).MP3",
-                "newAudio": "03-John_and_Evidence_for_the_Church.mp3",
-                "duration": "02:35:47.68",
-                "length": "37391328",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/apologetics/audio/03-John_and_Evidence_for_the_Church.mp3"
+                "newAudio": "03-John_and_Evidence_for_the_Church.mp3"
             }
         ],
         "seriesData": {
@@ -533,20 +473,14 @@ cp = [
                 "new_handout_title": [
                     "1a-title",
                     "1b-title"
-                ],
-                "duration": "00:00:02.79",
-                "length": "11836",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/test/audio/01-a_more.mp3"
+                ]
             },
             {
                 "id": "02",
                 "title": "b",
                 "audio": "02_quia_tu_es.mp3",
                 "handout_title": "2a-title",
-                "newAudio": "02-b.mp3",
-                "duration": "00:00:04.94",
-                "length": "20383",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/test/audio/02-b.mp3"
+                "newAudio": "02-b.mp3"
             },
             {
                 "id": "03",
@@ -568,10 +502,7 @@ cp = [
                 "new_handout_title": [
                     "3a-title",
                     "3b-title"
-                ],
-                "duration": "00:00:05.04",
-                "length": "20863",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/test/audio/03-c.mp3"
+                ]
             }
         ],
         "seriesData": {
@@ -588,10 +519,7 @@ cp = [
                 "date": "10/22/2014",
                 "rssDate": "Wed, 22 Oct 2014 00:00:00 -0400",
                 "audio": "2.mp3",
-                "newAudio": "01-2nd_Session.mp3",
-                "duration": "01:32:30.07",
-                "length": "22200960",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/Bible_Study_Economy_of_Salvation/audio/01-2nd_Session.mp3"
+                "newAudio": "01-2nd_Session.mp3"
             }
         ],
         "seriesData": {
@@ -608,10 +536,7 @@ cp = [
                 "date": "10/19/2014",
                 "rssDate": "Sun, 19 Oct 2014 00:00:00 -0400",
                 "audio": "ot_29.mp3",
-                "newAudio": "01-29th_Sunday_in_Ordinary_Time.mp3",
-                "duration": "00:12:57.33",
-                "length": "3109919",
-                "link2mp3": "http://tedesche.s3.amazonaws.com/public/Sunday_Homilies/audio/01-29th_Sunday_in_Ordinary_Time.mp3"
+                "newAudio": "01-29th_Sunday_in_Ordinary_Time.mp3"
             }
         ],
         "seriesData": {
