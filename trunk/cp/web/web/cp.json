@@ -508,7 +508,8 @@ cp = [
         "seriesData": {
             "normalized_name": "test",
             "title": "test",
-            "description": "testing description"
+            "description": "testing description",
+            "publish": "FALSE"
         }
     },
     {
