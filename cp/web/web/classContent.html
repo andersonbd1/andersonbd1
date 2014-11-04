@@ -1,11 +1,11 @@
 <div ng-if="sd" class="container">
   <div style="font-weight: bold">Bundled Downloads</div>
   <div style="margin-left: 20px">
-    Download all audio files as a zip <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/{{sd.normalized_name}}-audio.zip">here</a>.
+    Download all audio files as a zip <a href="/{{sd.normalized_name}}/{{sd.normalized_name}}-audio.zip">here</a>.
   <br />
-  Download all doc files as a zip <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/{{sd.normalized_name}}-docs.zip">here</a>.
+  Download all doc files as a zip <a href="/{{sd.normalized_name}}/{{sd.normalized_name}}-docs.zip">here</a>.
   <br />
-  Download the audio files by using the podcast file <a href="http://tedesche.s3.amazonaws.com/web/{{sd.normalized_name}}/podcast.xml">here</a>.
+  Download the audio files by using the podcast file <a href="/{{sd.normalized_name}}/podcast.xml">here</a>.
   </div>
   <div ng-repeat="c in classes">
     <br />

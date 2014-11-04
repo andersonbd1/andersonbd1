@@ -31,7 +31,7 @@ ops.add("print");
 //ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-ops.add("podcast");
+//ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -204,7 +204,7 @@ for (gid in 0..5) {
         def matcher = outStr =~ /Duration *: (.*) =/
         c["duration"] = matcher[0][1];
         c["length"] = proc("ls -lad ${newFile}").split(" ")[4]
-        c["link2mp3"] = "http://tedesche.s3.amazonaws.com/public/${seriesData.normalized_name}/audio/${c.newAudio}"
+        c["link2mp3"] = "/${seriesData.normalized_name}/audio/${c.newAudio}"
       }
     }
     runVelocity(
