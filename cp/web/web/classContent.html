@@ -18,13 +18,13 @@
     -->
     <div>
       <span ng-if="c.newAudio" style="padding-right: 12px; white-space: nowrap;">
-        <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/audio/{{c.newAudio}}">Audio (MP3)</a>
-        <img src="http://www.catholicpatrimony.com/img/audio.png" width="20"/>
+        <a href="/{{sd.normalized_name}}/audio/{{c.newAudio}}">Audio (MP3)</a>
+        <img src="http://www.catholicpatrimony.com/img/headphone4_16.png" width="20"/>
       </span>
       <span ng-repeat="f in c.new_handout_file" style="padding-right: 12px; white-space: nowrap;">
-        <a href="http://tedesche.s3.amazonaws.com/public/{{sd.normalized_name}}/docs/{{f}}">{{c.new_handout_title[$index]}}</a>
-        <img ng-if="f.indexOf('pdf') != -1" src="http://tedesche.s3.amazonaws.com/images/pdficon.gif" />
-        <img ng-if="f.indexOf('doc') != -1" src="http://tedesche.s3.amazonaws.com/images/docicon.png" />
+        <a href="/{{sd.normalized_name}}/docs/{{f}}">{{c.new_handout_title[$index]}}</a>
+        <img ng-if="f.indexOf('pdf') != -1" src="/img/pdficon.gif" />
+        <img ng-if="f.indexOf('doc') != -1" src="/img/docicon.png" />
       </span>
     </div>
   </div>
