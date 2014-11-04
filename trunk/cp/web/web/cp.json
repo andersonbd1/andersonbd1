@@ -515,11 +515,49 @@ cp = [
         "classes": [
             {
                 "id": "01",
+                "title": "1st Session",
+                "handout_title": "Introduction",
+                "handout_file": "Session1introduction.docx",
+                "new_handout_file": [
+                    "01-Introduction.docx"
+                ],
+                "new_handout_title": [
+                    "Introduction"
+                ]
+            },
+            {
+                "id": "02",
                 "title": "2nd Session",
+                "detail": "Adam",
                 "date": "10/22/2014",
                 "rssDate": "Wed, 22 Oct 2014 00:00:00 -0400",
                 "audio": "2.mp3",
-                "newAudio": "01-2nd_Session.mp3"
+                "handout_title": "Adam",
+                "handout_file": "Session2Adam.docx",
+                "newAudio": "02-2nd_Session.mp3",
+                "new_handout_file": [
+                    "02-Adam.docx"
+                ],
+                "new_handout_title": [
+                    "Adam"
+                ]
+            },
+            {
+                "id": "03",
+                "title": "3rd Session",
+                "detail": "Noah",
+                "date": "10/29/2014",
+                "rssDate": "Wed, 29 Oct 2014 00:00:00 -0400",
+                "audio": "3-economy.mp3",
+                "handout_title": "Noah",
+                "handout_file": "Session3Noah.docx",
+                "newAudio": "03-3rd_Session.mp3",
+                "new_handout_file": [
+                    "03-Noah.docx"
+                ],
+                "new_handout_title": [
+                    "Noah"
+                ]
             }
         ],
         "seriesData": {
@@ -531,17 +569,37 @@ cp = [
         "classes": [
             {
                 "id": "01",
-                "title": "29th Sunday in Ordinary Time",
+                "title": "29th Sunday in Ordinary Time 2014",
                 "detail": "The Church's Mission and the Relationship between the Church and the State",
                 "date": "10/19/2014",
                 "rssDate": "Sun, 19 Oct 2014 00:00:00 -0400",
                 "audio": "ot_29.mp3",
-                "newAudio": "01-29th_Sunday_in_Ordinary_Time.mp3"
+                "newAudio": "01-29th_Sunday_in_Ordinary_Time_2014.mp3"
+            },
+            {
+                "id": "02",
+                "title": "All Souls Day 2014",
+                "detail": "Purgatory and Indulgences",
+                "date": "11/2/2014",
+                "rssDate": "Sun, 2 Nov 2014 00:00:00 -0400",
+                "audio": "2014-11-02.mp3",
+                "handout_title": "Praying for the Dead on Sunday",
+                "handout_file": "Praying for the Dead on Sunday.pdf",
+                "newAudio": "02-All_Souls_Day_2014.mp3",
+                "new_handout_file": [
+                    "02-Praying_for_the_Dead_on_Sunday.pdf"
+                ],
+                "new_handout_title": [
+                    "Praying for the Dead on Sunday"
+                ]
             }
         ],
         "seriesData": {
             "normalized_name": "Sunday_Homilies",
-            "title": "Sunday Homilies"
+            "title": "Sunday Homilies",
+            "include_zips": "FALSE",
+            "separate_menu": "TRUE",
+            "rename_audio": "FALSE"
         }
     }
 ]
