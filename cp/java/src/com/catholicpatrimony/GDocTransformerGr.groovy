@@ -30,7 +30,7 @@ ops.add("print");
 //ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-ops.add("podcast");
+//ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -250,8 +250,8 @@ for (gid in 0..5) {
 }
 def jsonStr = new JsonBuilder( jsonClassArr ).toPrettyString()
 jsonStr = "cp = " + jsonStr;
-new File("build/web/cp.json").withWriter { out -> out.write(jsonStr) };
-new File("../web/cp.json").withWriter { out -> out.write(jsonStr) };
+//new File("build/web/cp.json").withWriter { out -> out.write(jsonStr) };
+new File("../web/web/cp.json").withWriter { out -> out.write(jsonStr) };
 
 def String proc(def cmd) {
   println cmd;

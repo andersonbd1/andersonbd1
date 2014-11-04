@@ -1,5 +1,8 @@
-angular.module('cpApp', ['ngRoute'])
-  .config(function($routeProvider) {
+angular.module('cpApp', ['ngRoute'] //, function($compileProvider) {
+  //}
+  )
+  .config(function($routeProvider, $compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|itms):/);
     $routeProvider
       .when('/', {
         reloadOnSearch: false,
@@ -17,9 +20,28 @@ angular.module('cpApp', ['ngRoute'])
   })
   .controller('MenuController', function($scope, $location, $routeParams) {
     $scope.cp = cp;
-    $scope.classMenuClicked = function(idx) {
-      console.log(idx);
+    $scope.dropDownMenu = [];
+    $scope.topLevelMenu = [];
+    for (var i=0; i < cp.length; i++) {
+      $scope.cp[i].idx = i;
+      if (cp[i].seriesData.separate_menu && cp[i].seriesData.separate_menu == "TRUE") {
+        $scope.topLevelMenu.push(cp[i]);
+      } else if (cp[i].seriesData.publish && cp[i].seriesData.publish == "FALSE") {
+      } else {
+        $scope.dropDownMenu.push(cp[i]);
+      }
+    }
+    $scope.dropDownClicked = function(idx) {
+      setClass($scope, "dropDown");
       $location.path('/class').search({'id' : idx});
+    }
+    $scope.topLevelClassClicked = function(idx) {
+      setClass($scope, "topLevelClass");
+      $location.path('/class').search({'id' : idx});
+    }
+    $scope.aboutClicked = function(idx) {
+      setClass($scope, "about");
+      //$location.path('');
     }
     console.log(cp);
   })
@@ -34,6 +56,7 @@ angular.module('cpApp', ['ngRoute'])
       selectClass($scope, $routeParams.id);
     }
   })
+
 var selectClass = function(scope, idx) {
   console.log(idx);
   console.log(scope.cp[idx]);
@@ -42,3 +65,21 @@ var selectClass = function(scope, idx) {
   scope.classes = cp[idx].classes;
 }
 
+var setClass = function(scope, tlm) {
+  scope.aboutClass="";
+  scope.dropDownClass="";
+  scope.topLevelClass="";
+  if (tlm == "about") {
+    scope.aboutClass="active";
+  } else if (tlm == "dropDown") {
+    scope.dropDownClass="active";
+  } else if (tlm == "topLevelClass") {
+    scope.topLevelClass="active";
+  }
+
+
+
+  console.log("scope.aboutClass: " + scope.aboutClass  );
+  console.log("scope.dropDownClass: "+   scope.dropDownClass  );
+  console.log("scope.topLevelClass: "+  scope.topLevelClass  );
+}
