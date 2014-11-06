@@ -550,14 +550,45 @@ cp = [
                 "date": "10/29/2014",
                 "rssDate": "Wed, 29 Oct 2014 00:00:00 -0400",
                 "audio": "3-economy.mp3",
-                "handout_title": "Noah",
-                "handout_file": "Session3Noah.docx",
+                "handout_title": [
+                    "Noah",
+                    "Noah-slides"
+                ],
+                "handout_file": [
+                    "Session3Noah.docx",
+                    "Session3Noahpwrpt.pptx"
+                ],
                 "newAudio": "03-3rd_Session.mp3",
                 "new_handout_file": [
-                    "03-Noah.docx"
+                    "03-Noah.docx",
+                    "03-Noah-slides.pptx"
                 ],
                 "new_handout_title": [
-                    "Noah"
+                    "Noah",
+                    "Noah-slides"
+                ]
+            },
+            {
+                "id": "04",
+                "title": "4th Session",
+                "detail": "Abraham",
+                "date": "11/5/2014",
+                "rssDate": "Wed, 5 Nov 2014 00:00:00 -0500",
+                "handout_title": [
+                    "Abraham",
+                    "Abraham-slides"
+                ],
+                "handout_file": [
+                    "Session4Abraham1.docx",
+                    "Session4Abraham1pwrpt.pptx"
+                ],
+                "new_handout_file": [
+                    "04-Abraham.docx",
+                    "04-Abraham-slides.pptx"
+                ],
+                "new_handout_title": [
+                    "Abraham",
+                    "Abraham-slides"
                 ]
             }
         ],
@@ -600,7 +631,8 @@ cp = [
             "title": "Sunday Homilies",
             "include_zips": "FALSE",
             "separate_menu": "TRUE",
-            "rename_audio": "FALSE"
+            "rename_audio": "FALSE",
+            "reverse_order": "TRUE"
         }
     }
 ]
