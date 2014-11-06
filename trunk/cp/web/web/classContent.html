@@ -5,7 +5,10 @@
   <br />
   Download all doc files as a zip <a href="/{{sd.normalized_name}}/{{sd.normalized_name}}-docs.zip">here</a>.
   <br />
-  Download the audio files by using the podcast file: <a href="/{{sd.normalized_name}}/podcast.xml">raw xml</a> or <a href="itms://www.catholicpatrimony.com/{{sd.normalized_name}}/podcast.xml">open in iTunes</a>.
+  Download the audio files by using the podcast file: <a href="/{{sd.normalized_name}}/podcast.xml">raw xml</a> 
+<!--
+  or <a href="itms://www.catholicpatrimony.com/{{sd.normalized_name}}/podcast.xml">open in iTunes</a>.
+-->
   </div>
   <div ng-repeat="c in classes">
     <br />
@@ -25,6 +28,7 @@
         <a href="/{{sd.normalized_name}}/docs/{{f}}">{{c.new_handout_title[$index]}}</a>
         <img ng-if="f.indexOf('pdf') != -1" src="/img/pdficon.gif" />
         <img ng-if="f.indexOf('doc') != -1" src="/img/docicon.png" />
+        <img ng-if="f.indexOf('ppt') != -1" src="/img/document_powerpoint.png" />
       </span>
     </div>
   </div>
