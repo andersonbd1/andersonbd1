@@ -27,10 +27,10 @@ import groovy.json.*;
 def ops = []
 ops.add("print");
 //ops.add("audio");
-//ops.add("zip");
+ops.add("zip");
 ops.add("json");
 //ops.add("wp");
-//ops.add("podcast");
+ops.add("podcast");
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -143,6 +143,10 @@ for (gid in 0..5) {
         c.new_handout_file[0] = getNewHandoutFileName(c.id, c.handout_title, c.handout_file);
       }
     }
+  }
+
+  if ("TRUE".equals(seriesData["reverse_order"])) {
+    classes = classes.reverse();
   }
 
   if (ops.contains('wp')) {
