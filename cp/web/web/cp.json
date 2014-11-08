@@ -552,7 +552,7 @@ cp = [
                 "audio": "3-economy.mp3",
                 "handout_title": [
                     "Noah",
-                    "Noah-slides"
+                    "Noah slides"
                 ],
                 "handout_file": [
                     "Session3Noah.docx",
@@ -561,34 +561,36 @@ cp = [
                 "newAudio": "03-3rd_Session.mp3",
                 "new_handout_file": [
                     "03-Noah.docx",
-                    "03-Noah-slides.pptx"
+                    "03-Noah_slides.pptx"
                 ],
                 "new_handout_title": [
                     "Noah",
-                    "Noah-slides"
+                    "Noah slides"
                 ]
             },
             {
                 "id": "04",
                 "title": "4th Session",
-                "detail": "Abraham",
+                "detail": "Abraham, 1 of 3",
                 "date": "11/5/2014",
                 "rssDate": "Wed, 5 Nov 2014 00:00:00 -0500",
+                "audio": "BibleStudyEconomyofSalvation4thSessionAbraham1.MP3",
                 "handout_title": [
-                    "Abraham",
-                    "Abraham-slides"
+                    "Abraham (1 of 3)",
+                    "Abraham (1 of 3) slides"
                 ],
                 "handout_file": [
                     "Session4Abraham1.docx",
                     "Session4Abraham1pwrpt.pptx"
                 ],
+                "newAudio": "04-4th_Session.mp3",
                 "new_handout_file": [
-                    "04-Abraham.docx",
-                    "04-Abraham-slides.pptx"
+                    "04-Abraham_(1_of_3).docx",
+                    "04-Abraham_(1_of_3)_slides.pptx"
                 ],
                 "new_handout_title": [
-                    "Abraham",
-                    "Abraham-slides"
+                    "Abraham (1 of 3)",
+                    "Abraham (1 of 3) slides"
                 ]
             }
         ],
@@ -599,15 +601,6 @@ cp = [
     },
     {
         "classes": [
-            {
-                "id": "01",
-                "title": "29th Sunday in Ordinary Time 2014",
-                "detail": "The Church's Mission and the Relationship between the Church and the State",
-                "date": "10/19/2014",
-                "rssDate": "Sun, 19 Oct 2014 00:00:00 -0400",
-                "audio": "ot_29.mp3",
-                "newAudio": "01-29th_Sunday_in_Ordinary_Time_2014.mp3"
-            },
             {
                 "id": "02",
                 "title": "All Souls Day 2014",
@@ -624,6 +617,15 @@ cp = [
                 "new_handout_title": [
                     "Praying for the Dead on Sunday"
                 ]
+            },
+            {
+                "id": "01",
+                "title": "29th Sunday in Ordinary Time 2014",
+                "detail": "The Church's Mission and the Relationship between the Church and the State",
+                "date": "10/19/2014",
+                "rssDate": "Sun, 19 Oct 2014 00:00:00 -0400",
+                "audio": "ot_29.mp3",
+                "newAudio": "01-29th_Sunday_in_Ordinary_Time_2014.mp3"
             }
         ],
         "seriesData": {
