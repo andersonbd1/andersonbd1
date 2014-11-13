@@ -1,0 +1,37 @@
+#shell -${SHELL}
+#defscrollback 1024
+#
+# the scr_echo and scr_cmd vars are nothing special except that your .bashrc file uses them
+chdir ~
+setenv scr_echo home
+screen -t home
+
+chdir /cygdrive/c/dev/java
+setenv scr_echo "java"
+setenv scr_cmd ""
+screen -t java
+
+chdir /cygdrive/c/dev/andersonbd1
+screen -t andersonbd1
+
+chdir /cygdrive/c/dev/ns/scripts
+screen -t ns-scripts
+
+chdir /cygdrive/c/dev/ns/aa-uid-db/
+screen -t aa-uid-db-1
+
+screen -t aa-uid-db-2
+
+chdir 
+setenv scr_echo 
+setenv scr_cmd "ssh banderso@rcbuild-centos01"
+screen -t rcbuild-centos01
+
+setenv scr_echo ""
+setenv scr_cmd ""
+
+startup_message off
+defscrollback 10000
+caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
