@@ -2,9 +2,7 @@
 // @author      Ben Anderson
 // @name        stay_logged_in
 // @namespace   http://www.benanderson.us/greasemonkey/favicon
-// @include     /https?://easel.thomson.com/.*/
-// @include     /^https?://v2[^/]*taxnetpro.com/.*/
-// @include     /^https?://v3.(ci|demo).taxnetpro.com/.*/
+// @include     /https?://beluga/.*/
 // @version     1.0
 // @grant       none
 // ==/UserScript==
@@ -19,17 +17,10 @@ try {
   var host = window.location.host;
   var href = window.location.href;
 
-  if (host.indexOf('easel') != -1) {
-    urlToPing = 'https://easel.thomson.com/easel/ViewOnlyAccess.do';
-  } else if (host.indexOf('taxnetpro.com') != -1 && host.indexOf('v2') != -1) {
-    urlToPing = 'http://v2.taxnetpro.com/welcome/tnpHome/default.wl?errhost=EG-CHMLN-B54&fn=_top&MT=tnpHome&rs=TNPR14.04&ssl=y&strrecreate=no&sv=Split&vr=2.0'
-  } else if (host.indexOf('nsawiki') != -1) {
-  } else if (href.indexOf('OpsLinks') != -1) {
-  } else if (host.indexOf('v3.ci.taxnetpro') != -1) {
-  } else if (host.indexOf('v3.demo.taxnetpro') != -1) {
-  } else if (host.indexOf('next.ci.westlaw') != -1) {
-  } else if (host.indexOf('next.demo.westlaw') != -1) {
-  } else if (host.indexOf('v3.demo.taxnetpro') != -1) {
+  if (host.indexOf('url_to_stay_logged_in_to') != -1) {
+    urlToPing = 'https://url_to_ping';
+  } else if (host.indexOf('beluga') != -1 && host.indexOf('v2') != -1) {
+    urlToPing = 'beluga'
   }
 
   myLog(window.location);
