@@ -75,7 +75,7 @@ find . -regex '.*\.\(xml\|properties\)'
 
  cat ./wf-server/src/test/xml/soapBegin.xml ./wf-server/src/test/xml/StatusUpdate.xml ./wf-server/src/test/xml/soapEnd.xml | curl http://localhost:8010/axis/services/StatusUpdatePort -H Content-Type:'text/xml' -H SOAPAction:\"\" -d @- | xmllint --format -
 
-sqlplusw "sys/burton89@realnet as sysdba" &
+sqlplusw "sys/pass@realnet as sysdba" &
 cat ./core_tables.sql.sql | sed '/^\s*$/d' | sqlplus -S riscs/riscs > out
 
 find . -regex '\(\.\/portal\|\.\/common\).*\(\.java\|flow\/.*\.js\)' | grep -v \.svn
