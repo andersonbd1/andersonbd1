@@ -1,0 +1,30 @@
+<form name="form" class="css-form" ng-submit="registerSale();">
+  <div class="container">
+    <div class="page-header">
+      <h3>Register Sale</h3>
+    </div>
+    <div ng-show="saleSubmitted" class="alert {{saleSubmittedClass}}" role="alert">
+      {{saleSubmittedMessage}}
+    </div>
+    <div class="row">
+      <div class='col-md-3'>
+        <label for="personSelected">Person</label>
+        <input type="text" ng-model="personSelected" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:25" class="form-control">
+        <pre>Model: {{personSelected | json}}</pre>
+      </div>
+      <div class='col-md-6'>
+        <label for="itemSelected">Item</label>
+        <input type="text" ng-model="itemSelected" typeahead="item as item.searchStr for item in items.data | filter:$viewValue | limitTo:25" class="form-control">
+        <pre>Model: {{itemSelected | json}}</pre>
+      </div>
+      <div class='col-md-2'>
+        <label for="amount">Amount</label>
+        <input type="text" ng-model="amount"  class="form-control">
+      </div>
+      <div class='col-md-1'>
+        <label for="amount">--</label>
+        <input type="submit" id="submit" value="submit"  />
+      </div>
+    </div>
+  </div>
+</form>

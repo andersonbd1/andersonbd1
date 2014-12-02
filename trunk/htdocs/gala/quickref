@@ -1,0 +1,15 @@
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec
+
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=fetchAllItems
+
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=fetchAllPeople
+
+
+action=fetchAllItems
+action=fetchAllPeople
+action=registerSale&item_id=xx&people_id=xx&amount=xx&description=xx
+action=getPurchases&people_id=xx
+
+
+http://angular-ui.github.io/bootstrap/
+  Typeahead (ui.bootstrap.typeahead)
