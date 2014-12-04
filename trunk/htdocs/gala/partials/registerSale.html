@@ -16,6 +16,14 @@
       </div>
       <div class='col-md-2'>
         <label for="itemType">Item Type</label>
+        <ui-select ng-model="itemType.selected" theme="selectize" ng-disabled="disabled">
+          <ui-select-match placeholder="Select an item type...">{{$select.selected.display}}</ui-select-match>
+          <ui-select-choices repeat="item in itemTypes | filter: $select.search">
+            <span ng-bind-html="item.display | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+        
+        <!--
         <div class="btn-group" dropdown is-open="status.isopen">
           <button type="button" ng-model="itemType" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
             Button dropdown <span class="caret"></span>
@@ -28,6 +36,7 @@
             <li><a href="#">Separated link</a></li>
           </ul>
         </div>
+        -->
         <!--
         <div class="btn-group">
           <button type="button" ng-model="itemType" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -61,12 +70,25 @@
         <div class="input-group">
           <span class="input-group-addon">$</span>
           <input type="text" ng-model="amount" class="form-control">
+          <!--
           <span class="input-group-addon">.00</span>
+          -->
           <span class="input-group-btn">
             <input class="btn btn-default" type="submit" id="submit" value="submit"  />
           </span>
         </div>
       </div>
+    </div>
+    <!--
+    <div>
+      <h3>Selectize theme</h3>
+      <p>Selected: {{itemType.selected}}</p>
+      <ui-select ng-model="itemType.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
+        <ui-select-match placeholder="Select an item type...">{{$select.selected.display}}</ui-select-match>
+        <ui-select-choices repeat="item in itemTypes | filter: $select.search">
+          <span ng-bind-html="item.display | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
     </div>
     <div>
       <h3>Selectize theme</h3>
@@ -79,6 +101,7 @@
         </ui-select-choices>
       </ui-select>
     </div>
+    -->
     <!--
   </div>
   -->
