@@ -1,7 +1,12 @@
 <!doctype html>
 <html ng-app="galaApp">
   <head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
     <!-- Optional: Include the jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -13,11 +18,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular-route.min.js"></script>
 
     <script src="ui-bootstrap-tpls-0.12.0.min.js"></script>
+
     
     <script src="gala.js"></script>
     <link rel="stylesheet" href="gala.css">
+
+    <script src="ui-select/select.js"></script>
+    <link rel="stylesheet" href="ui-select/select.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
   </head>
   <body>
-    <div ng-view></div>
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Register Sale</a></li>
+        <li role="presentation"><a href="#">People</a></li>
+        <li role="presentation"><a href="#">Items</a></li>
+      </ul>
+      <div ng-view></div>
+    </div>
   </body>
 </html>

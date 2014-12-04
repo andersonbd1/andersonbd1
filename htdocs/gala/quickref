@@ -4,6 +4,8 @@ https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLc
 
 https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=fetchAllPeople
 
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=registerSale&item_id=xx&people_id=xx&amount=xx&description=xx
+
 
 action=fetchAllItems
 action=fetchAllPeople
@@ -13,3 +15,6 @@ action=getPurchases&people_id=xx
 
 http://angular-ui.github.io/bootstrap/
   Typeahead (ui.bootstrap.typeahead)
+
+
+is the personId the Bid#
