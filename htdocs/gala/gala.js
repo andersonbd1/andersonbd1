@@ -1,4 +1,4 @@
-angular.module('galaApp', ['ngRoute', 'ui.bootstrap', 'ui.select'] //, function($compileProvider) {
+angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select'] //, function($compileProvider) {
   //}
   )
   .config(function($routeProvider, $compileProvider) {
@@ -29,7 +29,38 @@ angular.module('galaApp', ['ngRoute', 'ui.bootstrap', 'ui.select'] //, function(
       sc.registerSaleUrl = 'mocks/registerSale.json';
     }
 
+    //$scope.itemTypeSelected = undefined;
     $scope.saleSubmitted = undefined;
+    //$scope.itemType = undefined;
+
+    $scope.itemType = {};
+    $scope.itemTypes = [
+      {
+        "key": "silentAuction",
+        "display": "silent auction",
+      },{
+        "key": "liveAuction",
+        "display": "live auction",
+      },{
+        "key": "paddleCall",
+        "display": "paddle call",
+      },{
+        "key": "balloon",
+        "display": "balloon",
+      },{
+        "key": "winePull",
+        "display": "wine pull",
+      }
+    ];
+
+    $scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
+      {name: 'Afghanistan', code: 'AF'},
+      {name: 'Åland Islands', code: 'AX'},
+      {name: 'Albania', code: 'AL'},
+      {name: 'Algeria', code: 'DZ'},
+      {name: 'American Samoa', code: 'AS'},
+      {name: 'Andorra', code: 'AD'},
+    ]
 
     $scope.itemSelected = undefined;
     $http.get($scope.fetchAllItemsUrl).success(function(data) {
@@ -50,6 +81,7 @@ angular.module('galaApp', ['ngRoute', 'ui.bootstrap', 'ui.select'] //, function(
     });
 
     $scope.registerSale = function() {
+      console.log('item type: ' + $scope.itemType.selected.key);
       console.log('item: ' + $scope.itemSelected["A00_Item_#"]);
       console.log('person: ' + $scope.personSelected["Bid#"]);
       console.log('amount: ' + $scope.amount);
@@ -60,14 +92,15 @@ angular.module('galaApp', ['ngRoute', 'ui.bootstrap', 'ui.select'] //, function(
           '&item_id=' + $scope.itemSelected["A00_Item_#"] + 
           '&people_id=' + $scope.personSelected["Bid#"] + 
           '&amount=' + $scope.amount + 
-          '&description=silent';
+          '&description=' + $scope.itemType.selected.key;
 
         registerMeth = $http.get(urlWParams);
       } else {
         var params = {
           "item": $scope.itemSelected["A00_Item_#"],
           "person": $scope.personSelected["Bid#"],
-          "amount": $scope.amount
+          "amount": $scope.amount,
+          "description": $scope.itemType.selected.key
         }
         registerMeth = $http.post('mocks/registerSale.json', params)
       }
