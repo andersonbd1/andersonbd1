@@ -29,9 +29,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
       sc.registerSaleUrl = 'mocks/registerSale.json';
     }
 
-    //$scope.itemTypeSelected = undefined;
     $scope.saleSubmitted = undefined;
-    //$scope.itemType = undefined;
 
     $scope.itemType = {};
     $scope.itemTypes = [
