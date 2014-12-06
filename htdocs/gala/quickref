@@ -6,6 +6,14 @@ https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLc
 
 https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=registerSale&item_id=xx&people_id=xx&amount=xx&description=xx
 
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=registerSale&item_id=xx&people_id=xx&amount=xx&description=xx
+
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=registerSale&item_id=A03&people_id=0101&amount=200&description=paddleCall
+
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=deletePurchase&item_id=A03&people_id=0101&amount=200&description=paddleCall
+
+https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?action=getPurchases&people_id=0101
+
 
 action=fetchAllItems
 action=fetchAllPeople

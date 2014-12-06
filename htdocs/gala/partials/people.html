@@ -1,0 +1,40 @@
+<div class="row">
+  <div class='col-md-12'>
+    <br />
+    <br />
+    <label for="personSelected.val">Person</label>
+    <input type="text" ng-model="personSelected.val" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:25" class="form-control" typeahead-on-select="personChanged();" ng-change="personChanged();">
+    <br />
+    <br />
+    <label>Purchases</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Item</th>
+          <th>Item Type</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="p in purchases.val.data">
+          <td>{{p.Item_Id}}</td>
+          <td>{{p.item.Item}}</td>
+          <td>{{p.itemType.display}}</td>
+          <td>{{p.Amount}}</td>
+          <th><a href="#">delete</a></th>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td>{{purchases.val.total}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <pre ng-show="showJson">Person: {{personSelected.val | json}}</pre>
+    <pre ng-show="showJson">Purchases: {{purchases.val | json}}</pre>
+  </div>
+</div>

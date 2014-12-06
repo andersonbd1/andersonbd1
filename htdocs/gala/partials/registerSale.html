@@ -1,39 +1,40 @@
 <form name="form" class="css-form" ng-submit="registerSale();">
-  <div class="page-header">
-    <h3>Register Sale</h3>
-  </div>
-  <div ng-show="saleSubmitted" class="alert {{saleSubmittedClass}}" role="alert">
-    {{saleSubmittedMessage}}
-  </div>
+  <br />
   <div class="row">
     <div class='col-md-3'>
-      <label for="personSelected">Person</label>
-      <input type="text" ng-model="personSelected" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:25" class="form-control">
-      <pre>Model: {{personSelected | json}}</pre>
+      <label for="personSelected.val">Person</label>
+      <input type="text" ng-model="personSelected.val" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:5" class="form-control" ng-class="has-error">
+      <pre ng-show="showJson">Model: {{personSelected.val | json}}</pre>
     </div>
-    <div class='col-md-2'>
+    <div class='col-md-2 has-error'>
       <label for="itemType">Item Type</label>
-      <ui-select ng-model="itemType.selected" theme="selectize" ng-disabled="disabled">
-        <ui-select-match placeholder="Select an item type...">{{$select.selected.display}}</ui-select-match>
-        <ui-select-choices repeat="item in itemTypes | filter: $select.search">
-          <span ng-bind-html="item.display | highlight: $select.search"></span>
-        </ui-select-choices>
-      </ui-select>
+      <div class="input-group has-error">
+        <ui-select class=has-error" ng-model="itemType.selected" theme="selectize" ng-disabled="disabled">
+          <ui-select-match placeholder="Select an item type...">{{$select.selected.display}}</ui-select-match>
+          <ui-select-choices repeat="item in itemTypes | filter: $select.search">
+            <span ng-bind-html="item.display | highlight: $select.search"></span>
+          </ui-select-choices>
+        </ui-select>
+      </div>
     </div>
     <div class='col-md-4'>
-      <label for="itemSelected">Item</label>
-      <input type="text" ng-model="itemSelected" typeahead="item as item.searchStr for item in items.data | filter:$viewValue | limitTo:25" class="form-control">
-      <pre>Model: {{itemSelected | json}}</pre>
+      <label for="itemSelected.val">Item</label>
+      <input type="text" ng-model="itemSelected.val" typeahead="item as item.searchStr for item in items.data | filter:$viewValue | limitTo:5" class="form-control" required>
+      <pre ng-show="showJson">Model: {{itemSelected.val | json}}</pre>
     </div>
     <div class='col-md-3'>
-      <label for="amount">Amount</label>
-      <div class="input-group">
+      <label for="amount.val">Amount</label>
+      <div class="input-group {{amount.ngClass}}">
         <span class="input-group-addon">$</span>
-        <input type="text" ng-model="amount" class="form-control">
+        <input type="text" ng-model="amount.val" class="form-control">
         <span class="input-group-btn">
           <input class="btn btn-default" type="submit" id="submit" value="submit"  />
         </span>
       </div>
     </div>
+  </div>
+  <br />
+  <div ng-show="saleSubmitted" class="alert {{saleSubmittedClass}}" role="alert">
+    {{saleSubmittedMessage}}
   </div>
 </form>
