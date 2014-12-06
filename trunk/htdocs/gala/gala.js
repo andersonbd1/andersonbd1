@@ -63,7 +63,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
         $scope.selectedTab = tab;
       }
     }
-    $scope.useMocks = true;
+    $scope.useMocks = false;
     $scope.showJson = false;
     $scope.urls = {};
     var sc = $scope.urls;
@@ -160,25 +160,87 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
   })
   .controller('RegisterSaleController', function($scope, $location, $routeParams, $http) {
     $scope.saleSubmitted = undefined;
-    $scope.amount.ngClass = "has-error";
-    $scope.amount.ngClass = "has-error";
+
+    $scope.formSubmitAttempted = false;
+    $scope.fieldErrors = {};
+    $scope.getClass = function(field) {
+      if ($scope.formSubmitAttempted && field.hasError) {
+        return "has-error";
+      }
+    }
+
+    $scope.$watch('itemType.selected', function(newValue, oldValue) {
+      console.log(newValue);
+      if (newValue && (newValue.key == "silentAuction")) {
+        $scope.itemSelected.disabled = false;
+      } else if (newValue && (newValue.key == "liveAuction")) {
+        $scope.itemSelected.disabled = false;
+      } else if (newValue && (newValue.key == "paddleCall")) {
+        $scope.itemSelected.disabled = true;
+        $scope.itemSelected.val = null;
+      } else if (newValue && (newValue.key == "balloon")) {
+        $scope.itemSelected.disabled = true;
+        $scope.itemSelected.val = null;
+      } else if (newValue && (newValue.key == "winePull")) {
+        $scope.itemSelected.disabled = true;
+        $scope.itemSelected.val = null;
+      } else {
+        $scope.itemSelected.disabled = false;
+      }
+    });
 
     $scope.registerSale = function() {
+      $scope.formSubmitAttempted = true;
+
+      var formValid = true;
+      if ($scope.personSelected.val == null || $scope.personSelected.val["Bid#"] == null) {
+        $scope.personSelected.hasError = true;
+        formValid = false;
+      } else {
+        $scope.personSelected.hasError = false;
+      }
+      if ($scope.itemType.selected == null) {
+        $scope.itemType.hasError = true;
+        formValid = false;
+      } else {
+        $scope.itemType.hasError = false;
+      }
+      if (!$scope.itemSelected.disabled && ($scope.itemSelected.val == null || $scope.itemSelected.val["A00_Item_#"] == null)) {
+        $scope.itemSelected.hasError = true;
+        formValid = false;
+      } else {
+        $scope.itemSelected.hasError = false;
+      }
+      if ($scope.amount.val == null) {
+        $scope.amount.hasError = true;
+        formValid = false;
+      } else {
+        $scope.amount.hasError = false;
+      }
+      if (!formValid) {
+        return false;
+      }
+
       var registerMeth = null;
       if (!$scope.useMocks) {
         var urlWParams = $scope.urls.registerSaleUrl + 
-          '&item_id=' + $scope.itemSelected.val["A00_Item_#"] + 
           '&people_id=' + $scope.personSelected.val["Bid#"] + 
           '&amount=' + $scope.amount.val + 
           '&description=' + $scope.itemType.selected.key;
 
+        if (!$scope.itemSelected.disabled) {
+          urlWParams = urlWParams + '&item_id=' + $scope.itemSelected.val["A00_Item_#"];
+        }
+
         registerMeth = $http.get(urlWParams);
       } else {
         var params = {
-          "item": $scope.itemSelected.val["A00_Item_#"],
           "person": $scope.personSelected.val["Bid#"],
           "amount": $scope.amount.val,
           "description": $scope.itemType.selected.key
+        }
+        if (!$scope.itemSelected.disabled) {
+          params["item"] = $scope.itemSelected.val["A00_Item_#"];
         }
         registerMeth = $http.post('mocks/registerSale.json', params)
       }

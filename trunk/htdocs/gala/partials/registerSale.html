@@ -3,13 +3,15 @@
   <div class="row">
     <div class='col-md-3'>
       <label for="personSelected.val">Person</label>
-      <input type="text" ng-model="personSelected.val" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:5" class="form-control" ng-class="has-error">
+      <div ng-class="getClass(personSelected)">
+        <input type="text" ng-model="personSelected.val" typeahead="person as person.fullName for person in people.data | filter:$viewValue | limitTo:5" class="form-control">
+      </div>
       <pre ng-show="showJson">Model: {{personSelected.val | json}}</pre>
     </div>
-    <div class='col-md-2 has-error'>
+    <div class='col-md-2'>
       <label for="itemType">Item Type</label>
-      <div class="input-group has-error">
-        <ui-select class=has-error" ng-model="itemType.selected" theme="selectize" ng-disabled="disabled">
+      <div ng-class="getClass(itemType)">
+        <ui-select ng-model="itemType.selected" theme="bootstrap" ng-disabled="disabled">
           <ui-select-match placeholder="Select an item type...">{{$select.selected.display}}</ui-select-match>
           <ui-select-choices repeat="item in itemTypes | filter: $select.search">
             <span ng-bind-html="item.display | highlight: $select.search"></span>
@@ -19,12 +21,14 @@
     </div>
     <div class='col-md-4'>
       <label for="itemSelected.val">Item</label>
-      <input type="text" ng-model="itemSelected.val" typeahead="item as item.searchStr for item in items.data | filter:$viewValue | limitTo:5" class="form-control" required>
-      <pre ng-show="showJson">Model: {{itemSelected.val | json}}</pre>
+      <div ng-class="getClass(itemSelected)">
+        <input type="text" ng-model="itemSelected.val" typeahead="item as item.searchStr for item in items.data | filter:$viewValue | limitTo:5" class="form-control" ng-disabled="itemSelected.disabled">
+        <pre ng-show="showJson">Model: {{itemSelected.val | json}}</pre>
+      </div>
     </div>
     <div class='col-md-3'>
       <label for="amount.val">Amount</label>
-      <div class="input-group {{amount.ngClass}}">
+      <div ng-class="'input-group ' + getClass(amount)">
         <span class="input-group-addon">$</span>
         <input type="text" ng-model="amount.val" class="form-control">
         <span class="input-group-btn">
