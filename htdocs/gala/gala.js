@@ -54,7 +54,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     $scope.purchases = {val: undefined};
     $scope.tabs = [
       {label: "Register Sale", link: "#/"},
-      {label: "People", link: "#/people"}
+      {label: "Purchases By Person", link: "#/people"}
     ];
     $scope.selectedTab = $scope.tabs[0];    
     for (var i=0; i < $scope.tabs.length; i++) {
