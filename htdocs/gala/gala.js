@@ -1,8 +1,10 @@
 angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select'] //, function($compileProvider) {
   //}
   )
-  .config(function($routeProvider, $compileProvider, $httpProvider) {
+  .config(function($routeProvider, $compileProvider, $httpProvider, $sceDelegateProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|itms):/);
+    //$sceDelegateProvider.resourceUrlWhitelist(['^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$', 'self']);
+    //$sceDelegateProvider.resourceUrlWhitelist(/^\s*http:\/\/gd.benanderson.us.*/);
     $routeProvider
       .when('/', {
         controller:'RegisterSaleController',
@@ -30,6 +32,11 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
       };
     });
   })
+  .filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+  }])
   .controller('ParentController', function($rootScope, $scope, $location, $routeParams, $http, $modal) {
     $rootScope.$watch('numOutstandingRequests.val', function(newValue, oldValue) {
       if (typeof newValue == "undefined" || newValue == null) {
