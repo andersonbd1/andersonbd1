@@ -21,12 +21,16 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
       $rootScope.numOutstandingRequests = {val: 0};
       return {
        'request': function(config) {
-         $rootScope.numOutstandingRequests.val++;
-         return config;
+          $rootScope.numOutstandingRequests.val++;
+          //console.log('numOutstandingRequests.val++ = ' + $rootScope.numOutstandingRequests.val + ' ' + config.url);
+          //console.log(config);
+          return config;
         },
 
         'response': function(response) {
           $rootScope.numOutstandingRequests.val--;
+          //console.log('numOutstandingRequests.val-- = ' + $rootScope.numOutstandingRequests.val + ' ' + response.config.url);
+          //console.log(response);
           return response;
         }
       };
@@ -75,17 +79,17 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     $scope.urls = {};
     var sc = $scope.urls;
     if (!$scope.useMocks) {
-      var baseUrl = 'https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?';
+      var baseUrl = 'https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?callback=JSON_CALLBACK&';
       sc.fetchAllItemsUrl = baseUrl + 'action=fetchAllItems';
       sc.fetchAllPeopleUrl = baseUrl + 'action=fetchAllPeople';
       
       sc.registerSaleUrl = baseUrl + 'action=registerSale';
       sc.getPurchasesUrl = baseUrl + 'action=getPurchases';
-      sc.getPurchasesUrl = baseUrl + 'action=getPurchases';
+      sc.deletePurchaseUrl = baseUrl + 'action=deleteSale';
       
     } else {
-      sc.fetchAllItemsUrl = 'mocks/items.json';
-      sc.fetchAllPeopleUrl = 'mocks/people.json';
+      sc.fetchAllItemsUrl = 'mocks/items.js?callback=JSON_CALLBACK';
+      sc.fetchAllPeopleUrl = 'mocks/people.js?callback=JSON_CALLBACK';
       sc.registerSaleUrl = 'mocks/registerSale.json';
     }
 
@@ -114,7 +118,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     }
     console.log($scope.itemTypesByKey);
 
-    $http.get($scope.urls.fetchAllPeopleUrl).success(function(data) {
+    $http.jsonp($scope.urls.fetchAllPeopleUrl).success(function(data) {
       $scope.people = data;
       for (var i=0; i < data.data.length; i++) {
         var fullName = data.data[i]["First_Names"] + " " + data.data[i]["Last_Names"];
@@ -123,7 +127,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
       $scope.peopleAvailable.val = true;
     });
 
-    $http.get($scope.urls.fetchAllItemsUrl).success(function(data) {
+    $http.jsonp($scope.urls.fetchAllItemsUrl).success(function(data) {
       $scope.items = data;
       $scope.itemsById = {};
       for (var i=0; i < data.data.length; i++) {
@@ -237,9 +241,11 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
 
         if (!$scope.itemSelected.disabled) {
           urlWParams = urlWParams + '&item_id=' + $scope.itemSelected.val["A00_Item_#"];
+        } else {
+          urlWParams = urlWParams + '&type=' + $scope.itemType.selected.key;
         }
 
-        registerMeth = $http.get(urlWParams);
+        registerMeth = $http.jsonp(urlWParams);
       } else {
         var params = {
           "person": $scope.personSelected.val["Bid#"],
@@ -272,20 +278,37 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     $scope.$on('$routeChangeSuccess', function(scope, next, current){
       $scope.personChanged();
     });
+    $scope.getPurchases = function() {
+      $http.jsonp($scope.urls.getPurchasesUrl + '&people_id=' + $scope.personSelected.val["Bid#"]).success(function(data) {
+        $scope.purchasesDisplayedForBidNum = $scope.personSelected.val["Bid#"];
+        $scope.purchases.val = data;
+        for (var i=0; i < data.data.length; i++) {
+          data.data[i].item = $scope.itemsById[data.data[i]["Item_Id"]];
+          data.data[i].itemType = $scope.itemTypesByKey[data.data[i]["Description"]];
+        }
+      });
+    }
     $scope.personChanged = function() {
       if ($scope.personSelected.val != null && $scope.personSelected.val["Bid#"] != null && 
             $scope.personSelected.val["Bid#"] != $scope.purchasesDisplayedForBidNum) {
         $scope.purchases.val = null;
-        $http.get($scope.urls.getPurchasesUrl + '&people_id=' + $scope.personSelected.val["Bid#"]).success(function(data) {
-          $scope.purchasesDisplayedForBidNum = $scope.personSelected.val["Bid#"];
-          $scope.purchases.val = data;
-          for (var i=0; i < data.data.length; i++) {
-            data.data[i].item = $scope.itemsById[data.data[i]["Item_Id"]];
-            data.data[i].itemType = $scope.itemTypesByKey[data.data[i]["Description"]];
-          }
-        });
+        $scope.getPurchases();
       } else {
         $scope.purchases.val = undefined
       }
     };
+    $scope.deletePurchase = function(p) {
+      console.log('personId: '+$scope.personSelected.val["Bid#"]);
+      console.log('itemId: '+p.Item_Id);
+      var amt = p.Amount.substring(1, p.Amount.length-3);
+      console.log('amount: '+ amt);
+      var urlWParams = $scope.urls.deletePurchaseUrl + 
+        '&people_id=' + $scope.personSelected.val["Bid#"] + 
+        '&amount=' + amt + 
+        '&item_id=' + p.Item_Id;
+
+      $http.jsonp(urlWParams).success(function(data) {
+        $scope.getPurchases();
+      });
+    }
   })
