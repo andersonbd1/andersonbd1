@@ -1,6 +1,7 @@
 import groovyx.net.http.*; import static groovyx.net.http.ContentType.*;
 import static groovyx.net.http.Method.*;
 import au.com.bytecode.opencsv.CSVParser;
+import org.apache.commons.io.FileUtils;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.Template;
 import org.apache.velocity.context.Context;
@@ -10,27 +11,31 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import groovy.json.*;
 
-// steps to setup a new class
-//   manually backup audio files and docs on s3
-//     s3cmd cp -r s3://tedesche/new_mass_translation/audio s3://tedesche/new_mass_translation/orig
-//     s3cmd cp -r s3://tedesche/new_mass_translation/docs s3://tedesche/new_mass_translation/orig
-//   manually get orig files
-//     s3cmd sync --exclude=orig s3://tedesche/new_mass_translation ./orig
-//   run this script with options: audio, zip, wp, podcast
-//   upload to s3
-//     s3cmd sync -P --guess-mime-type ./build/new_mass_translation/ s3://tedesche/new_mass_translation/generated/
-//   change perms for s3 docs (this is no longer required because of the -P above)
-//     s3cmd -P -r setacl s3://tedesche/new_mass_translation
-//   delete the existing files - it's cleaner that way
-//   upload to cp.com
-//     scp -i ~/.ssh/tedesche.pem -r ./build/web/* bitnami@catholicpatrimony.com:~/stack/apache2/htdocs/cp
+/*
+s3cmd sync -r s3://tedesche/  ./orig/
+date;
+
+# run groovy
+ant groovy; 
+date;
+
+# push latest to www.catholicpatrimony.com
+s3cmd sync -P --guess-mime-type ./build/ s3://www.catholicpatrimony.com/
+date;
+
+s3cmd sync -P --guess-mime-type ../web/web/cp.json s3://www.catholicpatrimony.com/web/
+date;
+*/
 def ops = []
-ops.add("print");
-//ops.add("audio");
-ops.add("zip");
+//ops.add("print");
+ops.add("audio");
+//ops.add("zip");
+ops.add("docs");
 ops.add("json");
 //ops.add("wp");
 ops.add("podcast");
+
+def mockRun = false;
 
 def http = new HTTPBuilder( 'https://docs.google.com')
 
@@ -141,6 +146,8 @@ for (gid in 0..5) {
         c.new_handout_file = [];
         c.new_handout_title = [c.handout_title];
         c.new_handout_file[0] = getNewHandoutFileName(c.id, c.handout_title, c.handout_file);
+        c.handout_file = [c.handout_file];
+        c.handout_title = [c.handout_title];
       }
     }
   }
@@ -171,78 +178,101 @@ for (gid in 0..5) {
     /*
     "rm -fR ./build/${seriesData.normalized_name}/audio".execute().waitFor();
     */
-    println "1"
     try {
       "mkdir -p ./build/${seriesData.normalized_name}/audio".execute().waitFor();
     } catch (t) {
       //do nothing
     }
-    println "2"
     if (!new File("orig/${seriesData.normalized_name}").exists()) {
       def proc = "s3cmd sync s3://tedesche/${seriesData.normalized_name} ./orig".execute();
       proc.waitFor();
     }
-    println "3"
     for (c in classes) {
-      println "4"
-      if (!new File("build/${seriesData.normalized_name}/audio/${c.newAudio}").exists()) {
-        println "5"
+      //if (!new File("build/${seriesData.normalized_name}/audio/${c.newAudio}").exists()) {
+      if (true) {
         if (c.audio) {
-          println "6"
-          def origFile = "orig/${seriesData.normalized_name}/audio/${c.audio}"
-          def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
-          println c.audio;
-          proc(["sox", origFile, "-r", "24k", "-c", "1", newFile]);
-          proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFile]);
+
+          def origFileStr = "orig/${seriesData.normalized_name}/audio/${c.audio}"
+          def newFileStr = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
+
+          def createAudio = fileNewerThan(origFileStr, newFileStr);
+
+          println ("c.audio: ${c.audio}");
+          println ("createAudio: ${createAudio}");
+
+          if (createAudio) {
+            if (!mockRun) {
+              proc(["sox", origFileStr, "-r", "24k", "-c", "1", newFileStr]);
+              proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFileStr]);
+            }
+          }
         }
       }
     }
   }
 
   if (ops.contains('podcast')) {
-    for (c in classes) {
-      if (c.audio) {
-        def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
-        def outStr = proc("soxi ${newFile}");
-        def matcher = outStr =~ /Duration *: (.*) =/
-        c["duration"] = matcher[0][1];
-        c["length"] = proc("ls -lad ${newFile}").split(" ")[4]
-        c["link2mp3"] = "/${seriesData.normalized_name}/audio/${c.newAudio}"
+    if (!mockRun) {
+      if (fileNewerThanAll("build/${seriesData.normalized_name}/audio",
+            "build/${seriesData.normalized_name}/podcast.xml" )) {
+        for (c in classes) {
+          if (c.audio) {
+            def newFile = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
+            def outStr = proc("soxi ${newFile}");
+            def matcher = outStr =~ /Duration *: (.*) =/
+            c["duration"] = matcher[0][1];
+            c["length"] = proc("ls -lad ${newFile}").split(" ")[4]
+            c["link2mp3"] = "/${seriesData.normalized_name}/audio/${c.newAudio}"
+          }
+        }
+        "mkdir -p ../web/${seriesData.normalized_name}".execute().waitFor();
+        runVelocity(
+          "velocity/podcast.vm", 
+          "build/${seriesData.normalized_name}/podcast.xml",
+          ["seriesData": seriesData, "classLabels": classLabels, "classes": classes]
+        );
       }
     }
-    runVelocity(
-      "velocity/podcast.vm", 
-      "build/${seriesData.normalized_name}/podcast.xml",
-      ["seriesData": seriesData, "classLabels": classLabels, "classes": classes]
-    );
   }
 
-  if (ops.contains('zip')) {
-    "rm -fR ./build/${seriesData.normalized_name}/docs".execute().waitFor();
-    "mkdir -p ./build/${seriesData.normalized_name}/docs".execute().waitFor();
-    for (c in classes) {
-      if (c.handout_file) {
-        if (c.handout_file instanceof Collection) {
+  if (ops.contains('docs') || ops.contains('zip')) {
+    if (!mockRun) {
+      "mkdir -p ./build/${seriesData.normalized_name}/docs".execute().waitFor();
+      for (c in classes) {
+        if (c.handout_file) {
+          c.handout_links = [];
           for (def i=0; i<c.handout_file.size; i++) {
             def oldFile = c.handout_file[i].replaceAll('%20', ' ');
-            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file[i]);
+            if (oldFile.indexOf('http') == -1) {
+              def hf = "./orig/${seriesData.normalized_name}/docs/${oldFile}"
+              def nhf = "./build/${seriesData.normalized_name}/docs/${c.new_handout_file[i]}"
+              c.handout_links[i] = "/${seriesData.normalized_name}/docs/${c.new_handout_file[i]}";
+              if (fileNewerThan(hf, nhf)) {
+                proc(["cp", hf, nhf])
+              }
+            } else {
+              c.handout_links[i] = c.handout_file[i];
+            }
           }
-        } else {
-            def oldFile = c.handout_file.replaceAll('%20', ' ');
-            copyDoc(seriesData.normalized_name, oldFile, c.new_handout_file[0]);
         }
       }
     }
-    /*
-    proc("tar -czf ./build/${seriesData.normalized_name}/${seriesData.normalized_name}-all.zip "+
-      "-C ./build/${seriesData.normalized_name} audio docs")
-    proc("tar -czf ./build/${seriesData.normalized_name}/${seriesData.normalized_name}-docs-only.zip "+
-      "-C ./build/${seriesData.normalized_name} docs")
-    */
-    proc("zip -rj ./build/${seriesData.normalized_name}/${seriesData.normalized_name}-docs.zip "+
-      "./build/${seriesData.normalized_name}/docs")
-    proc("zip -rj ./build/${seriesData.normalized_name}/${seriesData.normalized_name}-audio.zip "+
-      "./build/${seriesData.normalized_name}/audio")
+  }
+
+  if (ops.contains('zip')) {
+    if (seriesData["include_zips"] == null || !seriesData["include_zips"]) {
+      for (zipDirStr in [ "docs", "audio" ] ) {
+        def zipFolderStr = "./build/${seriesData.normalized_name}/${zipDirStr}";
+        def zipFileStr = "./build/${seriesData.normalized_name}/${seriesData.normalized_name}-${zipDirStr}.zip" 
+        if (fileNewerThanAll(zipFolderStr, zipFileStr)) {
+          println "needToZip: ${zipFolderStr}"
+          if (!mockRun) {
+            proc("zip -rj ${zipFileStr} "+
+              "./build/${seriesData.normalized_name}/${zipFolderStr}")
+          }
+        }
+      }
+    }
   }
 
   if (ops.contains('s3-publish')) {
@@ -269,15 +299,16 @@ def String proc(def cmd) {
 }
 
 def getNewHandoutFileName(id, ht, hf) {
-  def m = hf =~ /\.(.*)/
-  def ext = m[0][1];
-  ht = ht.replaceAll(' ', '_');
-  println "${id}-${ht}.${ext}"
-  return "${id}-${ht}.${ext}"
-}
-
-def copyDoc(nn, hf, nhf) {
-  proc(["cp", "./orig/${nn}/docs/${hf}", "./build/${nn}/docs/${nhf}"])
+  if (hf.indexOf('http') == -1) {
+    def m = hf =~ /\.(.*)/
+    def ext = m[0][1];
+    println "ht: ${ht}"
+    ht = ht.replaceAll(' ', '_');
+    println "${id}-${ht}.${ext}"
+    return "${id}-${ht}.${ext}"
+  } else {
+    return hf;
+  }
 }
 
 def runVelocity(def templateFile, def outputFile, def data) {
@@ -291,4 +322,36 @@ def runVelocity(def templateFile, def outputFile, def data) {
   }
   template.merge(context, writer);
   writer.close();
+}
+
+def fileNewerThan(def origFileStr, def newFileStr) {
+  def needToGen = true;
+
+  def newFile = new File(newFileStr);
+  def origFile = new File(origFileStr);
+  if (newFile.exists() && newFile.lastModified() > origFile.lastModified()) {
+    needToGen = false  
+  }
+
+  return needToGen;
+}
+
+def fileNewerThanAll(def folder2zipStr, def zipStr) {
+  def retVal = true;
+  def zipFile = new File(zipStr);
+
+  if (zipFile.exists()) {
+    retVal = false;
+    def mostRecentMod = 0;
+    for (f in FileUtils.listFiles(new File(folder2zipStr), null, true)) {
+      if (f.lastModified() > mostRecentMod) {
+        mostRecentMod = f.lastModified();
+      }
+    }
+    if (mostRecentMod > zipFile.lastModified()) {
+      retVal = true;
+    }
+  }
+
+  return retVal;
 }

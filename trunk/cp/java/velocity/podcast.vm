@@ -8,7 +8,7 @@
     #end
     <language>en-us</language>
     <webMaster>dtedesche@gmail.com (David Tedesche)</webMaster>
-    <managingEditor>dtedesche@gmail.com (David Tedesch)</managingEditor>
+    <managingEditor>dtedesche@gmail.com (David Tedesche)</managingEditor>
     <image>
       <url>http://www.catholicpatrimony.com/img/restoring.jpg</url>
       <title>Sacred Art</title>
@@ -38,7 +38,7 @@
       <pubDate>${class.rssDate}</pubDate>
       <enclosure url="http://www.catholicpatrimony.com${class.link2mp3}" length="${class.length}" type="audio/mpeg"/>
       <itunes:duration>${class.duration}</itunes:duration>
-      <itunes:author>David Tedesche</itunes:author>
+      <itunes:author>Reverend David Tedesche</itunes:author>
       <itunes:subtitle/>
       #if ($class.detail)
         <itunes:summary>$class.detail</itunes:summary>
