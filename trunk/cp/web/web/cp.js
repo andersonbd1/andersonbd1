@@ -30,6 +30,13 @@ angular.module('cpApp', ['ngRoute'] //, function($compileProvider) {
       } else {
         $scope.dropDownMenu.push(cp[i]);
       }
+      if (cp[i].seriesData.include_zips && cp[i].seriesData.include_zips == "FALSE") {
+        console.log('include_zips = false');
+        cp[i].seriesData.includeZips = false;
+      } else {
+        console.log('include_zips = true');
+        cp[i].seriesData.includeZips = true;
+      }
     }
     $scope.dropDownClicked = function(idx) {
       setClass($scope, "dropDown");
