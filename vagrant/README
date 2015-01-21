@@ -1,0 +1,41 @@
+The purpose of this vagrant machine is to provide the following:
+
+  1) xterminal with gnu command line, tmuxinator, byobu
+  2) provide a linux dev environment
+  3) provide basic web server with php/python/etc support
+
+So far the pupose has not been to replace a full java dev environment although it could:
+
+  1) eclipse
+
+The idea is that someone bringing up this vagrant box would have a directory structure like this:
+
+  C:/dev/andersonbd1 - https://code.google.com/p/andersonbd1/
+  C:/dev/ns/aa-uidd-db - https://git.nexgen.neustar.biz/neustar/aa-uid-db
+  C:/dev/ns/scripts - https://git.nexgen.neustar.biz/ben.anderson/bens_random_ns_code/tree/master/scripts
+  C:/Users/banderso/Google Drive - my google drive
+
+It gets somewhat confusing because I previously created a vagrant box for neustar development.  The 
+purpose of that box was to provide a similar system as production (centos6) to:
+
+  1) build the rpm
+  2) test my upstart scripts
+  3) provide aerospike and postgres for dev
+
+Notes on manual steps needed after automated provisioning:
+  # needs to be run manually to accept the license
+  $ sudo /mydev/andersonbd1/vagrant/installation_scripts/install_java.sh
+
+TODO:
+
+  - compiz is sucking up a *lot* of cpu
+  - "Type your command"
+  - why aren't directories green?
+
+  - che
+  - get webserver running
+  - run eclipse
+  - multiple monitors
+  - ctlr-c, ctlr-v, middle click
+  - autologin to ubuntu as vagrant
+  
