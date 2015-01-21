@@ -1,0 +1,50 @@
+# ~/.tmuxinator/uk.yml
+
+name: local
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+tmux_command: byobu
+
+windows:
+  - "aauiddb-service":
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/ns/aa-uid-db
+    - screen -d -r
+  - "aa-uid-db-1":
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/ns/aa-uid-db
+  - "aa-uid-db-2":
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/ns/aa-uid-db
+  - "home": cd ~
+  - "java":
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/java
+  - "andersonbd1": 
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/andersonbd1
+  - "ns-scripts":
+    - ssh -i ~/.ssh/vagrant.id_rsa vagrant@BANDERSO-LTW7.cis.neustar.com
+    - cd /mydev/ns/scripts
+
+# setenv scr_echo 
+# setenv scr_cmd "ssh banderso@rcbuild-centos01"
+# screen -t rcbuild-centos01
+#
+# chdir /home/banderso/.scr/vista
+# setenv scr_echo "ssh -i ~/.ssh/ben.id_rsa ben@vista.targusinfo.com" 
+# setenv scr_cmd "${scr_echo}"
+# screen -t vista.targusinfo.com

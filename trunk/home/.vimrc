@@ -1,0 +1,16 @@
+set number
+color torte
+set vb
+set tabstop=4
+set shiftwidth=4
+set expandtab
+syntax enable
+set noswapfile
+set foldmethod=indent
+set autoindent
+set ignorecase
+set hlsearch
+set nowritebackup
+set nobackup
+set encoding=utf8
+set fileencoding=utf8
