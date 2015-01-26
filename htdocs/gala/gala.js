@@ -79,7 +79,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     $scope.urls = {};
     var sc = $scope.urls;
     if (!$scope.useMocks) {
-      var baseUrl = 'https://script.google.com/macros/s/AKfycbyS_HfztKiChcRDjfo1yNvrNGtolex1TuFcwplLciboEtweNPII/exec?callback=JSON_CALLBACK&';
+      var baseUrl = 'https://script.google.com/macros/s/AKfycbwp4JJA1aVEjnllKTcjPwmigJHhjtU4BsDqu9sacEHPWQ_73Agu/exec?callback=JSON_CALLBACK&';
       sc.fetchAllItemsUrl = baseUrl + 'action=fetchAllItems';
       sc.fetchAllPeopleUrl = baseUrl + 'action=fetchAllPeople';
       
@@ -121,7 +121,7 @@ angular.module('galaApp', ['ngSanitize', 'ngRoute', 'ui.bootstrap', 'ui.select']
     $http.jsonp($scope.urls.fetchAllPeopleUrl).success(function(data) {
       $scope.people = data;
       for (var i=0; i < data.data.length; i++) {
-        var fullName = data.data[i]["First_Names"] + " " + data.data[i]["Last_Names"];
+        var fullName = data.data[i]["Bid#"] + " - " + data.data[i]["First_Names"] + " " + data.data[i]["Last_Names"];
         data.data[i].fullName = fullName;
       }
       $scope.peopleAvailable.val = true;
