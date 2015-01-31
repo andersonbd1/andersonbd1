@@ -1,3 +1,4 @@
+#kubuntu-desktop
 ubuntu-desktop
 rpmbuild
 man
@@ -19,3 +20,13 @@ django
 s3cmd
 python-pip
 ruby
+#maven2
+dconf-editor
+compizconfig-settings-manager
+postgresql-client-common
+postgresql-client-9.3
+gnome-session-fallback
+apache2
+groovy
+sox
+id3v2
