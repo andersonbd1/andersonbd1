@@ -26,13 +26,25 @@ Notes on manual steps needed after automated provisioning:
   # needs to be run manually to accept the license
   $ sudo /mydev/andersonbd1/vagrant/installation_scripts/install_java.sh
 
+  # to fix compiz high cpu issue
+  https://bugs.launchpad.net/compiz/+bug/1293384/comments/15
+
+  # to fix the alt issue "type your command"
+  this didn't help:
+    http://askubuntu.com/questions/464784/how-to-disable-altw-unity-binding
+  this worked:
+    http://askubuntu.com/a/511253/132476
+  the other windows managers seem to hijack my ctrl-space shortcut for
+  remote screens
+
 TODO:
 
   - compiz is sucking up a *lot* of cpu
   - "Type your command"
   - why aren't directories green?
+  - asking for password after a while
 
-  - che
+  - checkin link from htdocs/cp - how does svn handle this?
   - get webserver running
   - run eclipse
   - multiple monitors
