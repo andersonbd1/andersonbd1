@@ -26,3 +26,5 @@ django super-user: vagrant/b
 
 $ sudo apt-get install sqlite3 libsqlite3-dev
 
+# to get it to run through vagrant (port forwarding)
+$ python manage.py runserver 0.0.0.0:8000
