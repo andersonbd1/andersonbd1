@@ -5,8 +5,13 @@ cp /mydev/andersonbd1/home/.vimrc $HD
 # mkdir -p $HD/.tmuxinator
 # cp /mydev/andersonbd1/home/.tmuxinator/* $HD/.tmuxinator
 
+
 cp /google_drive/home_files/.s3cfg $HD
-cp -R /google_drive/home_files/.tmuxinator $HD
+#ln -s /google_drive/home_files/.s3cfg ~/.s3cfg
+
+#cp -R /google_drive/home_files/.tmuxinator $HD
+ln -s /google_drive/home_files/.tmuxinator ~/.tmuxinator
+
 cp -R /google_drive/home_files/.ssh $HD
 
 chown -R vagrant /home/vagrant

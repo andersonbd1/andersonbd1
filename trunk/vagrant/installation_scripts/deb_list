@@ -30,3 +30,11 @@ apache2
 groovy
 sox
 id3v2
+ruby2.2
+ruby2.2-dev
+expect
+expect-lite
+python3-pip
+sqlite3
+libsqlite3-dev
+subversion
