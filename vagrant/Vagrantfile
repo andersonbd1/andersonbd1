@@ -90,5 +90,5 @@ Vagrant.configure(2) do |config|
 
   #config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 
-  #config.vm.provision "shell", path: "installation_scripts/captureoutput.sh"
+  config.vm.provision "shell", path: "installation_scripts/captureoutput.sh"
 end

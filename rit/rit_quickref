@@ -15,16 +15,23 @@ $ python -c "import django; print(django.get_version())"
 $ python3 -c "import django; print(django.get_version())"
 1.6.5
 
-$ export PATH=/usr/local/lib/python3.4/dist-packages/django/bin:$PATH
+# $ export PATH=/usr/local/lib/python3.4/dist-packages/django/bin:$PATH
 
 $ alias python=python3
 $ export PYTHONPATH=/usr/local/lib/python3.4/dist-packages:/mydev/python/mymodules
 
 $ export DJANGO_SETTINGS_MODULE=mysite.settings
 
-django super-user: vagrant/b
+# django super-user: vagrant/b
 
 $ sudo apt-get install sqlite3 libsqlite3-dev
 
 # to get it to run through vagrant (port forwarding)
 $ python manage.py runserver 0.0.0.0:8000
+
+# on control
+$ getent group g261-04a
+
+
+# update all team repos
+vagrant@vagrant-ubuntu-trusty-64:/mydev/rit/team_repos$ for d in *; do cd $d; pwd; svn up; cd ..; done;

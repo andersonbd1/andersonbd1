@@ -132,7 +132,7 @@ for (gid in 0..5) {
 
   for (c in classes) {
     if (c.audio) {
-      c['newAudio'] = c.id +"-"+c.title.replaceAll(' ', '_')+'.mp3'
+      c['newAudio'] = c.id +"-${seriesData.normalized_name}.mp3"
     }
     if (c.handout_file) {
       if (c.handout_file instanceof Collection) {

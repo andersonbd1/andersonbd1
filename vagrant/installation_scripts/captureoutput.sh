@@ -1,8 +1,6 @@
 PWD_DIR=$(pwd)
-export SCRIPT_DIR='/mydev/andersonbd1/vagrant/installation_scripts'
-export SD=${SCRIPT_DIR}
-export HD=/home/vagrant
-export ID=${HD}/installation_dir
+SRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+${SRC_DIR}/set_env.sh
 
 mkdir $ID 2> /dev/null
 cd $ID

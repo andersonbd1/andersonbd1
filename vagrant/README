@@ -1,6 +1,6 @@
 The purpose of this vagrant machine is to provide the following:
 
-  1) xterminal with gnu command line, tmuxinator, byobu
+  1) xterm with gnu command line, tmuxinator, byobu
   2) provide a linux dev environment
   3) provide basic web server with php/python/etc support
 
@@ -36,6 +36,11 @@ Notes on manual steps needed after automated provisioning:
     http://askubuntu.com/a/511253/132476
   the other windows managers seem to hijack my ctrl-space shortcut for
   remote screens
+
+  #terminal is dusty grey instead of black
+  Edit->Profile Preferences
+    Colors tab
+      Built-in schemes: Linux console
 
 TODO:
 
