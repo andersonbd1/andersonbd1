@@ -6,3 +6,5 @@ ${SD}/configure_user.sh
 ${SD}/install_nodejs.sh
 #${SD}/install_java.sh
 ${SD}/install_maven.sh
+
+${SD}/neustar_stuff.sh
