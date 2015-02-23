@@ -40,3 +40,7 @@ libsqlite3-dev
 subversion
 #bundler - this actually installs an old version.  you want to use the gem version
 vagrant
+python-dev
+postgresql-client
+postgresql
+postgresql-contrib

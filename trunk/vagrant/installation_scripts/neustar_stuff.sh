@@ -13,4 +13,12 @@ sudo -i -u vagrant ln -s /mydev/ns/aa-uid-db/vagrant/VAGRANT_ROOT ../VAGRANT_ROO
 sudo -i -u vagrant vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
 sudo -i -u vagrant echo "1.1" > ~/.vagrant.d/setup_version
 
+${SD}/install_aerospike.sh
+${SD}/install_amc.sh
+
+PREV_INSTALLATION_FILES=${INSTALLATION_FILES}
+export INSTALLATION_FILES="/mydev/ns/aa-uid-db/vagrant/VAGRANT_ROOT/installation_files"
+${SD}/install_postgresql.sh
+export INSTALLATION_FILES=${PREV_INSTALLATION_FILES}
+
 cd $MYPWD
