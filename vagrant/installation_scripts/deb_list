@@ -11,6 +11,7 @@ python-devel
 screen
 rpm-build
 nodejs
+npm
 git
 libXtst
 xauth
@@ -44,3 +45,4 @@ python-dev
 postgresql-client
 postgresql
 postgresql-contrib
+pv

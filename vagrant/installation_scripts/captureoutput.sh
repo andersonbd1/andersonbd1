@@ -1,6 +1,10 @@
+#/bin/bash
+
 PWD_DIR=$(pwd)
-SRC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-${SRC_DIR}/set_env.sh
+SRC_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+echo "SRC_DIR: ${SRC_DIR}"
+. ${SRC_DIR}/set_env.sh
 
 mkdir $ID 2> /dev/null
 cd $ID
