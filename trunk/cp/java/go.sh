@@ -1,5 +1,7 @@
 while [ true ]
 do
+#sudo service ntp stop
+sudo ntpdate ntp.ubuntu.com
 date;
 
   # pull down latest from tedesche
