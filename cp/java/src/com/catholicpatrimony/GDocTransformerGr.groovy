@@ -27,7 +27,7 @@ s3cmd sync -P --guess-mime-type ../web/web/cp.json s3://www.catholicpatrimony.co
 date;
 */
 def ops = []
-//ops.add("print");
+ops.add("print");
 ops.add("audio");
 //ops.add("zip");
 ops.add("docs");
@@ -56,8 +56,8 @@ https://docs.google.com/spreadsheet/pub?key=0AkWmZX8HtwWHdENUNFcxdG9XdzBTaWhlVkZ
 
 
 def jsonClassArr = []
-//for (gid in 0..5) {
-for (gid in 0..5) {
+//for (gid in 5) {
+for (gid in 0..6) {
   println 'gid: '+gid;
   def responseStr = null;
 
@@ -121,6 +121,10 @@ for (gid in 0..5) {
         if (classLabels[i].equals('date')) {
           Date d = Date.parse("MM/dd/yyyy", p)
           row.put('rssDate', d.format("EEE, d MMM yyyy HH:mm:ss Z"));
+        }
+        if (classLabels[i].equals('updated_on')) {
+          Date d = Date.parse("MM/dd/yyyy HH:mm:ss", p)
+          row.put('updated_on_date', d);
         }
       }
     };
@@ -195,14 +199,18 @@ for (gid in 0..5) {
           def origFileStr = "orig/${seriesData.normalized_name}/audio/${c.audio}"
           def newFileStr = "build/${seriesData.normalized_name}/audio/${c.newAudio}"
 
-          def createAudio = fileNewerThan(origFileStr, newFileStr);
+          def createAudio = fileNewerThan(origFileStr, newFileStr, c.updated_on_date);
 
           println ("c.audio: ${c.audio}");
           println ("createAudio: ${createAudio}");
+          if (c.volume_boost == null) {
+            c.volume_boost = "1";
+          }
+          println ("c.volume_boost: ${c.volume_boost}");
 
           if (createAudio) {
             if (!mockRun) {
-              proc(["sox", origFileStr, "-r", "24k", "-c", "1", newFileStr]);
+              proc(["sox", "-v", c.volume_boost, origFileStr, "-r", "24k", "-c", "1", newFileStr]);
               proc(["id3v2", "-a", "David Tedesche", "-A", seriesData.normalized_name, "-t", c.title, "-T", c.id, newFileStr]);
             }
           }
@@ -247,7 +255,7 @@ for (gid in 0..5) {
               def hf = "./orig/${seriesData.normalized_name}/docs/${oldFile}"
               def nhf = "./build/${seriesData.normalized_name}/docs/${c.new_handout_file[i]}"
               c.handout_links[i] = "/${seriesData.normalized_name}/docs/${c.new_handout_file[i]}";
-              if (fileNewerThan(hf, nhf)) {
+              if (fileNewerThan(hf, nhf, c.updated_on_date)) {
                 proc(["cp", hf, nhf])
               }
             } else {
@@ -324,12 +332,12 @@ def runVelocity(def templateFile, def outputFile, def data) {
   writer.close();
 }
 
-def fileNewerThan(def origFileStr, def newFileStr) {
+def fileNewerThan(def origFileStr, def newFileStr, def updatedDate) {
   def needToGen = true;
 
   def newFile = new File(newFileStr);
   def origFile = new File(origFileStr);
-  if (newFile.exists() && newFile.lastModified() > origFile.lastModified()) {
+  if ((updatedDate == null || updatedDate.toCalendar().getTimeInMillis() < newFile.lastModified()) && newFile.exists() && newFile.lastModified() > origFile.lastModified()) {
     needToGen = false  
   }
 
