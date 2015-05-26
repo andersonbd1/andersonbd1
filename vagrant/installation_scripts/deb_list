@@ -46,3 +46,4 @@ postgresql-client
 postgresql
 postgresql-contrib
 pv
+ntp
