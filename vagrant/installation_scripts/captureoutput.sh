@@ -11,9 +11,6 @@ cd $ID
 
 echo "INSTALLATION_DIRECTORY: ${ID}"
 
-#exec 1>> everything.out 2>&1
-
-#${SCRIPT_DIR}/everything.sh 1> everything.out 2>&1
-${SCRIPT_DIR}/everything.sh 1> everything.out 2>&1
+sudo -E -u ${DEV_USER} ${SCRIPT_DIR}/everything.sh 1> everything.out 2> everything.out
 
 cd $PWD_DIR

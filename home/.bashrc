@@ -9,7 +9,17 @@ alias j8='export PATH=/usr/java/jdk1.8.0_25/bin:$PATH; export JAVA_HOME="/usr/ja
 
 j7
 
-function tmuxrestart() {
-  tmux kill-session -t "$1"
+function mux-restart() {
+  sess_id="$(tmux list-sessions | grep $1 | awk -F: '{print $1}')"
+  echo "sess_id: <$sess_id>"
+  if [ ! -z $sess_id ]; then
+    tmux kill-session -t $sess_id
+  fi
   tmuxinator start "$1"
+}
+function mux-kill() {
+  tmux kill-session -t $(tmux list-sessions | grep $1 | awk -F: '{print $1}')
+}
+function mux-attach() {
+  tmux attach-session -t $(tmux list-sessions | grep $1 | awk -F: '{print $1}')
 }

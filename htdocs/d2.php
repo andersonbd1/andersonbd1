@@ -1,5 +1,5 @@
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
-<?
+<?php
 $tag = null;
 try {
   $tag = $_REQUEST['tag'];
@@ -23,7 +23,7 @@ echo substr_compare($tag, "vids ", 0, 5);
 if (strlen($tag) > 4 && 0 == substr_compare($tag, "vid ", 0, 4)) {
   header( 'Location: http://gd.benanderson.us/vids/vid.php?id=' . substr($tag, 4) );
 ?>
-<?
+<?php
 } else if (strlen($tag) > 2 && 0 == substr_compare($tag, "lws ", 0, 3)) {
   $st = 'StaticContent_17.4.249';
   $url = 'Location: http://10.222.128.36.ip.next.ci.westlaw.com/routing';
@@ -97,6 +97,6 @@ if (strlen($tag) > 4 && 0 == substr_compare($tag, "vid ", 0, 4)) {
     </table>
   </body>
 </html>
-<?
+<?php
 }
 ?>
