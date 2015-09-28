@@ -15,8 +15,7 @@ The idea is that someone bringing up this vagrant box would have a directory str
   C:/dev/ns/scripts - https://git.nexgen.neustar.biz/ben.anderson/bens_random_ns_code/tree/master/scripts
   C:/Users/banderso/Google Drive - my google drive
 
-It gets somewhat confusing because I previously created a vagrant box for neustar development.  The 
-purpose of that box was to provide a similar system as production (centos6) to:
+It gets somewhat confusing because I previously created a vagrant box for neustar development.  The purpose of that box was to provide a similar system as production (centos6) to:
 
   1) build the rpm
   2) test my upstart scripts
@@ -35,6 +34,9 @@ Notes on manual steps needed after automated provisioning:
   Edit->Profile Preferences
     Colors tab
       Built-in schemes: Linux console
+
+  Alt->Tab - I like to leave this working in windows, but that means it doens't work in ubu.  Here is a way to switch it to Ctrl-Tab
+      $ gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Ctrl>Tab']"
 
 TODO:
 
