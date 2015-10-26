@@ -10,6 +10,10 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
+
+  # https://github.com/dotless-de/vagrant-vbguest
+  config.vbguest.auto_update = false
+
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -27,7 +31,7 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 22, host: 8092
+  #config.vm.network "forwarded_port", guest: 22, host: 8092
   config.vm.network "forwarded_port", guest: 80, host: 8090
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 3000, host: 3000
@@ -66,7 +70,7 @@ Vagrant.configure(2) do |config|
      vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = 2048
+     vb.memory = 3072
      vb.cpus = 2
      vb.customize ["modifyvm", :id, "--vram", "74"]
      vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
@@ -74,6 +78,15 @@ Vagrant.configure(2) do |config|
      vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
      vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
      vb.customize ["modifyvm", :id, "--mouse", "usb"]
+     # vb.customize ["modifyvm", :id, "--audio", "oss"]
+     vb.customize ["modifyvm", :id, '--audio', 'dsound', '--audiocontroller', 'sb16']
+     # none|null|dsound
+     # ac97|hda|sb16
+     #combos tried 
+     # dsound - hda
+     # null - ac97
+     # dsound - ac97
+     # dsound - sb16
   end
   #
   # View the documentation for the provider you are using for more
