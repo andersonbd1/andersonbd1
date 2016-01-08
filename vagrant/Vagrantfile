@@ -56,9 +56,9 @@ Vagrant.configure(2) do |config|
   # TODO: for some reason, I can't seem to map the root c drive, so I'm doing 
   # it relatively and one up
 
-  config.vm.synced_folder "../..", "/mydev"
-  config.vm.synced_folder "C:/Users/banderso/Google Drive", "/google_drive"
-  config.vm.boot_timeout = 300
+  config.vm.synced_folder "../..", "/mydev", nfs: true
+  config.vm.synced_folder "C:/Users/banderso/Google Drive", "/google_drive", nfs: true
+  config.vm.boot_timeout = 60
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

@@ -85,7 +85,8 @@ if (strlen($tag) > 4 && 0 == substr_compare($tag, "vid ", 0, 4)) {
         console.log('<?= $tag ?>');
         var transaction = Y.Get.script(
           //'https://api.del.icio.us/v1/json/posts/all?tag=<?= urlencode($tag) ?>&format=json', {
-          'http://feeds.delicious.com/v2/json/andersonbd1/<?= urlencode($tag) ?>?callback=go&count=100', {
+          //'http://feeds.delicious.com/v2/json/andersonbd1/<?= urlencode($tag) ?>?callback=go&count=100', {
+          'http://previous.delicious.com/v2/json/andersonbd1/<?= urlencode($tag) ?>?callback=go&count=100', {
           onSuccess: function (e) {
           }
         });
