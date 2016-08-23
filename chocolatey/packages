@@ -3,6 +3,7 @@
 7zip
 adobereader
 curl
+dependencywalker
 eclipse
 #firefox
 #adblockplus
@@ -12,8 +13,10 @@ googlechrome
 #adblockpuls
 #gvim
 hipchat
-jdk8
+#jdk8
+jdk8 -params "x64=false"
 maven
+procmon 
 sendtokindle
 setacl
 sharpkeys

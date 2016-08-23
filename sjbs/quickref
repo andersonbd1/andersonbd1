@@ -1,0 +1,43 @@
+https://docs.google.com/document/d/1T0YvOYrJ_7aBTcyjXRsU8BZGn0LrTdgnAcB71JfTAKg/edit
+
+# https://koha-community.org/faqs/zebra-indexing-wont-work-fix-it-aka-search-stuff-up-help/
+# https://kohablog.wordpress.com/2011/03/31/re-indexing-the-zebra-index-database-by-hand/
+# https://wiki.koha-community.org/wiki/Background_indexing_with_Zebra
+# https://docs.google.com/document/d/1T0YvOYrJ_7aBTcyjXRsU8BZGn0LrTdgnAcB71JfTAKg/edit
+
+$ sudo su - sjbs-koha
+sjbs-koha@sjbs-koha:~$ export PERL5LIB=/usr/share/koha/lib/
+sjbs-koha@sjbs-koha:~$ export KOHA_CONF=/etc/koha/sites/sjbs/koha-conf.xml
+sjbs-koha@sjbs-koha:~$ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -b -r -v
+...
+
+root@sjbs-koha:~# /etc/init.d/koha-common restart
+Restarting Koha ILS: koha-commonZebra already stopped for instance sjbs.
+SIP server for sjbs not running.
+Starting Zebra server for sjbs
+.
+root@sjbs-koha:~#
+
+
+findmebeluga 
+findmebeluga2
+
+$ mysql -u koha_sjbs --password=xeequiph -D koha_sjbs -t -e "select * from zebraqueue order by time desc limit 10;" | less
+
+# koha-rebuild-zebra -u $(koha-list --enabled)
+
+
+edge@neustar.biz
+3C9X92BdHfyDkZr5
+
+$ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -r -v
+$ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -b -v
+
+
+https://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13396
+
+<zebra_bib_index_mode>__BIBLIOS_INDEXING_MODE__</zebra_bib_index_mode>
+<zebra_auth_index_mode>__AUTHORITIES_INDEXING_MODE__</zebra_auth_index_mode>
+<zebra_lockdir>/var/lock/koha/__KOHASITE__</zebra_lockdir>
+<use_zebra_facets>1</use_zebra_facets>
+

@@ -37,7 +37,14 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 3001, host: 3001
   config.vm.network "forwarded_port", guest: 5432, host: 5432
+  config.vm.network "forwarded_port", guest: 5434, host: 5434
+  config.vm.network "forwarded_port", guest: 5433, host: 5433
+  config.vm.network "forwarded_port", guest: 5431, host: 5431
   config.vm.network "forwarded_port", guest: 8081, host: 8081
+  # rshiny
+  config.vm.network "forwarded_port", guest: 3838, host: 3838
+  # java debug
+  config.vm.network "forwarded_port", guest: 5005, host: 5005
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -57,8 +64,11 @@ Vagrant.configure(2) do |config|
   # it relatively and one up
 
   config.vm.synced_folder "../..", "/mydev", nfs: true
+  config.vm.synced_folder "D:/audio", "/myaudio", nfs: true
+  config.vm.synced_folder "C:/Users/banderso/Dropbox", "/mydropbox", nfs: true
+  config.vm.synced_folder "C:/tedesche", "/tedesche", nfs: true
   config.vm.synced_folder "C:/Users/banderso/Google Drive", "/google_drive", nfs: true
-  config.vm.boot_timeout = 60
+  config.vm.boot_timeout = 90
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

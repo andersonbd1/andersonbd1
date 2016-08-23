@@ -10,7 +10,7 @@ gcc
 python-devel
 screen
 rpm-build
-nodejs
+#nodejs
 npm
 git
 libXtst
@@ -50,3 +50,6 @@ ntp
 php5-common
 libapache2-mod-php5
 php5-cli
+gdebi-core
+libsox-fmt-mp3
+ant
