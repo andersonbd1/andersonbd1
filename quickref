@@ -181,3 +181,5 @@ $ git update-index --no-assume-unchanged pom.xml
 
 $ find . -name \*.idx -o -name \*.dat
 
+# windows perms
+SetACL -on . -ot file -actn ace -ace "n:everyone;p:full" -actn clear -clr "dacl,sacl" -actn rstchldrn -rst "dacl,sacl"
