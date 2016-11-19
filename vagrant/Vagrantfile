@@ -32,12 +32,14 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   #config.vm.network "forwarded_port", guest: 22, host: 8092
-  config.vm.network "forwarded_port", guest: 80, host: 8090
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  #config.vm.network "forwarded_port", guest: 80, host: 8091
+  #config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 3001, host: 3001
   config.vm.network "forwarded_port", guest: 5432, host: 5432
   config.vm.network "forwarded_port", guest: 8081, host: 8081
+  config.vm.network "forwarded_port", guest: 22, host: 2223
+  config.vm.network "forwarded_port", guest: 22, host: 2224
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -56,8 +58,10 @@ Vagrant.configure(2) do |config|
   # TODO: for some reason, I can't seem to map the root c drive, so I'm doing 
   # it relatively and one up
 
-  config.vm.synced_folder "../..", "/mydev", nfs: true
-  config.vm.synced_folder "C:/Users/banderso/Google Drive", "/google_drive", nfs: true
+  config.vm.synced_folder "e:/dev", "/mydev", nfs: true
+  config.vm.synced_folder "e:/google_drive", "/google_drive", nfs: true
+  config.vm.synced_folder "c:/Users", "/windows_users", nfs: true
+  config.vm.synced_folder "E:/e", "/windows_e", nfs: true
   config.vm.boot_timeout = 60
 
   # Provider-specific configuration so you can fine-tune various
@@ -65,21 +69,21 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-     vb.name = "andersonbd1-ubuntu"
-  #   # Display the VirtualBox GUI when booting the machine
-     vb.gui = true
+     vb.name = "andersonbd1-ubuntu6"
+  #  # Display the VirtualBox GUI when booting the machine
+     #vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
      vb.memory = 3072
      vb.cpus = 2
-     vb.customize ["modifyvm", :id, "--vram", "74"]
-     vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
-     vb.customize ["modifyvm", :id, "--ioapic", "on"]
-     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-     vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
-     vb.customize ["modifyvm", :id, "--mouse", "usb"]
+     #vb.customize ["modifyvm", :id, "--vram", "74"]
+     #vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
+     #vb.customize ["modifyvm", :id, "--ioapic", "on"]
+     #vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+     #vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+     #vb.customize ["modifyvm", :id, "--mouse", "usb"]
      # vb.customize ["modifyvm", :id, "--audio", "oss"]
-     vb.customize ["modifyvm", :id, '--audio', 'dsound', '--audiocontroller', 'sb16']
+     #vb.customize ["modifyvm", :id, '--audio', 'dsound', '--audiocontroller', 'sb16']
      # none|null|dsound
      # ac97|hda|sb16
      #combos tried 
@@ -111,6 +115,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: "/vagrant/installation_scripts/captureoutput.sh"
 
   config.ssh.forward_agent = true
-  config.ssh.forward_x11 = true
+  #config.ssh.forward_x11 = true
+  #config.ssh.username = "vagrant"
+  #config.ssh.password = "vagrant"
+  config.ssh.private_key_path = "C:/Users/Ben Anderson/.ssh/id_rsa"
 
 end
