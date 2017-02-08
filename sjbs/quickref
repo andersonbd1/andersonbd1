@@ -41,3 +41,9 @@ https://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13396
 <zebra_lockdir>/var/lock/koha/__KOHASITE__</zebra_lockdir>
 <use_zebra_facets>1</use_zebra_facets>
 
+http://sjbs-library.ddns.net:8080/cgi-bin/koha/tools/inventory.pl
+
+vagrant@vagrant-ubuntu-trusty-64:/mydev/andersonbd1/sjbs$ grep '<subfield code="7">.</subfield>' bibs.xml | sort | uniq -c 
+  8947     <subfield code="7">0</subfield>
+    41     <subfield code="7">1</subfield>
+   324     <subfield code="7">2</subfield>
