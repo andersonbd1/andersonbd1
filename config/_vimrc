@@ -27,6 +27,7 @@ set nowritebackup
 set nobackup
 set encoding=utf8
 set fileencoding=utf8
+set noundofile
 
 map <F12> :source $vimruntime/../_vimrc<cr>
 

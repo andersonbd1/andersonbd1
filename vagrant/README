@@ -35,6 +35,8 @@ Notes on manual steps needed after automated provisioning:
     Colors tab
       Built-in schemes: Linux console
 
+  # To make alt-tab go back to windows
+    in virtualbox ui - File->Preferences->Input->uncheck "Auto Capture Keyboard"
   Alt->Tab - I like to leave this working in windows, but that means it doens't work in ubu.  Here is a way to switch it to Ctrl-Tab
       $ gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Ctrl>Tab']"
 
@@ -44,3 +46,5 @@ TODO:
   - multiple monitors
   - ctlr-c, ctlr-v, middle click
   
+
+
