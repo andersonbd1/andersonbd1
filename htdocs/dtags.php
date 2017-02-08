@@ -28,7 +28,8 @@
         // Get is available and ready for use. Add implementation
         // code here.
         var transaction = Y.Get.script(
-          'http://feeds.delicious.com/v2/json/tags/andersonbd1?callback=go', {
+          //'http://feeds.delicious.com/v2/json/tags/andersonbd1?callback=go', {
+          'http://previous.delicious.com/v2/json/tags/andersonbd1?callback=go', {
           onSuccess: function (e) {
           }
         });

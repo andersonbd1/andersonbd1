@@ -1,2 +1,4 @@
 scratch
+tmp/
+node_modules/
 .vagrant.prev
