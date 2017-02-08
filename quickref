@@ -183,8 +183,8 @@ $ find . -name \*.idx -o -name \*.dat
 
 
 
-Thanks for the response, Dennis.  I'm certainly not opposed to a consistent style, but some of the requested changes seem more about being pedantic than true concern for the code.  I typically don't mind nit-picks - the bigger frustration is that while I'm getting nit-picked, I'm not getting much response to my higher level questions (see inline comment about tag parameter mappings).  If I understand tag parameter mappings now, then my previous code wouldn't have worked at all.
-
 
 vim tips
 :vertical resize +5
+# windows perms
+SetACL -on . -ot file -actn ace -ace "n:everyone;p:full" -actn clear -clr "dacl,sacl" -actn rstchldrn -rst "dacl,sacl"
