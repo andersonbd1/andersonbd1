@@ -1,4 +1,5 @@
 escape ^@^@
+altscreen
 
 screen -t name_1
 screen -t name_2
