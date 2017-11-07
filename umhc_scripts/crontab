@@ -1,0 +1,3 @@
+0,10,20,30,40,50 * * * * /mydev/andersonbd1/umhc_scripts/cp_iphoto_stream.sh
+0,10,20,30,40,50 * * * *  cd /mydev/course2web/java/; flock -n ./go.lockfile -c ./go.sh > go.out 2>&1
+
