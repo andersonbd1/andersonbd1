@@ -12,7 +12,7 @@
 Vagrant.configure(2) do |config|
 
   # https://github.com/dotless-de/vagrant-vbguest
-  config.vbguest.auto_update = true
+  config.vbguest.auto_update = false
 
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -25,28 +25,23 @@ Vagrant.configure(2) do |config|
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  #config.vm.box_check_update = false
+  config.vm.box_check_update = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   #config.vm.network "forwarded_port", guest: 22, host: 8092
-  config.vm.network "forwarded_port", guest: 80, host: 8090
-  config.vm.network "forwarded_port", guest: 8000, host: 8000
-  config.vm.network "forwarded_port", guest: 3000, host: 3000
-  config.vm.network "forwarded_port", guest: 3001, host: 3001
+  #config.vm.network "forwarded_port", guest: 80, host: 8091
+  #config.vm.network "forwarded_port", guest: 8000, host: 8000
+  #config.vm.network "forwarded_port", guest: 3000, host: 3000
+  #config.vm.network "forwarded_port", guest: 3001, host: 3001
   config.vm.network "forwarded_port", guest: 5432, host: 5432
-  config.vm.network "forwarded_port", guest: 5434, host: 5434
-  config.vm.network "forwarded_port", guest: 5433, host: 5433
-  config.vm.network "forwarded_port", guest: 5431, host: 5431
   config.vm.network "forwarded_port", guest: 8081, host: 8081
   config.vm.network "forwarded_port", guest: 22, host: 2223
   config.vm.network "forwarded_port", guest: 22, host: 2224
-  # rshiny
-  config.vm.network "forwarded_port", guest: 3838, host: 3838
-  # java debug
-  config.vm.network "forwarded_port", guest: 5005, host: 5005
+  config.vm.network "forwarded_port", guest: 8090, host: 8090
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
@@ -64,10 +59,11 @@ Vagrant.configure(2) do |config|
   # TODO: for some reason, I can't seem to map the root c drive, so I'm doing 
   # it relatively and one up
 
-  config.vm.synced_folder "c:/dev", "/mydev", nfs: true
-  config.vm.synced_folder "C:/Users/banderso/Google Drive", "/google_drive", nfs: true
+  config.vm.synced_folder "e:/dev", "/mydev", nfs: true
+  config.vm.synced_folder "e:/google_drive", "/google_drive", nfs: true
   config.vm.synced_folder "c:/Users", "/windows_users", nfs: true
-  config.vm.boot_timeout = 90
+  config.vm.synced_folder "E:/e", "/windows_e", nfs: true
+  config.vm.boot_timeout = 60
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -76,7 +72,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
      vb.name = "andersonbd1-ubuntu6"
   #  # Display the VirtualBox GUI when booting the machine
-     vb.gui = true
+     #vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
      vb.memory = 3072
@@ -123,6 +119,6 @@ Vagrant.configure(2) do |config|
   #config.ssh.forward_x11 = true
   #config.ssh.username = "vagrant"
   #config.ssh.password = "vagrant"
-  #config.ssh.private_key_path = "C:/Users/banderso/.ssh/id_rsa"
+  config.ssh.private_key_path = "C:/Users/Ben Anderson/.ssh/id_rsa"
 
 end
