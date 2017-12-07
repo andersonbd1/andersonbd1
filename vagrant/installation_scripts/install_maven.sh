@@ -1,4 +1,6 @@
-wget --quiet -O "mvn.tar.gz" 'http://mirror.cogentco.com/pub/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz'
+sudo rm -fR /usr/local/apache-maven
+
+wget --quiet -O "mvn.tar.gz" 'http://mirrors.koehn.com/apache/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz'
 
 tar xvf mvn.tar.gz
 

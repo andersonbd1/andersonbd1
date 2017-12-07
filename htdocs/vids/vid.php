@@ -20,17 +20,33 @@
     $url = $url . "&end=" . $_REQUEST['end'];
   }
 ?>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EfLhhmeD5PU?loop=1&fs=1&autoplay=1" frameborder="0" allowfullscreen></iframe>
+<!--
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jjn3fBTvBjY?list=PLFyz_VaHKmUll1kCZN4sCfbTeLR12dyqq&loop=1&fs=1&autoplay=1" frameborder="0" allowfullscreen></iframe>
+-->
 <!--
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jjn3fBTvBjY?list=PLFyz_VaHKmUll1kCZN4sCfbTeLR12dyqq" frameborder="0" allowfullscreen></iframe>
   <embed src="http://www.youtube.com/embed/jjn3fBTvBjY?enablejsapi=1&version=3&playerapiid=ytplayer&autoplay=1&loop=1&rel=0&fs=1&modestbranding=1&iv_load_policy=3&list=PLFyz_VaHKmUll1kCZN4sCfbTeLR12dyqq"
+-->
+
+<!--
+<object width="425" height="355">
+  <param name="movie" value="<?= $url ?>"</param>
+  <param name="allowFullScreen" value="true"></param>
+  <param name="allowScriptAccess" value="always"></param>
+  <embed src="https://www.youtube.com/embed/jjn3fBTvBjY?list=PLFyz_VaHKmUll1kCZN4sCfbTeLR12dyqq"
+    type="application/x-shockwave-flash"
+    allowscriptaccess="always"
+    width="425" height="355" 
+    allowfullscreen="true"></embed>
+</object>
 -->
 
 <object width="425" height="355">
   <param name="movie" value="<?= $url ?>"</param>
   <param name="allowFullScreen" value="true"></param>
   <param name="allowScriptAccess" value="always"></param>
-  <embed src="https://www.youtube.com/embed/jjn3fBTvBjY?list=PLFyz_VaHKmUll1kCZN4sCfbTeLR12dyqq"
+  <embed src="https://www.youtube.com/embed/EfLhhmeD5PU"
     type="application/x-shockwave-flash"
     allowscriptaccess="always"
     width="425" height="355" 
