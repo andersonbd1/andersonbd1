@@ -102,8 +102,3 @@ def String proc(def cmd, def testMode=false) {
   }
 }
 
-return code: 12
-stderr: 
-stdout:         zip warning: name not matched: /Users/banderso/dev/andersonbd1/tmp/*.mp3
-
-zip error: Nothing to do! (/Users/banderso/dev/andersonbd1/tmp/tmp.zip)
