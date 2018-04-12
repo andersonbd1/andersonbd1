@@ -10,17 +10,19 @@ String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
 String drop_dir = "/Users/banderso/Dropbox/bookmobile"
 def tmpDirFile = new File(tmp_dir);
-if (tmpDirFile.exists()) {
-  println "tmp_dir exists"
-  for (def f : tmpDirFile.listFiles()) {
-    println "deleting ${f.getAbsolutePath()}"
-    f.delete();
-  }
-} else {
-  println "tmp_dir does not exist"
-  tmpDirFile.mkdir();
-}
 def testMode = false;
+if (!testMode) {
+  if (tmpDirFile.exists()) {
+    println "tmp_dir exists"
+    for (def f : tmpDirFile.listFiles()) {
+      println "deleting ${f.getAbsolutePath()}"
+      f.delete();
+    }
+  } else {
+    println "tmp_dir does not exist"
+    tmpDirFile.mkdir();
+  }
+}
 def boost = 2;
 
 def books = new ArrayList<>();
