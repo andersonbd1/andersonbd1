@@ -5,6 +5,7 @@ def void p(String m) {
   System.out.println(m);
 }
 
+def album="02-Ex"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
 String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
@@ -23,12 +24,11 @@ if (!testMode) {
     tmpDirFile.mkdir();
   }
 }
-def boost = 2;
-
 def books = new ArrayList<>();
 def bookChaps = new Object[3];
+def bookBoosts = [2,2,2];
 def bookAndChaps = new ArrayList<>();
-def album="01-Gen"
+def boostLevels = new ArrayList<>();
 BufferedReader br = new BufferedReader(new FileReader("reading_plan/$album"));
 String l;
 int lineIdx = 0;
@@ -36,8 +36,13 @@ while ((l = br.readLine()) != null) {
   if (lineIdx < 3) {
     //p("");
     //p("book: " + l);
-    books.add(l);
-    File dir = new File(audioDir + "/" + l);
+    String[] lArr = l.split(" ");
+    String l1 = lArr[0];
+    if (lArr.length > 1) {
+      bookBoosts[lineIdx] = Integer.parseInt(lArr[1]);
+    }
+    books.add(l1);
+    File dir = new File(audioDir + "/" + l1);
     //p(dir.getAbsolutePath());
     def chapSet = new TreeSet();
     if (dir.exists()) {
@@ -50,9 +55,10 @@ while ((l = br.readLine()) != null) {
     }
     bookChaps[lineIdx] = new ArrayList(chapSet);
     for (String bookChap : bookChaps[lineIdx]) {
-      //p(bookChap);
+      p(bookChap);
     }
   } else {
+    p(l);
     String[] cols = l.replaceAll("( +)"," ").trim().split(" ");
     int colIdx=0;
     for (String col : cols) {
@@ -65,9 +71,9 @@ while ((l = br.readLine()) != null) {
       }
       for (def k=startingChap; k <= endingChap; k++) {
         def bc = (List)bookChaps[colIdx];
-        //p((k + 1)+"");
-        //p(bc.get(k + 1));
+        p(k+"");
         bookAndChaps.add(((List)bookChaps[colIdx]).get(k - 1));
+        boostLevels.add(bookBoosts[colIdx]);
       }
       colIdx++;
     }
@@ -84,7 +90,7 @@ for (String absFileName : bookAndChaps) {
     def abf = absFileName
     //abf = abf.replaceAll("mp3", "zzz");
     //println abf;
-    proc("sox -v ${boost} $abf -r 24k -c 1 $tmp_dir/$fileName", testMode)
+    proc("sox -t mp3 -v ${boostLevels.get(trackNum-1)} $abf -r 24k -c 1 $tmp_dir/$fileName", testMode)
     proc("id3tag -2 -t${trackNum} -A${album} $tmp_dir/$fileName", testMode)
     println ""
   }
