@@ -27,9 +27,6 @@ $ mysql -u koha_sjbs --password=xeequiph -D koha_sjbs -t -e "select * from zebra
 # koha-rebuild-zebra -u $(koha-list --enabled)
 
 
-edge@neustar.biz
-3C9X92BdHfyDkZr5
-
 $ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -r -v
 $ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -b -v
 

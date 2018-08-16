@@ -5,7 +5,7 @@ def void p(String m) {
   System.out.println(m);
 }
 
-def album="03-Lev"
+def album="05-Numbers"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
 String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
@@ -95,7 +95,7 @@ for (String absFileName : bookAndChaps) {
     println ""
   }
 }
-proc("zip $tmp_dir/tmp.zip $tmp_dir/*.mp3", testMode)
+proc("zip zips/${album}.zip $tmp_dir/*.mp3", testMode)
 
 def String proc(def cmd, def testMode=false) {
   println cmd;
