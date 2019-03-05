@@ -5,7 +5,7 @@ def void p(String m) {
   System.out.println(m);
 }
 
-def album="05-Numbers"
+def album="13-2Sam"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
 String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
@@ -62,7 +62,10 @@ while ((l = br.readLine()) != null) {
     String[] cols = l.replaceAll("( +)"," ").trim().split(" ");
     int colIdx=0;
     for (String col : cols) {
-      if (col.trim().length() ==0) continue;
+      if (col.trim().length() <= 1) {
+        colIdx++;
+        continue;
+      }
       String[] chaps = col.split("-");
       def startingChap = Integer.parseInt(chaps[0]);
       def endingChap = startingChap;
