@@ -5,7 +5,7 @@ def void p(String m) {
   System.out.println(m);
 }
 
-def album="14-1Kings"
+def album="22-Tobit"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
 String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
@@ -60,9 +60,11 @@ while ((l = br.readLine()) != null) {
   } else {
     p(l);
     String[] cols = l.replaceAll("( +)"," ").trim().split(" ");
+    p(cols.join("==="));
     int colIdx=0;
     for (String col : cols) {
-      if (col.trim().length() <= 1) {
+      col = col.trim();
+      if (col.length() <= 0 || "-".equals(col)) {
         colIdx++;
         continue;
       }
@@ -74,7 +76,8 @@ while ((l = br.readLine()) != null) {
       }
       for (def k=startingChap; k <= endingChap; k++) {
         def bc = (List)bookChaps[colIdx];
-        p(k+"");
+        p("k: " + k);
+        p("colIdx: " + colIdx);
         bookAndChaps.add(((List)bookChaps[colIdx]).get(k - 1));
         boostLevels.add(bookBoosts[colIdx]);
       }
