@@ -27,9 +27,6 @@ $ mysql -u koha_sjbs --password=xeequiph -D koha_sjbs -t -e "select * from zebra
 # koha-rebuild-zebra -u $(koha-list --enabled)
 
 
-edge@neustar.biz
-3C9X92BdHfyDkZr5
-
 $ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -r -v
 $ /usr/share/koha/bin/migration_tools/rebuild_zebra.pl -b -v
 
@@ -47,3 +44,13 @@ vagrant@vagrant-ubuntu-trusty-64:/mydev/andersonbd1/sjbs$ grep '<subfield code="
   8947     <subfield code="7">0</subfield>
     41     <subfield code="7">1</subfield>
    324     <subfield code="7">2</subfield>
+
+sudo tail -n +265  /etc/koha/sites/sjbs/koha-conf.xml | head -n 10
+
+Password: YTFhZjdi12
+
+$ export MYSQL_PWD=EDlvcHN0zSeRgwS5
+
+
+
+aws s3 ls --profile andersonbd1 s3://sjbs-library-backups

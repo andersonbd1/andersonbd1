@@ -2,3 +2,6 @@ scratch
 tmp/
 node_modules/
 .vagrant.prev
+package-lock.json
+bible_in_a_year.pdf
+zips/
