@@ -7,9 +7,10 @@ def void p(String m) {
 
 def album="25-Esther"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
-String audioDir = "/Users/banderso/audio"
-String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
-String drop_dir = "/Users/banderso/Dropbox/bookmobile"
+//String audioDir = "/Users/banderso/audio"
+String audioDir = "/myaudio/spoken/DR-Bible"
+String tmp_dir  = "/myaudio/spoken/ready2transfer"
+//String drop_dir = "/Users/banderso/Dropbox/bookmobile"
 def tmpDirFile = new File(tmp_dir);
 def testMode = false;
 if (!testMode) {
@@ -38,12 +39,16 @@ while ((l = br.readLine()) != null) {
     //p("book: " + l);
     String[] lArr = l.split(" ");
     String l1 = lArr[0];
+    // attempting to handle spaces in folder names,
+    // but ended up with the solution of just removing 
+    // the spaces in the original folders
+    l1 = l1.replaceAll("=", " ");
     if (lArr.length > 1) {
       bookBoosts[lineIdx] = Integer.parseInt(lArr[1]);
     }
     books.add(l1);
     File dir = new File(audioDir + "/" + l1);
-    //p(dir.getAbsolutePath());
+    p(dir.getAbsolutePath());
     def chapSet = new TreeSet();
     if (dir.exists()) {
       for (String fn : dir.list()) {
@@ -97,7 +102,10 @@ for (String absFileName : bookAndChaps) {
     //abf = abf.replaceAll("mp3", "zzz");
     //println abf;
     proc("sox -t mp3 -v ${boostLevels.get(trackNum-1)} $abf -r 24k -c 1 $tmp_dir/$fileName", testMode)
-    proc("id3tag -2 -t${trackNum} -A${album} $tmp_dir/$fileName", testMode)
+    // for mac
+    //proc("id3tag -2 -t${trackNum} -A${album} $tmp_dir/$fileName", testMode)
+    // for linux
+    proc("id3v2 -2 -t${fileName} -T${trackNum} -A${album} $tmp_dir/$fileName", testMode)
     println ""
   }
 }
