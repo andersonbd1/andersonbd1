@@ -5,7 +5,7 @@ def void p(String m) {
   System.out.println(m);
 }
 
-def album="22-Tobit"
+def album="25-Esther"
 //String audioDir = "/Users/banderso/Google Drive File Stream/My Drive/audio";
 String audioDir = "/Users/banderso/audio"
 String tmp_dir  = "/Users/banderso/dev/andersonbd1/tmp"
