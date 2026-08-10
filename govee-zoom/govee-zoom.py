@@ -12,7 +12,9 @@ URL = 'https://developer-api.govee.com/v1/devices/control'
 DEVICE = os.environ.get('GOVEE_DEVICE', '22:F4:D0:C9:07:00:23:A8')
 MODEL = os.environ.get('GOVEE_MODEL', 'H6008')
 
-POLL_SECONDS = 5
+POLL_SECONDS = 2
+CONFIRM_POLLS = 2  # only to ride out a one-off odd reading; the socket test below
+                   # is what rules out Zoom's interface probing
 MAX_ATTEMPTS = 4  # 1s + 2s + 4s of backoff before giving up on a command
 RATE_LIMIT = 9    # Govee allows 10 requests/minute per key; keep one in reserve
 RATE_WINDOW = 60.0
@@ -128,33 +130,61 @@ def apply_state(is_busy):
     return True
 
 
-def zoom_socket_count():
-    """Zoom's open UDP sockets, or None if lsof didn't answer."""
+def zoom_is_active():
+    """True if Zoom has a UDP socket open to a media server. None if lsof failed.
+
+    In a call Zoom connects several UDP sockets straight to a media server:
+        UDP 192.168.9.128:49624->206.247.10.158:8801
+    Between calls it periodically binds one *unconnected* socket per network
+    interface for about six seconds to probe reachability:
+        UDP 172.30.1.0:57478
+        UDP 169.254.79.110:49158
+    Counting sockets confuses the two, which is what used to turn the light red
+    at random. Requiring a connected remote peer separates them outright.
+    """
     try:
+        # -c zoom is deliberately case sensitive: it matches the zoom.us process
+        # but not ZoomCefHelper, whose QUIC traffic to the web has no bearing on
+        # whether a meeting is running. Narrowing to one command also keeps this
+        # near 50ms, cheap enough to poll often.
         result = subprocess.run(
-            ['lsof', '-i', '4UDP'], capture_output=True, text=True, timeout=10
+            ['lsof', '-nP', '-a', '-c', 'zoom', '-i', '4UDP'],
+            capture_output=True, text=True, timeout=10,
         )
     except (subprocess.TimeoutExpired, OSError) as e:
         log(f'lsof failed: {e}')
         return None
-    return sum(1 for line in result.stdout.splitlines() if 'zoom' in line)
+    for line in result.stdout.splitlines():
+        _, arrow, remote = line.partition('->')
+        # Skip the self-connected loopback socket Zoom keeps open for IPC.
+        if arrow and not remote.startswith('127.'):
+            return True
+    return False
 
 
 def main():
     log(f'watching zoom, driving {MODEL} {DEVICE}')
-    prev_busy = None
+    applied = None  # what the light is currently showing
+    pending = None  # reading waiting to be confirmed
+    agree = 0       # consecutive polls that agreed on it
     while True:
-        count = zoom_socket_count()
-        # An unreadable count is not the same as "no call" -- leave the light alone.
-        if count is not None:
-            is_busy = count > 1
-            # Compare the busy flag, not the raw socket count: Zoom opens and
-            # closes sockets throughout a call, and re-sending on every wobble
-            # burns through the rate limit in seconds.
-            if is_busy != prev_busy:
-                log(f"{count} zoom sockets -> {'BUSY' if is_busy else 'free'}")
-                if apply_state(is_busy):
-                    prev_busy = is_busy  # only commit once the light agrees
+        active = zoom_is_active()
+        if active is None:
+            # An unreadable state is not the same as "no call". Leave the light
+            # alone and start the count over.
+            pending, agree = None, 0
+        else:
+            if active == pending:
+                agree += 1
+            else:
+                pending, agree = active, 1
+            # Only act on a reading that has held still. A momentary blip is
+            # Zoom counting its interfaces, not a meeting.
+            if agree >= CONFIRM_POLLS and pending != applied:
+                log(f"zoom {'active' if pending else 'idle'} "
+                    f"{agree * POLL_SECONDS}s -> {'BUSY' if pending else 'free'}")
+                if apply_state(pending):
+                    applied = pending  # only commit once the light agrees
                 else:
                     log('light did not update, retrying next poll')
         sleep(POLL_SECONDS)
