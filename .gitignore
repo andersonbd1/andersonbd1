@@ -1,5 +1,7 @@
 scratch
 tmp/
+.env
+__pycache__/
 node_modules/
 .vagrant.prev
 package-lock.json

@@ -1,29 +1,32 @@
-import requests
-import subprocess
-from time import sleep
+"""One-shot probe: print the current state of the Govee device."""
 
-url = 'https://developer-api.govee.com/v1/devices/control'
+import os
+import sys
+
+import requests
+
+api_key = os.environ.get('GOVEE_API_KEY')
+if not api_key:
+    sys.exit('GOVEE_API_KEY is not set. Try: uv run --env-file .env govee-zoom-test.py')
 
 headers = {
-    'Govee-API-Key': 'e1ec4b9b-6387-4ed0-8ec7-53cb914f8625',
+    'Govee-API-Key': api_key,
     'accept': 'application/json',
-    'content-type': 'application/json'
+    'content-type': 'application/json',
 }
 
-data = {
-    "device": "22:F4:D0:C9:07:00:23:A8",
-    "model": "H6008",
-    "cmd": {
-        "name": "colorTem",
-        "value": 3000
-    }
+params = {
+    'device': os.environ.get('GOVEE_DEVICE', '22:F4:D0:C9:07:00:23:A8'),
+    'model': os.environ.get('GOVEE_MODEL', 'H6008'),
 }
 
-session = requests.Session()
-session.headers.clear()  # Clear all default headers
+response = requests.get(
+    'https://developer-api.govee.com/v1/devices/state',
+    params=params,
+    headers=headers,
+    timeout=10,
+)
 
-#response = session.put(url, headers=headers, json=data)
-response = requests.get('https://developer-api.govee.com/v1/devices/state', params=data, headers=headers)
-
-print(f"Status Code: {response.status_code}")
-print(f"Response: {response.text}")
+print(f'Status Code: {response.status_code}')
+print(f'Response: {response.text}')
+print(f"Rate limit left this minute: {response.headers.get('API-RateLimit-Remaining', '?')}")
